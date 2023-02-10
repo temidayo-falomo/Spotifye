@@ -1,25 +1,74 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import AudioPlayer from "./components/audio-player/AudioPlayer";
+import { AppContext } from "./global/Context";
+import GlobalStyle from "./Globalstyles";
+import Album from "./pages/album/Album";
+import Artiste from "./pages/artiste/Artiste";
+import Category from "./pages/category/Category";
+import Home from "./pages/home/Home";
+import Search from "./pages/search/Search";
 
 function App() {
+  const [token, setToken] = React.useState<string | null>(null);
+
+  const [chartsData, setChartsData] = React.useState([]);
+  const [artisteData, setArtisteData] = React.useState([]);
+  const [artisteAlbums, setArtisteAlbums] = useState([]);
+  const [artisteTracks, setArtisteTracks] = useState([]);
+  const [artisteRelated, setArtisteRelated] = useState([]);
+  const [radioCategories, setRadioCategories] = useState([]);
+  const [albumData, setAlbumData] = useState([]);
+
+  const [searchData, setSearchData] = useState([]);
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const [categoryData, setCategoryData] = useState([]);
+
+  const [displayAudioPlayer, setDisplayAudioPlayer] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider
+      value={{
+        chartsData,
+        setChartsData,
+        artisteData,
+        setArtisteData,
+        artisteAlbums,
+        setArtisteAlbums,
+        artisteTracks,
+        setArtisteTracks,
+        artisteRelated,
+        setArtisteRelated,
+        radioCategories,
+        setRadioCategories,
+        albumData,
+        setAlbumData,
+
+        searchValue,
+        setSearchValue,
+        searchData,
+        setSearchData,
+
+        categoryData,
+        setCategoryData,
+
+        displayAudioPlayer,
+        setDisplayAudioPlayer,
+      }}
+    >
+      <div className="App">
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/artiste/:id/:name" element={<Artiste />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/album/:id/:name" element={<Album />} />
+          <Route path="/category/:id/:name" element={<Category />} />
+        </Routes>
+        <AudioPlayer />
+      </div>
+    </AppContext.Provider>
   );
 }
 
