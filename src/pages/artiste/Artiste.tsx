@@ -18,7 +18,10 @@ function Artiste() {
 
   const fetchArtiste = async () => {
     setArtisteData(null);
-    fetch(`https://api.deezer.com/artist/${id}`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}`)
+    )
       .then((res) => res.json())
       .then((data) => {
         setArtisteData(data);
@@ -30,7 +33,10 @@ function Artiste() {
 
   const fetchArtisteAlbums = async () => {
     setArtisteAlbums(null);
-    fetch(`https://api.deezer.com/artist/${id}/albums`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/albums`)
+    )
       .then((res) => res.json())
       .then((data) => {
         setArtisteAlbums(data.data);
@@ -43,7 +49,10 @@ function Artiste() {
 
   const fetchArtisteTracks = async () => {
     setArtisteTracks(null);
-    fetch(`https://api.deezer.com/artist/${id}/top?limit=50`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/top?limit=50`)
+    )
       .then((res) => res.json())
       .then((data) => {
         setArtisteTracks(data.data);
@@ -54,7 +63,10 @@ function Artiste() {
   };
 
   const fetchArtisteRelated = async () => {
-    fetch(`https://api.deezer.com/artist/${id}/related`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/related`)
+    )
       .then((res) => res.json())
       .then((data) => {
         setArtisteRelated(data.data);
@@ -91,7 +103,6 @@ function Artiste() {
     fetchArtisteAlbums();
     fetchArtisteTracks();
     fetchArtisteRelated();
-    console.log("did");
   }, [navigate]);
 
   return (

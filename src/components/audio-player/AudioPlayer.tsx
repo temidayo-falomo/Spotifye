@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../global/Context";
 import { StyledAudioPlayer } from "./AudioPlayer.styled";
-import { FaHeart, FaPlay } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import {
   RiPictureInPictureFill,
   RiSkipBackFill,
@@ -100,7 +100,6 @@ function AudioPlayer() {
               type="range"
               min="1"
               max="100"
-              value="50"
               id="myRange"
             ></input>
           </div>

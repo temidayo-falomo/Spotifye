@@ -11,7 +11,10 @@ function Category() {
 
   const fetchCategory = async () => {
     setCategoryData(null);
-    fetch(`https://api.deezer.com/radio/${id}/tracks`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/radio/${id}/tracks`)
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

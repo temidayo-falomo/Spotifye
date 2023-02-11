@@ -12,7 +12,10 @@ function Album() {
 
   const fetchAlbum = async () => {
     setAlbumData(null);
-    fetch(`https://api.deezer.com/album/${id}`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/album/${id}`)
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

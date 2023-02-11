@@ -8,7 +8,10 @@ function Search() {
   const { setRadioCategories } = useContext(AppContext);
 
   const fetchRadioCategories = async () => {
-    fetch(`https://api.deezer.com/radio`)
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/radio`)
+    )
       .then((res) => res.json())
       .then((data) => {
         setRadioCategories(data.data);

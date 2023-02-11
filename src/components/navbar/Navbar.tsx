@@ -11,15 +11,18 @@ function Navbar() {
   const { setSearchValue, searchValue, setSearchData } = useContext(AppContext);
 
   const fetchSearchResults = async (searchParam: string) => {
-    // fetch(`https://api.deezer.com/search?q=${searchParam}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setSearchData(data.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(`https://api.deezer.com/search?q=${searchParam}`)
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSearchData(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
