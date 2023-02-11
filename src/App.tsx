@@ -12,7 +12,7 @@ import Search from "./pages/search/Search";
 function App() {
   const [token, setToken] = React.useState<string | null>(null);
 
-  const [chartsData, setChartsData] = React.useState([]);
+  const [homeData, setHomeData] = React.useState([]);
   const [artisteData, setArtisteData] = React.useState([]);
   const [artisteAlbums, setArtisteAlbums] = useState([]);
   const [artisteTracks, setArtisteTracks] = useState([]);
@@ -30,8 +30,8 @@ function App() {
   return (
     <AppContext.Provider
       value={{
-        chartsData,
-        setChartsData,
+        homeData,
+        setHomeData,
         artisteData,
         setArtisteData,
         artisteAlbums,

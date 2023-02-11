@@ -4,14 +4,14 @@ import Card from "../card/Card";
 import { StyledCharts } from "./Charts.styled";
 
 function Charts() {
-  const { chartsData } = useContext(AppContext);
+  const { homeData } = useContext(AppContext);
 
   return (
     <StyledCharts>
-      <h3>Top Albums & Singles</h3>
+      <h3>Top Singles</h3>
 
       <div className="charts row">
-        {chartsData?.tracks?.data?.map((itemData: any, i: number) => {
+        {homeData?.tracks?.data?.map((itemData: any, i: number) => {
           return (
             <React.Fragment key={i}>
               <Card itemData={itemData} />

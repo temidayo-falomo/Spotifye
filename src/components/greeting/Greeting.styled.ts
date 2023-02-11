@@ -26,6 +26,7 @@ export const StyledGreeting = styled.div`
       backdrop-filter: blur(2.7px);
       -webkit-backdrop-filter: blur(2.7px);
       overflow: hidden;
+      cursor: pointer;
 
       .box {
         width: 80px;

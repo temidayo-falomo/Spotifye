@@ -8,7 +8,7 @@ import { StyledHome } from "./Home.styled";
 // encodeURIComponent(``)
 
 function Home() {
-  const { setChartsData } = useContext(AppContext);
+  const { setHomeData } = useContext(AppContext);
 
   const fetchCharts = async () => {
     fetch(
@@ -17,7 +17,7 @@ function Home() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setChartsData(data);
+        setHomeData(data);
         console.log(data);
       })
       .catch((err) => {

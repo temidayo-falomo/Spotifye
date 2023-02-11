@@ -4,6 +4,7 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledNavbar } from "./Navbar.styled";
+import { FcGoogle } from "react-icons/fc";
 
 function Navbar() {
   let navigate = useNavigate();
@@ -56,15 +57,9 @@ function Navbar() {
 
       <div className="row right-nav">
         <button>Premium</button>
-        <div
-          className="avatar"
-          style={{
-            backgroundImage: `url("https://www.thewikifeed.com/wp-content/uploads/2021/07/jaden-smith-1.jpg")`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
+        <div className="avatar">
+          <FcGoogle />
+        </div>
       </div>
     </StyledNavbar>
   );

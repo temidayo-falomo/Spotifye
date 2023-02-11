@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledRadio = styled.div`
+export const StyledPodcasts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -11,7 +11,7 @@ export const StyledRadio = styled.div`
     font-size: 1.4rem;
   }
 
-  .radios {
+  .podcasts {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem;

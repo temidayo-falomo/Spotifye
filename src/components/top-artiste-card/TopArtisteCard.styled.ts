@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.a`
-  width: 210px;
-  min-height: 280px;
+export const StyledTopArtisteCard = styled.div`
+  /* width: 300px; */
+  min-height: 320px;
   padding: 15px;
   border-radius: 10px;
   display: flex;
@@ -12,6 +12,7 @@ export const StyledCard = styled.a`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   cursor: pointer;
   transition: 0.5s ease;
+  text-transform: capitalize;
 
   :hover {
     background: rgba(255, 255, 255, 0.1);
@@ -21,26 +22,14 @@ export const StyledCard = styled.a`
     transition: 0.5s ease;
   }
 
-  .image {
-    height: 180px;
-    border-radius: 5px;
-    background-color: #000;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  h4 {
+    font-size: 1.2rem;
   }
 
-  .row.gap-5 {
-    gap: 0.2rem;
-
-    span {
-      color: ghostwhite;
-      font-size: 0.8rem;
-      text-transform: capitalize;
-      width: max-content;
-
-      :hover {
-        border-bottom: 1px solid gainsboro;
-        color: gainsboro;
-      }
-    }
+  .image {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
   }
 `;

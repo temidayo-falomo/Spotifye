@@ -55,12 +55,16 @@ export const StyledNavbar = styled.nav`
       background-color: transparent;
       border-radius: 20px;
       color: #fff;
+      cursor: default;
     }
     .avatar {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       border: 2px gainsboro solid;
+      display: grid;
+      place-content: center;
+      cursor: pointer;
     }
   }
 `;

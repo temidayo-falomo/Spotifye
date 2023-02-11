@@ -4,6 +4,7 @@ export const StyledCategoryInfo = styled.div`
   height: 100vh;
   overflow-y: auto;
   z-index: 99999;
+  padding-bottom: 150px;
 
   .hero-bg {
     min-height: 40vh;
