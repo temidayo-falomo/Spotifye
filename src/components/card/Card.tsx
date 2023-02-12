@@ -1,4 +1,5 @@
 import React from "react";
+import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { StyledCard } from "./Card.styled";
 
@@ -75,6 +76,10 @@ function Card(props: any) {
             : props.itemData?.description}
         </span>
       )}
+
+      <button className="play-btn">
+        <FaPlay />
+      </button>
     </StyledCard>
   );
 }

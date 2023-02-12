@@ -12,6 +12,7 @@ import { TbDevices2, TbRepeat } from "react-icons/tb";
 import { BsPlayFill } from "react-icons/bs";
 import { HiOutlineViewList } from "react-icons/hi";
 import { RxSpeakerLoud } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
 function AudioPlayer() {
   const { displayAudioPlayer, setDisplayAudioPlayer } = useContext(AppContext);
@@ -20,9 +21,30 @@ function AudioPlayer() {
     setDisplayAudioPlayer(!displayAudioPlayer);
   };
 
+  // const handleDisplayLyrics = () => {
+  //   setDisplayLyrics(!displayLyrics);
+  // }
+
+  let trackName = "Oxytocin";
+  let artistName = "Billie Eilish";
+
+  const handleFetchLyrics = () => {
+    fetch(`https://lyrist.vercel.app/api/:${trackName}/:${artistName}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
     <StyledAudioPlayer displayAudioPlayer={displayAudioPlayer}>
-      <div className="nav"></div>
+      <div className="nav">
+        <div className="logo">Spotifye</div>
+        <div className="row gap-1">
+          <Link to="/">Home</Link>
+          <Link to="/search">Search</Link>
+          <Link to="/">Library</Link>
+        </div>
+        <div className="avatar"></div>
+      </div>
       <div className="main-info row">
         <div
           className="big-img"
@@ -34,7 +56,38 @@ function AudioPlayer() {
           }}
         ></div>
 
-        <div className="col"></div>
+        <div className="col lyr-rel">
+          <div className="row gap-1">
+            <h4 className="pointer">Up Next</h4>
+            <h4 className="pointer">Lyrics</h4>
+          </div>
+          <div className="lyrics">
+            <article>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+              distinctio nesciunt nemo corporis earum eum ad dolor ducimus
+              deleniti explicabo repudiandae velit voluptatibus dolore alias,
+              veniam facere harum eveniet.
+              <br />
+              <br />
+              Tempore sint sunt praesentium impedit delectus cupiditate autem
+              magni harum. Similique ad error hic excepturi vel repudiandae
+              laudantium incidunt dolore dolores? Voluptates, quae. Lorem ipsum
+              dolor sit amet consectetur adipisicing elit.
+              <br />
+              <br />
+              Ipsum distinctio nesciunt nemo corporis earum eum ad dolor ducimus
+              deleniti explicabo repudiandae velit voluptatibus dolore alias,
+              veniam facere harum eveniet.
+              <br />
+              Tempore sint sunt praesentium impedit delectus cupiditate autem
+              magni harum. Similique ad error hic excepturi vel repudiandae
+              laudantium incidunt dolore dolores? Voluptates, quae.
+              <br />
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+              distinctio nesciunt nemo corporis earum eum
+            </article>
+          </div>
+        </div>
       </div>
 
       <div
@@ -96,12 +149,7 @@ function AudioPlayer() {
           <TbDevices2 />
           <div className="row gap-5">
             <RxSpeakerLoud />
-            <input
-              type="range"
-              min="1"
-              max="100"
-              id="myRange"
-            ></input>
+            <input type="range" min="1" max="100" id="myRange"></input>
           </div>
         </div>
       </div>

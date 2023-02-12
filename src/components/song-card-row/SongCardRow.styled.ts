@@ -9,13 +9,25 @@ export const StyledSongCardRow = styled.div`
 
   :hover {
     background-color: #282828;
+
+    .number {
+      display: none;
+    }
+
+    .play {
+      display: inline-block;
+    }
+  }
+
+  .play {
+    display: none;
+    cursor: pointer;
+    font-size: 0.9rem;
   }
 
   .col {
     a {
-      display: block;
       width: max-content;
-      cursor: pointer;
 
       :hover {
         color: gainsboro;

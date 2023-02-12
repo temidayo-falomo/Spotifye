@@ -13,6 +13,7 @@ export const StyledTopArtisteCard = styled.div`
   cursor: pointer;
   transition: 0.5s ease;
   text-transform: capitalize;
+  overflow: hidden;
 
   :hover {
     background: rgba(255, 255, 255, 0.1);

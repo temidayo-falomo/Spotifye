@@ -19,24 +19,58 @@ export const StyledAudioPlayer = styled.div`
 
   .nav {
     height: 80px;
-    width: 90%;
+    width: 95%;
     margin: auto;
-    border: 2px #181818 solid;
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+
+    .row {
+      gap: 2rem;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #1CDF63;
+    }
   }
 
   .main-info {
-    /* border: 2px royalblue solid; */
     height: 80vh;
     padding: 20px;
     width: 90%;
     margin: 2rem auto;
+    gap: 1rem;
 
     .big-img {
       height: 90%;
       width: 600px;
       background-color: royalblue;
       margin: auto 0;
+    }
+
+    .lyr-rel {
+      margin: 0 auto;
+      width: 50%;
+      display: flex;
+      align-items: center;
+
+      .row {
+        gap: 4rem;
+        padding-bottom: 10px;
+        margin-bottom: 1rem;
+        /* border-bottom: 1px gainsboro solid; */
+
+
+      }
     }
   }
 
