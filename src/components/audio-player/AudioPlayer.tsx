@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../global/Context";
 import { StyledAudioPlayer } from "./AudioPlayer.styled";
 import { FaHeart } from "react-icons/fa";
@@ -12,18 +12,22 @@ import { TbDevices2, TbRepeat } from "react-icons/tb";
 import { BsPlayFill } from "react-icons/bs";
 import { HiOutlineViewList } from "react-icons/hi";
 import { RxSpeakerLoud } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Lyrics from "../lyrics/Lyrics";
+import UpNext from "../upNext/UpNext";
+import { FcGoogle } from "react-icons/fc";
 
 function AudioPlayer() {
   const { displayAudioPlayer, setDisplayAudioPlayer } = useContext(AppContext);
+  const [number, setNumber] = useState<number>(1);
 
   const handleDisplayAudioPlayer = () => {
     setDisplayAudioPlayer(!displayAudioPlayer);
   };
 
-  // const handleDisplayLyrics = () => {
-  //   setDisplayLyrics(!displayLyrics);
-  // }
+  const handleNumber = (num: number) => {
+    setNumber(num);
+  };
 
   let trackName = "Oxytocin";
   let artistName = "Billie Eilish";
@@ -39,11 +43,31 @@ function AudioPlayer() {
       <div className="nav">
         <div className="logo">Spotifye</div>
         <div className="row gap-1">
-          <Link to="/">Home</Link>
-          <Link to="/search">Search</Link>
-          <Link to="/">Library</Link>
+          <NavLink
+            to="/"
+            onClick={handleDisplayAudioPlayer}
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/search"
+            onClick={handleDisplayAudioPlayer}
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Search
+          </NavLink>
+          <NavLink
+            to="/library"
+            onClick={handleDisplayAudioPlayer}
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Library
+          </NavLink>
         </div>
-        <div className="avatar"></div>
+        <div className="avatar">
+          <FcGoogle />
+        </div>
       </div>
       <div className="main-info row">
         <div
@@ -58,35 +82,25 @@ function AudioPlayer() {
 
         <div className="col lyr-rel">
           <div className="row gap-1">
-            <h4 className="pointer">Up Next</h4>
-            <h4 className="pointer">Lyrics</h4>
+            <h4
+              className={`normal-btn pointer ${number === 1 && "active-btn"}`}
+              onClick={() => handleNumber(1)}
+            >
+              Up Next
+            </h4>
+            <h4
+              className={`normal-btn pointer ${number === 2 && "active-btn"}`}
+              onClick={() => handleNumber(2)}
+            >
+              Lyrics
+            </h4>
           </div>
-          <div className="lyrics">
-            <article>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              distinctio nesciunt nemo corporis earum eum ad dolor ducimus
-              deleniti explicabo repudiandae velit voluptatibus dolore alias,
-              veniam facere harum eveniet.
-              <br />
-              <br />
-              Tempore sint sunt praesentium impedit delectus cupiditate autem
-              magni harum. Similique ad error hic excepturi vel repudiandae
-              laudantium incidunt dolore dolores? Voluptates, quae. Lorem ipsum
-              dolor sit amet consectetur adipisicing elit.
-              <br />
-              <br />
-              Ipsum distinctio nesciunt nemo corporis earum eum ad dolor ducimus
-              deleniti explicabo repudiandae velit voluptatibus dolore alias,
-              veniam facere harum eveniet.
-              <br />
-              Tempore sint sunt praesentium impedit delectus cupiditate autem
-              magni harum. Similique ad error hic excepturi vel repudiandae
-              laudantium incidunt dolore dolores? Voluptates, quae.
-              <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              distinctio nesciunt nemo corporis earum eum
-            </article>
-          </div>
+          {number === 1 && <UpNext />}
+          {number === 2 && (
+            <div className="lyrics">
+              <Lyrics />
+            </div>
+          )}
         </div>
       </div>
 
@@ -135,7 +149,17 @@ function AudioPlayer() {
               <RiSkipForwardFill />
               <TbRepeat />
             </div>
-            <div className="slide-bar row gap-5"></div>
+            <input
+              type="range"
+              min="1"
+              max="80"
+              id="myRange"
+              style={{
+                width: "400px",
+                backgroundColor: "green",
+                color: "green",
+              }}
+            ></input>
           </div>
         </div>
 

@@ -1,9 +1,13 @@
 import React from "react";
+import { FaPlay } from "react-icons/fa";
 import { StyledTopArtisteCard } from "./TopArtisteCard.styled";
 
 function TopArtisteCard(props: any) {
   return (
     <StyledTopArtisteCard>
+      <button className="play-btn">
+        <FaPlay />
+      </button>
       <div
         className="image"
         style={{

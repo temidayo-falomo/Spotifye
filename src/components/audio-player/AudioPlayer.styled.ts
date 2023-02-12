@@ -15,7 +15,10 @@ export const StyledAudioPlayer = styled.div`
   align-items: flex-end;
   overflow: hidden;
   transition: 0.5s ease;
-  
+
+  .active-link {
+    color: #1cdf63;
+  }
 
   .nav {
     height: 80px;
@@ -39,7 +42,9 @@ export const StyledAudioPlayer = styled.div`
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #1CDF63;
+      display: grid;
+      place-content: center;
+      border: 2px gainsboro solid;
     }
   }
 
@@ -64,12 +69,16 @@ export const StyledAudioPlayer = styled.div`
       align-items: center;
 
       .row {
-        gap: 4rem;
+        gap: 3rem;
         padding-bottom: 10px;
         margin-bottom: 1rem;
-        /* border-bottom: 1px gainsboro solid; */
+        align-items: center;
 
-
+        .active-btn {
+          padding: 20px;
+          border: 2px #282828 solid;
+          border-radius: 30px;
+        }
       }
     }
   }
@@ -89,23 +98,22 @@ export const StyledAudioPlayer = styled.div`
     span {
       width: max-content;
     }
-  
 
-  .thumbnail-img {
-    width: 65px;
-    height: 65px;
-    border-radius: 5px;
-    background-color: #000;
-  }
-
-  .slide {
-    font-size: 1.5rem;
-    .slide-bar {
-      width: 600px;
-      background-color: #282828;
+    .thumbnail-img {
+      width: 65px;
+      height: 65px;
       border-radius: 5px;
-      height: 5px;
+      background-color: #000;
+    }
+
+    .slide {
+      font-size: 1.5rem;
+      .slide-bar {
+        width: 600px;
+        background-color: #282828;
+        border-radius: 5px;
+        height: 5px;
+      }
     }
   }
-}
 `;
