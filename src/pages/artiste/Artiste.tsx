@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ArtisteInfo from "../../components/artiste-info/ArtisteInfo";
+import Loading from "../../components/loading/Loading";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
 import { StyledArtiste } from "./Artiste.styled";
@@ -16,8 +17,10 @@ function Artiste() {
     setArtisteRelated,
   } = useContext(AppContext);
 
+  const [loading, setLoading] = useState(true);
+
   const fetchArtiste = async () => {
-    setArtisteData(null);
+    // setArtisteData(null);
     fetch(
       "https://api.allorigins.win/raw?url=" +
         encodeURIComponent(`https://api.deezer.com/artist/${id}`)
@@ -25,6 +28,7 @@ function Artiste() {
       .then((res) => res.json())
       .then((data) => {
         setArtisteData(data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +44,6 @@ function Artiste() {
       .then((res) => res.json())
       .then((data) => {
         setArtisteAlbums(data.data);
-        // console.log(data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -51,11 +54,14 @@ function Artiste() {
     setArtisteTracks(null);
     fetch(
       "https://api.allorigins.win/raw?url=" +
-        encodeURIComponent(`https://api.deezer.com/artist/${id}/top?limit=50`)
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/top?limit=30`)
     )
       .then((res) => res.json())
       .then((data) => {
         setArtisteTracks(data.data);
+        console.log(data);
+
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -63,6 +69,8 @@ function Artiste() {
   };
 
   const fetchArtisteRelated = async () => {
+    setArtisteRelated(null);
+    setLoading(true);
     fetch(
       "https://api.allorigins.win/raw?url=" +
         encodeURIComponent(`https://api.deezer.com/artist/${id}/related`)
@@ -108,7 +116,7 @@ function Artiste() {
   return (
     <StyledArtiste>
       <Sidebar />
-      <ArtisteInfo />
+      {loading ? <Loading /> : <ArtisteInfo />}
     </StyledArtiste>
   );
 }

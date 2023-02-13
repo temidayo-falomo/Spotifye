@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Landing from "../../components/landing/Landing";
+import Loading from "../../components/loading/Loading";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
 import { StyledHome } from "./Home.styled";
 
-// "https://api.allorigins.win/raw?url=" +
-// encodeURIComponent(``)
 
 function Home() {
   const { setHomeData } = useContext(AppContext);
+
+  const [loading, setLoading] = useState(true);
 
   const fetchCharts = async () => {
     fetch(
@@ -18,7 +19,9 @@ function Home() {
       .then((res) => res.json())
       .then((data) => {
         setHomeData(data);
-        console.log(data);
+        setLoading(false);
+        // console.log(data);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +35,7 @@ function Home() {
   return (
     <StyledHome>
       <Sidebar />
-      <Landing />
+      {loading ? <Loading /> : <Landing />}
     </StyledHome>
   );
 }

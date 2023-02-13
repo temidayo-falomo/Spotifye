@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Loading from "../../components/loading/Loading";
 import SearchInfo from "../../components/search-info/SearchInfo";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
@@ -6,6 +7,8 @@ import { StyledSearch } from "./Search.styled";
 
 function Search() {
   const { setRadioCategories } = useContext(AppContext);
+
+  const [loading, setLoading] = useState(true);
 
   const fetchRadioCategories = async () => {
     fetch(
@@ -15,6 +18,7 @@ function Search() {
       .then((res) => res.json())
       .then((data) => {
         setRadioCategories(data.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -28,7 +32,7 @@ function Search() {
   return (
     <StyledSearch>
       <Sidebar />
-      <SearchInfo />
+      {loading ? <Loading /> : <SearchInfo />}
     </StyledSearch>
   );
 }

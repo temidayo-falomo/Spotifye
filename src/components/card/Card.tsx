@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../global/Context";
 import { StyledCard } from "./Card.styled";
 
 function Card(props: any) {
   let navigate = useNavigate();
+
+  const { homeData, setCurrentSong, playPause, setSongsList } =
+    useContext(AppContext);
 
   const handleNavigateToArtiste = (
     artiste_id: string,
@@ -15,6 +19,15 @@ function Card(props: any) {
 
   const handleNavigateToAlbum = (album_id: string, album_name: string) => {
     navigate(`/album/${album_id}/${album_name}`);
+  };
+
+  const handleAddSongsToLocalStorage = (currSong: object) => {
+    localStorage.setItem("songsList", JSON.stringify(homeData?.tracks?.data));
+    setSongsList(homeData?.tracks?.data);
+    localStorage.setItem("currentSong", JSON.stringify(currSong));
+    setCurrentSong(currSong);
+
+    playPause();
   };
 
   return (
@@ -77,7 +90,21 @@ function Card(props: any) {
         </span>
       )}
 
-      <button className="play-btn">
+      <button
+        className="play-btn"
+        onClick={() =>
+          handleAddSongsToLocalStorage({
+            id: props.itemData?.id,
+            title: props.itemData?.title,
+            artist: props.itemData?.artist,
+            album: props.itemData?.album,
+            preview: props.itemData?.preview,
+            duration: props.itemData?.duration,
+            link: props.itemData?.link,
+            type: props.itemData?.type,
+          })
+        }
+      >
         <FaPlay />
       </button>
     </StyledCard>

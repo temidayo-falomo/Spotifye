@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategoryInfo from "../../components/category-info/CategoryInfo";
+import Loading from "../../components/loading/Loading";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
 import { StyledCategory } from "./Category.styled";
@@ -8,6 +9,8 @@ import { StyledCategory } from "./Category.styled";
 function Category() {
   const id = useParams().id;
   const { setCategoryData } = useContext(AppContext);
+
+  const [loading, setLoading] = useState(true);
 
   const fetchCategory = async () => {
     setCategoryData(null);
@@ -17,8 +20,8 @@ function Category() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCategoryData(data.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +35,7 @@ function Category() {
   return (
     <StyledCategory>
       <Sidebar />
-      <CategoryInfo />
+      {loading ? <Loading /> : <CategoryInfo />}
     </StyledCategory>
   );
 }

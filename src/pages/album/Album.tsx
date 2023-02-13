@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AlbumInfo from "../../components/album-info/AlbumInfo";
+import Loading from "../../components/loading/Loading";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
 import { StyledAlbum } from "./Album.styled";
@@ -10,6 +11,8 @@ function Album() {
 
   const { setAlbumData } = useContext(AppContext);
 
+  const [loading, setLoading] = useState(true);
+
   const fetchAlbum = async () => {
     setAlbumData(null);
     fetch(
@@ -18,8 +21,8 @@ function Album() {
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setAlbumData(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -33,7 +36,7 @@ function Album() {
   return (
     <StyledAlbum>
       <Sidebar />
-      <AlbumInfo />
+      {loading ? <Loading /> : <AlbumInfo />}
     </StyledAlbum>
   );
 }

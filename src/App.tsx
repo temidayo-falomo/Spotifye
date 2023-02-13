@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AudioPlayer from "./components/audio-player/AudioPlayer";
 import { AppContext } from "./global/Context";
@@ -11,6 +11,12 @@ import Search from "./pages/search/Search";
 
 function App() {
   const [token, setToken] = React.useState<string | null>(null);
+
+  //
+  const audioElem = useRef<any>();
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  //
 
   const [homeData, setHomeData] = React.useState([]);
   const [artisteData, setArtisteData] = React.useState([]);
@@ -26,6 +32,24 @@ function App() {
   const [categoryData, setCategoryData] = useState([]);
 
   const [displayAudioPlayer, setDisplayAudioPlayer] = useState(false);
+
+  const [songsList, setSongsList] = useState(
+    JSON.parse(localStorage.getItem("songsList") || "[]")
+  );
+
+  const [currentSong, setCurrentSong] = useState(songsList[0]);
+
+  const playPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioElem.current.play();
+    } else {
+      audioElem.current.pause();
+    }
+  }, [isPlaying]);
 
   return (
     <AppContext.Provider
@@ -55,6 +79,17 @@ function App() {
 
         displayAudioPlayer,
         setDisplayAudioPlayer,
+
+        songsList,
+        setSongsList,
+
+        currentSong,
+        setCurrentSong,
+
+        playPause,
+        audioElem,
+        isPlaying,
+        setIsPlaying,
       }}
     >
       <div className="App">

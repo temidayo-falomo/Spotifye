@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../global/Context";
 import { StyledAudioPlayer } from "./AudioPlayer.styled";
 import { FaHeart } from "react-icons/fa";
@@ -9,7 +9,7 @@ import {
 } from "react-icons/ri";
 import { BiShuffle } from "react-icons/bi";
 import { TbDevices2, TbRepeat } from "react-icons/tb";
-import { BsPlayFill } from "react-icons/bs";
+import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiOutlineViewList } from "react-icons/hi";
 import { RxSpeakerLoud } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
@@ -18,7 +18,15 @@ import UpNext from "../upNext/UpNext";
 import { FcGoogle } from "react-icons/fc";
 
 function AudioPlayer() {
-  const { displayAudioPlayer, setDisplayAudioPlayer } = useContext(AppContext);
+  const {
+    displayAudioPlayer,
+    setDisplayAudioPlayer,
+    currentSong,
+    audioElem,
+    playPause,
+    isPlaying,
+    setIsPlaying,
+  } = useContext(AppContext);
   const [number, setNumber] = useState<number>(1);
 
   const handleDisplayAudioPlayer = () => {
@@ -73,7 +81,7 @@ function AudioPlayer() {
         <div
           className="big-img"
           style={{
-            backgroundImage: `url("https://assets.vogue.com/photos/609bb445758287e5e091eeed/1:1/w_2000,h_2000,c_limit/Billie-Eilish-Happier-Than-Ever.jpeg")`,
+            backgroundImage: `url(${currentSong?.album?.cover_big})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -104,27 +112,27 @@ function AudioPlayer() {
         </div>
       </div>
 
-      <div
-        className="audio-player-container"
-        onClick={handleDisplayAudioPlayer}
-      >
+      <div className="audio-player-container">
         <div className="row gap-1 center">
           <div
             className="thumbnail-img"
             style={{
-              backgroundImage: `url("https://assets.vogue.com/photos/609bb445758287e5e091eeed/1:1/w_2000,h_2000,c_limit/Billie-Eilish-Happier-Than-Ever.jpeg")`,
+              backgroundImage: `url(${currentSong?.album?.cover_big})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
           ></div>
           <div className="col gap-5">
-            <h4>Oxytocin</h4>
-            <span>Billie Eilish</span>
+            <h4>{currentSong?.title}</h4>
+            <span>{currentSong?.artist?.name}</span>
           </div>
           <div className="row gap-1 center" style={{ marginLeft: "1rem" }}>
             <FaHeart />
-            <RiPictureInPictureFill />
+            <RiPictureInPictureFill
+              onClick={handleDisplayAudioPlayer}
+              className="pointer"
+            />
           </div>
         </div>
 
@@ -143,23 +151,15 @@ function AudioPlayer() {
                   fontSize: "1.5rem",
                   cursor: "pointer",
                 }}
+                onClick={playPause}
               >
-                <BsPlayFill />
+                {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
               </button>
               <RiSkipForwardFill />
               <TbRepeat />
             </div>
-            <input
-              type="range"
-              min="1"
-              max="80"
-              id="myRange"
-              style={{
-                width: "400px",
-                backgroundColor: "green",
-                color: "green",
-              }}
-            ></input>
+            <div className="slide-bar"></div>
+            <audio src={currentSong?.preview} ref={audioElem} />
           </div>
         </div>
 

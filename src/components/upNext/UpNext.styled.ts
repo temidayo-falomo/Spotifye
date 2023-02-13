@@ -5,15 +5,17 @@ export const StyledUpNext = styled.div`
   flex-direction: column;
   gap: 1rem;
   width: 95%;
+  max-height:550px;
+  overflow-y: scroll;
 
   .up-next-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px 10px;
     height: 65px;
     gap: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
 
     :hover {
       .play-btn {

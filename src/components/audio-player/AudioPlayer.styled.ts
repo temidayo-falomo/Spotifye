@@ -49,11 +49,12 @@ export const StyledAudioPlayer = styled.div`
   }
 
   .main-info {
-    height: 80vh;
-    padding: 20px;
     width: 90%;
     margin: 2rem auto;
     gap: 1rem;
+
+    /* sussy */
+    min-height: 72vh;
 
     .big-img {
       height: 90%;
@@ -109,10 +110,10 @@ export const StyledAudioPlayer = styled.div`
     .slide {
       font-size: 1.5rem;
       .slide-bar {
-        width: 600px;
+        width: 500px;
         background-color: #282828;
         border-radius: 5px;
-        height: 5px;
+        height: 8px;
       }
     }
   }

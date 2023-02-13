@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledLyrics } from "./Lyrics.styled";
 
-function Lyrics() {
+function Lyrics(props: any) {
   return (
     <StyledLyrics>
       <article>
