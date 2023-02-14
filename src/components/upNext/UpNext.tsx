@@ -29,7 +29,10 @@ function UpNext() {
               <div
                 className="img"
                 style={{
-                  backgroundImage: `url(${song?.album?.cover_small})`,
+                  backgroundImage: `url(${
+                    song?.album?.cover_small ||
+                    `https://e-cdns-images.dzcdn.net/images/cover/${song?.md5_image}/250x250-000000-80-0-0.jpg`
+                  })`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
@@ -56,9 +59,9 @@ function UpNext() {
                     color: "gainsboro",
                   }}
                 >
-                  {song?.artist.name?.length > 10
-                    ? song?.artist.name.slice(0, 10) + "..."
-                    : song?.artist.name}
+                  {song?.artist?.name?.length > 10
+                    ? song?.artist?.name?.slice(0, 10) + "..."
+                    : song?.artist?.name}
                 </span>
               </div>
             </div>

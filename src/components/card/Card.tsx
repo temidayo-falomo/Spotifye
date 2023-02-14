@@ -7,7 +7,7 @@ import { StyledCard } from "./Card.styled";
 function Card(props: any) {
   let navigate = useNavigate();
 
-  const { homeData, setCurrentSong, playPause, setSongsList } =
+  const { homeData, setCurrentSong, playPause, setSongsList, setUnableToPlay } =
     useContext(AppContext);
 
   const handleNavigateToArtiste = (
@@ -22,13 +22,19 @@ function Card(props: any) {
   };
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
-    localStorage.setItem("songsList", JSON.stringify(homeData?.tracks?.data));
-    setSongsList(homeData?.tracks?.data);
-    
-    localStorage.setItem("currentSong", JSON.stringify(currSong));
-    setCurrentSong(currSong);
+    if (props.itemData?.type === "track") {
+      localStorage.setItem("songsList", JSON.stringify(homeData?.tracks?.data));
+      setSongsList(homeData?.tracks?.data);
 
-    playPause();
+      localStorage.setItem("currentSong", JSON.stringify(currSong));
+      setCurrentSong(currSong);
+
+      playPause();
+    }
+
+    if (props.itemData?.type === "podcast") {
+      setUnableToPlay(true);
+    }
   };
 
   return (

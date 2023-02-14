@@ -21,8 +21,6 @@ function Category() {
       .then((res) => res.json())
       .then((data) => {
         setCategoryData(data.data);
-        console.log(data.data);
-
         setLoading(false);
       })
       .catch((err) => {

@@ -11,6 +11,7 @@ function PopularArtistes() {
       <h3>Popular Artistes</h3>
 
       <div className="artistes row">
+        
         {homeData?.artists?.data
           ?.slice(0, 5)
           .map((itemData: any, i: number) => {
@@ -20,6 +21,7 @@ function PopularArtistes() {
               </React.Fragment>
             );
           })}
+
       </div>
     </StyledPopularArtistes>
   );

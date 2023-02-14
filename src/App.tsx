@@ -38,7 +38,9 @@ function App() {
   );
 
   const [currentSong, setCurrentSong] = useState(songsList[0]);
-  
+
+  const [unableToPlay, setUnableToPlay] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false);
 
   const playPause = () => {
     setIsPlaying(!isPlaying);
@@ -74,6 +76,8 @@ function App() {
         setSearchValue,
         searchData,
         setSearchData,
+        searchLoading,
+        setSearchLoading,
 
         categoryData,
         setCategoryData,
@@ -91,6 +95,9 @@ function App() {
         audioElem,
         isPlaying,
         setIsPlaying,
+
+        unableToPlay,
+        setUnableToPlay,
       }}
     >
       <div className="App">

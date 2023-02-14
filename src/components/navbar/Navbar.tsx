@@ -9,17 +9,20 @@ import { FcGoogle } from "react-icons/fc";
 function Navbar() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { setSearchValue, searchValue, setSearchData } = useContext(AppContext);
+  const { setSearchValue, searchValue, setSearchData, setSearchLoading } =
+    useContext(AppContext);
 
-  const fetchSearchResults = async (searchParam: string) => {
+  const fetchSearchResults = async () => {
+    setSearchLoading(true);
     fetch(
       "https://api.allorigins.win/raw?url=" +
-        encodeURIComponent(`https://api.deezer.com/search?q=${searchParam}`)
+        encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
     )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setSearchData(data.data);
+        setSearchLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -38,20 +41,26 @@ function Navbar() {
         </span>
 
         {location.pathname === "/search" && (
-          <div className="input-holder row">
+          <form
+            className="input-holder row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              fetchSearchResults();
+            }}
+          >
             <button>
               <BsSearch />
             </button>
             <input
+              required
               type="search"
               placeholder="What do you want to listen to?"
               value={searchValue}
               onChange={(e) => {
                 setSearchValue(e.target.value);
-                fetchSearchResults(e.target.value);
               }}
             />
-          </div>
+          </form>
         )}
       </div>
 

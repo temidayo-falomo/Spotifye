@@ -93,6 +93,13 @@ const GlobalStyle = createGlobalStyle`
   .none {
     display: none;
   }
+
+  .img-def {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
   @media screen and (-webkit-min-device-pixel-ratio:0) { 
   select,
   textarea,

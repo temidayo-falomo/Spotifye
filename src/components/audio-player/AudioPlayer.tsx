@@ -39,7 +39,10 @@ function AudioPlayer() {
 
   const handleFetchLyrics = () => {
     fetch(
-      `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent(
+          `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
+        )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -90,7 +93,10 @@ function AudioPlayer() {
         <div
           className="big-img"
           style={{
-            backgroundImage: `url(${currentSong?.album?.cover_xl})`,
+            backgroundImage: `url(${
+              currentSong?.album?.cover_xl ||
+              `https://e-cdns-images.dzcdn.net/images/cover/${currentSong?.md5_image}/1000x1000-000000-80-0-0.jpg`
+            })`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -126,7 +132,10 @@ function AudioPlayer() {
           <div
             className="thumbnail-img"
             style={{
-              backgroundImage: `url(${currentSong?.album?.cover_big})`,
+              backgroundImage: `url(${
+                currentSong?.album?.cover_big ||
+                `https://e-cdns-images.dzcdn.net/images/cover/${currentSong?.md5_image}/250x250-000000-80-0-0.jpg`
+              })`,
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",

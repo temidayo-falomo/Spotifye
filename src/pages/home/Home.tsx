@@ -20,8 +20,6 @@ function Home() {
       .then((data) => {
         setHomeData(data);
         setLoading(false);
-        // console.log(data);
-        
       })
       .catch((err) => {
         console.log(err);
