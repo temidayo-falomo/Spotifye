@@ -5,7 +5,7 @@ import { AppContext } from "../../../global/Context";
 import { StyledPopular } from "./Popular.styled";
 
 function Popular() {
-  const { artisteAlbums, artisteTracks } = useContext(AppContext);
+  const { artisteAlbums, artisteTracks, currentSong } = useContext(AppContext);
 
   return (
     <StyledPopular>
@@ -14,7 +14,16 @@ function Popular() {
       <div className="popular-col col">
         {artisteTracks?.slice(0, 5).map((track: any, index: number) => {
           return (
-            <div className="popular-card row center btw" key={index}>
+            <div
+              className="popular-card row center btw"
+              key={index}
+              style={{
+                backgroundColor:
+                  currentSong?.title === track.title
+                    ? "#282828"
+                    : "transparent",
+              }}
+            >
               <div className="init-row row gap-1 center">
                 <span>{index + 1}</span>
                 <div

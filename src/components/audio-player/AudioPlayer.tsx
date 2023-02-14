@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../global/Context";
 import { StyledAudioPlayer } from "./AudioPlayer.styled";
 import { FaHeart } from "react-icons/fa";
@@ -25,9 +25,9 @@ function AudioPlayer() {
     audioElem,
     playPause,
     isPlaying,
-    setIsPlaying,
   } = useContext(AppContext);
   const [number, setNumber] = useState<number>(1);
+  const [lyricsText, setLyricsText] = useState<string>("");
 
   const handleDisplayAudioPlayer = () => {
     setDisplayAudioPlayer(!displayAudioPlayer);
@@ -37,14 +37,24 @@ function AudioPlayer() {
     setNumber(num);
   };
 
-  let trackName = "Oxytocin";
-  let artistName = "Billie Eilish";
-
   const handleFetchLyrics = () => {
-    fetch(`https://lyrist.vercel.app/api/:${trackName}/:${artistName}`)
+    fetch(
+      `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
+    )
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        setLyricsText(data.lyrics);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLyricsText("No lyrics found ");
+      });
   };
+
+  useEffect(() => {
+    handleFetchLyrics();
+  }, [currentSong]);
 
   return (
     <StyledAudioPlayer displayAudioPlayer={displayAudioPlayer}>
@@ -106,7 +116,7 @@ function AudioPlayer() {
           {number === 1 && <UpNext />}
           {number === 2 && (
             <div className="lyrics">
-              <Lyrics />
+              <Lyrics lyricsText={lyricsText} />
             </div>
           )}
         </div>

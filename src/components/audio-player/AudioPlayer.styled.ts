@@ -59,8 +59,8 @@ export const StyledAudioPlayer = styled.div`
     .big-img {
       height: 90%;
       width: 600px;
-      background-color: royalblue;
       margin: auto 0;
+      background-color: #181818;
     }
 
     .lyr-rel {
