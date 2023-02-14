@@ -24,6 +24,7 @@ function Card(props: any) {
   const handleAddSongsToLocalStorage = (currSong: object) => {
     localStorage.setItem("songsList", JSON.stringify(homeData?.tracks?.data));
     setSongsList(homeData?.tracks?.data);
+    
     localStorage.setItem("currentSong", JSON.stringify(currSong));
     setCurrentSong(currSong);
 

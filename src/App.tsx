@@ -38,6 +38,7 @@ function App() {
   );
 
   const [currentSong, setCurrentSong] = useState(songsList[0]);
+  
 
   const playPause = () => {
     setIsPlaying(!isPlaying);

@@ -43,12 +43,11 @@ function AudioPlayer() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setLyricsText(data.lyrics);
       })
       .catch((err) => {
         console.log(err);
-        setLyricsText("No lyrics found ");
+        setLyricsText("No lyrics found");
       });
   };
 
@@ -91,7 +90,7 @@ function AudioPlayer() {
         <div
           className="big-img"
           style={{
-            backgroundImage: `url(${currentSong?.album?.cover_big})`,
+            backgroundImage: `url(${currentSong?.album?.cover_xl})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",

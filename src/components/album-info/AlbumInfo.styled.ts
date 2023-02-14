@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledAlbumInfo = styled.div`
   height: 100vh;
   overflow-y: auto;
+  padding-bottom: 150px;
 
   .hero-bg {
     min-height: 40vh;
