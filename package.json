@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-color-extractor": "^1.1.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",

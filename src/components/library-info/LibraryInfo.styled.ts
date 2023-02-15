@@ -5,4 +5,13 @@ export const StyledLibraryInfo = styled.div`
   overflow-y: auto;
   padding-bottom: 150px;
   padding: 20px;
+  position: relative;
+
+  .nothing {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 45%;
+    text-align: center;
+  }
 `;

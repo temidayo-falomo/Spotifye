@@ -17,7 +17,6 @@ function App() {
   //
   const audioElem = useRef<any>();
   const [isPlaying, setIsPlaying] = useState(false);
-
   //
 
   const [homeData, setHomeData] = React.useState([]);

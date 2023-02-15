@@ -39,6 +39,9 @@ function PlaylistCard(props: any) {
         style={{
           backgroundImage: `url(${props.playlist.picture_big})`,
         }}
+        onClick={() => {
+          navigate(`/playlist/${props.playlist.id}/${props.playlist.title}`);
+        }}
       ></div>
       <h4>
         {props.playlist.title?.length > 16
