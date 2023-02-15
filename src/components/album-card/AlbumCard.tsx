@@ -56,7 +56,9 @@ function AlbumCard(props: any) {
       </h4>
       <div className="row gap-5">
         <span>{props.album?.release_date?.split("-")[0]}</span>
-        <div style={{ display: "inline", textAlign: "center" }}>•</div>
+        {props.album?.release_date && (
+          <div style={{ display: "inline", textAlign: "center" }}>•</div>
+        )}
         <span>{props.album?.type}</span>
       </div>
 

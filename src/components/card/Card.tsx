@@ -97,23 +97,25 @@ function Card(props: any) {
         </span>
       )}
 
-      <button
-        className="play-btn"
-        onClick={() =>
-          handleAddSongsToLocalStorage({
-            id: props.itemData?.id,
-            title: props.itemData?.title,
-            artist: props.itemData?.artist,
-            album: props.itemData?.album,
-            preview: props.itemData?.preview,
-            duration: props.itemData?.duration,
-            link: props.itemData?.link,
-            type: props.itemData?.type,
-          })
-        }
-      >
-        <FaPlay />
-      </button>
+      {props.itemData?.preview && (
+        <button
+          className="play-btn"
+          onClick={() =>
+            handleAddSongsToLocalStorage({
+              id: props.itemData?.id,
+              title: props.itemData?.title,
+              artist: props.itemData?.artist,
+              album: props.itemData?.album,
+              preview: props.itemData?.preview,
+              duration: props.itemData?.duration,
+              link: props.itemData?.link,
+              type: props.itemData?.type,
+            })
+          }
+        >
+          <FaPlay />
+        </button>
+      )}
     </StyledCard>
   );
 }

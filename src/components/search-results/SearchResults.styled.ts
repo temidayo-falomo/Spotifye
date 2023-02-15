@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const StyledSearchResults = styled.div`
   margin: 2rem 0;
+  padding-bottom: 150px;
+  overflow-x: hidden;
 
   .top {
     button {
@@ -82,9 +84,17 @@ export const StyledSearchResults = styled.div`
           width: 50px;
           height: 50px;
           border-radius: 5px;
-          background-color: #1CB854;
+          background-color: #1cb854;
         }
       }
     }
   }
+
+  .albums-row {
+    ::-webkit-scrollbar {
+      width: 0em;
+    }
+  }
+
+  
 `;

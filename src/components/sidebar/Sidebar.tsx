@@ -29,7 +29,7 @@ function Sidebar() {
           <span>Search</span>
         </NavLink>
         <NavLink
-          to="/explore"
+          to="/library"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           <BiLibrary className="icon" />

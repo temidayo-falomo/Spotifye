@@ -7,6 +7,8 @@ import Album from "./pages/album/Album";
 import Artiste from "./pages/artiste/Artiste";
 import Category from "./pages/category/Category";
 import Home from "./pages/home/Home";
+import Library from "./pages/library/Library";
+import Playlist from "./pages/playlist/Playlist";
 import Search from "./pages/search/Search";
 
 function App() {
@@ -108,6 +110,8 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/album/:id/:name" element={<Album />} />
           <Route path="/category/:id/:name" element={<Category />} />
+          <Route path="/playlist/:id/:name" element={<Playlist />} />
+          <Route path="/library" element={<Library />} />
         </Routes>
         <AudioPlayer />
       </div>

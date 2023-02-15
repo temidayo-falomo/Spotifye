@@ -40,7 +40,7 @@ export const StyledUpNext = styled.div`
     .img {
       height: 50px;
       width: 50px;
-      background-color: #1cdf63;
+      background-color: #181818;
       border-radius: 10px;
       display: grid;
       place-content: center;
