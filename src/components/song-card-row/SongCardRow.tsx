@@ -6,8 +6,14 @@ import { AppContext } from "../../global/Context";
 import { StyledSongCardRow } from "./SongCardRow.styled";
 
 function SongCardRow(props: any) {
-  const { setCurrentSong, playPause, setSongsList, categoryData, albumData } =
-    useContext(AppContext);
+  const {
+    setCurrentSong,
+    playPause,
+    setSongsList,
+    categoryData,
+    albumData,
+    playlistData,
+  } = useContext(AppContext);
   const location = useLocation();
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
@@ -25,6 +31,11 @@ function SongCardRow(props: any) {
         JSON.stringify(albumData?.tracks?.data)
       );
       setSongsList(albumData?.tracks?.data);
+    }
+
+    if (location.pathname.includes("/playlist")) {
+      localStorage.setItem("songsList", JSON.stringify(playlistData));
+      setSongsList(playlistData);
     }
 
     localStorage.setItem("currentSong", JSON.stringify(currSong));
