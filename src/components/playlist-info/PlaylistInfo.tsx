@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import { StyledPlaylistInfo } from "./PlaylistInfo.styled";
 import { ColorExtractor } from "react-color-extractor";
-import { FaHeart, FaPlay } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 import { SlOptions } from "react-icons/sl";
 import { AppContext } from "../../global/Context";
 import SongCardRow from "../song-card-row/SongCardRow";
+import { FiHeart } from "react-icons/fi";
 
 function PlaylistInfo() {
   const [colors, setColors] = useState<any>(null);
@@ -63,7 +64,7 @@ function PlaylistInfo() {
           <FaPlay />
         </div>
 
-        <FaHeart className="pointer" />
+        <FiHeart className="pointer" />
 
         <SlOptions className="pointer" />
       </div>

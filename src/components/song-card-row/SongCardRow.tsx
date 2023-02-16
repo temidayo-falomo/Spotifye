@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { BsSoundwave } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import { MdExplicit } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
@@ -7,6 +8,7 @@ import { StyledSongCardRow } from "./SongCardRow.styled";
 
 function SongCardRow(props: any) {
   const {
+    currentSong,
     setCurrentSong,
     playPause,
     setSongsList,
@@ -45,19 +47,45 @@ function SongCardRow(props: any) {
   };
 
   return (
-    <StyledSongCardRow>
+    <StyledSongCardRow
+      style={{
+        backgroundColor:
+          props.song?.id === currentSong?.id ? "#282828" : "transparent",
+      }}
+    >
       <div className="init-row row gap-1 center">
-        <span className="number">{props.index + 1}</span>
+        <span
+          className="number"
+          style={{
+            color: props.song?.id === currentSong?.id ? "#1db954" : "inherit",
+          }}
+        >
+          {currentSong?.id === props.song?.id ? (
+            <BsSoundwave />
+          ) : (
+            <>{props.index + 1}</>
+          )}
+        </span>
         <span
           className="play"
           onClick={() => {
             handleAddSongsToLocalStorage(props.song);
           }}
         >
-          <FaPlay />
+          <FaPlay
+            style={{
+              color: props.song?.id === currentSong?.id ? "#1db954" : "inherit",
+            }}
+          />
         </span>
         <div className="col gap-5">
-          <h4>{props.song?.title}</h4>
+          <h4
+            style={{
+              color: props.song?.id === currentSong?.id ? "#1db954" : "inherit",
+            }}
+          >
+            {props.song?.title}
+          </h4>
           <Link
             to={`/artiste/${props.song?.artist?.id}/${props.song?.artist?.name}`}
             className="row center gap-5"

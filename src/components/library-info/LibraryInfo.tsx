@@ -9,8 +9,8 @@ function LibraryInfo() {
       <Navbar />
       <div className="nothing">
         <h2 className="row center gap-5">
-          Nothing to show yet
           <BiLibrary />
+          Nothing to show yet
         </h2>
       </div>
     </StyledLibraryInfo>
