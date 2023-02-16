@@ -29,9 +29,9 @@ export const StyledGreeting = styled.div`
       cursor: pointer;
       transition: 0.5s ease;
 
-      :hover {
+      /* :hover {
         background-color: #444444;
-      }
+      } */
 
       .box {
         width: 80px;

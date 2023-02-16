@@ -22,7 +22,6 @@ export const StyledPlaylistInfo = styled.div`
   }
 
   .extractor-holder {
-    border: 2px red solid;
     display: flex;
     gap: 2rem;
     display: none;

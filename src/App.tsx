@@ -45,6 +45,8 @@ function App() {
 
   const [playlistData, setPlaylistData] = useState([]);
 
+  const [defaultGradientNum, setDefaultGradientNum] = useState(0);
+
   const playPause = () => {
     setIsPlaying(!isPlaying);
   };
@@ -104,6 +106,9 @@ function App() {
 
         playlistData,
         setPlaylistData,
+
+        defaultGradientNum,
+        setDefaultGradientNum,
       }}
     >
       <div className="App">

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledGreeting } from "./Greeting.styled";
 
 function Greeting() {
-  const { homeData } = useContext(AppContext);
+  const { homeData, setDefaultGradientNum } = useContext(AppContext);
   let navigate = useNavigate();
   var today = new Date();
   var curHr = today.getHours();
@@ -18,6 +18,8 @@ function Greeting() {
     textTime = "evening";
   }
 
+
+
   return (
     <StyledGreeting>
       <h2>Good {textTime}</h2>
@@ -29,6 +31,11 @@ function Greeting() {
             return (
               <React.Fragment key={i}>
                 <div
+                  onMouseOver={() => {
+                    setTimeout(() => {
+                      setDefaultGradientNum(i);
+                    }, 500);
+                  }}
                   className="strip row gap-1 center"
                   onClick={() => {
                     navigate(
