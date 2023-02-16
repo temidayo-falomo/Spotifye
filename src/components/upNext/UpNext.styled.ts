@@ -5,7 +5,7 @@ export const StyledUpNext = styled.div`
   flex-direction: column;
   gap: 1rem;
   width: 95%;
-  max-height:550px;
+  max-height: 550px;
   overflow-y: scroll;
 
   .up-next-card {

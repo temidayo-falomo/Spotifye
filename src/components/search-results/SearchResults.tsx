@@ -5,11 +5,29 @@ import { StyledSearchResults } from "./SearchResults.styled";
 import AlbumCard from "../album-card/AlbumCard";
 import Loading from "../loading/Loading";
 import SearchPlaylist from "./searchResultPlaylist/SearchPlaylist";
+import { FaPlay } from "react-icons/fa";
 
 function SearchResults() {
   const [num, setNum] = React.useState(0);
 
-  const { searchData, searchLoading } = useContext(AppContext);
+  const {
+    searchData,
+    searchLoading,
+    playPause,
+    setCurrentSong,
+    setSongsList,
+    currentSong,
+  } = useContext(AppContext);
+
+  const handleAddSongsToLocalStorage = (currSong: object) => {
+    localStorage.setItem("songsList", JSON.stringify(searchData?.slice(0, 18)));
+    setSongsList(searchData.slice(0, 18));
+
+    localStorage.setItem("currentSong", JSON.stringify(currSong));
+    setCurrentSong(currSong);
+
+    playPause();
+  };
 
   return (
     <StyledSearchResults>
@@ -34,6 +52,7 @@ function SearchResults() {
               <div className="row init-res">
                 <div className="col top-res">
                   <h2>Top Result</h2>
+
                   <div className="main-res-card col">
                     <div
                       className="thumbnail img-def"
@@ -50,6 +69,15 @@ function SearchResults() {
                       </Link>
                       <button>{searchData[0]?.type}</button>
                     </div>
+
+                    <button
+                      className="play-btn"
+                      onClick={() => {
+                        handleAddSongsToLocalStorage(searchData[0]);
+                      }}
+                    >
+                      <FaPlay />
+                    </button>
                   </div>
                 </div>
 
@@ -68,9 +96,25 @@ function SearchResults() {
                             style={{
                               backgroundImage: `url(${song.album.cover_medium})`,
                             }}
-                          ></div>
+                          >
+                            <FaPlay
+                              className="play-btn-tiny pointer"
+                              onClick={() => {
+                                handleAddSongsToLocalStorage(song);
+                              }}
+                            />
+                          </div>
                           <div className="col">
-                            <h5>{song.title}</h5>
+                            <h5
+                              style={{
+                                color:
+                                  currentSong?.id === song.id
+                                    ? "#1db954"
+                                    : "inherit",
+                              }}
+                            >
+                              {song.title}
+                            </h5>
                             <Link
                               to={`/artiste/${song.artist.id}/${song.artist.name}`}
                             >

@@ -1,5 +1,5 @@
-import moment from "moment";
 import React, { useContext } from "react";
+import { BsSoundwave } from "react-icons/bs";
 import { MdExplicit } from "react-icons/md";
 import { AppContext } from "../../../global/Context";
 import { StyledPopular } from "./Popular.styled";
@@ -19,23 +19,35 @@ function Popular() {
               key={index}
               style={{
                 backgroundColor:
-                  currentSong?.title === track.title
-                    ? "#282828"
-                    : "transparent",
+                  currentSong?.id === track.id ? "#282828" : "transparent",
               }}
             >
               <div className="init-row row gap-1 center">
-                <span>{index + 1}</span>
+                <span
+                  style={{
+                    color: currentSong?.id === track.id ? "#1db954" : "inherit",
+                    fontWeight: currentSong?.id === track.id ? "800" : "inherit",
+                  }}
+                >
+                  {currentSong?.id === track.id ? (
+                    <BsSoundwave />
+                  ) : (
+                    <>{index + 1}</>
+                  )}
+                </span>
                 <div
-                  className="artist-img"
+                  className="artist-img img-def"
                   style={{
                     backgroundImage: `url(${track?.album?.cover_medium})`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
                   }}
                 ></div>
-                <span>{track?.title}</span>
+                <span
+                  style={{
+                    color: currentSong?.id === track.id ? "#1db954" : "inherit",
+                  }}
+                >
+                  {track?.title}
+                </span>
                 {track?.explicit_lyrics && <MdExplicit />}
               </div>
 

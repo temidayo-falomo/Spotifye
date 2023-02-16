@@ -26,15 +26,45 @@ export const StyledSearchResults = styled.div`
       gap: 1rem;
 
       .main-res-card {
-        width: 500px;
-        height: 300px;
+        width: 450px;
+        height: 280px;
         border-radius: 10px;
-        background-color: #282828;
+        background-color: #181818;
         padding: 20px;
         gap: 1rem;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-          rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
         margin-top: 1rem;
+        position: relative;
+
+        :hover {
+          background: rgba(255, 255, 255, 0.1);
+
+          .play-btn {
+            opacity: 1;
+            bottom: 40px;
+            width: 55px;
+            height: 55px;
+          }
+        }
+
+        .play-btn {
+          position: absolute;
+          bottom: 30px;
+          right: 20px;
+          background-color: #1db954;
+          border-radius: 50%;
+          padding: 0.5rem;
+          cursor: pointer;
+          transition: 0.5s ease;
+          width: 50px;
+          height: 50px;
+          font-size: 1rem;
+          display: grid;
+          place-content: center;
+          place-items: center;
+          /* box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px; */
+          opacity: 0;
+          color: #000;
+        }
 
         .thumbnail {
           width: 120px;
@@ -78,13 +108,35 @@ export const StyledSearchResults = styled.div`
         padding: 10px;
         width: 100%;
         border-radius: 5px;
-        max-width: 600px;
+        max-width: 700px;
+
+        .play-btn-tiny {
+          opacity: 0;
+          transition: 0.3s ease;
+        }
+
+        :hover {
+          .play-btn-tiny {
+            opacity: 1;
+            transition: 0.3s ease;
+          }
+
+          .thumbn {
+            background: linear-gradient(
+              90deg,
+              rgba(1, 18, 1, 0.3828125) 95%,
+              rgba(14, 64, 14, 0.5004595588235294) 100%
+            ) !important;
+          }
+        }
 
         .thumbn {
           width: 50px;
           height: 50px;
           border-radius: 5px;
           background-color: #1cb854;
+          display: grid;
+          place-content: center;
         }
       }
     }
@@ -95,6 +147,4 @@ export const StyledSearchResults = styled.div`
       width: 0em;
     }
   }
-
-  
 `;

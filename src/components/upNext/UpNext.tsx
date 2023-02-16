@@ -22,20 +22,17 @@ function UpNext() {
             key={i}
             style={{
               backgroundColor:
-                currentSong?.title === song.title ? "#282828" : "transparent",
+                currentSong?.id === song.id ? "#282828" : "transparent",
             }}
           >
             <div className="init-row">
               <div
-                className="img"
+                className="img img-def"
                 style={{
                   backgroundImage: `url(${
                     song?.album?.cover_small ||
                     `https://e-cdns-images.dzcdn.net/images/cover/${song?.md5_image}/250x250-000000-80-0-0.jpg`
                   })`,
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
                 }}
               >
                 <FaPlay
