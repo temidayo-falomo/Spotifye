@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MdExplicit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../global/Context";
@@ -6,30 +6,30 @@ import Navbar from "../navbar/Navbar";
 import { StyledAlbumInfo } from "./AlbumInfo.styled";
 import { CgTimer } from "react-icons/cg";
 import SongCardRow from "../song-card-row/SongCardRow";
+import { ColorExtractor } from "react-color-extractor";
 
 function AlbumInfo() {
   const { albumData } = useContext(AppContext);
+  const [colors, setColors] = useState<any>(null);
+
+  const getColors = (detectedColorCodes: any) => {
+    setColors(detectedColorCodes);
+  };
 
   return (
     <StyledAlbumInfo>
       <div
         className="hero-bg"
         style={{
-          // backgroundImage: `url(${albumData?.cover_xl})`,
-          backgroundPosition: "bottom",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundColor: colors ? colors[0] : "#000",
         }}
       >
         <Navbar />
         <div className="row gap-1 center" style={{ zIndex: "999" }}>
           <div
-            className="xl_image"
+            className="xl_image img-def"
             style={{
               backgroundImage: `url(${albumData?.cover_xl})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
             }}
           ></div>
           <div className="col">
@@ -41,12 +41,9 @@ function AlbumInfo() {
             <div className="row center gap-5 desc">
               {albumData && (
                 <div
-                  className="tiny-circle"
+                  className="tiny-circle img-def"
                   style={{
                     backgroundImage: `url(${albumData?.artist?.picture_small})`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
                   }}
                 ></div>
               )}
@@ -61,6 +58,16 @@ function AlbumInfo() {
               {albumData && <span>{albumData?.nb_tracks} songs,</span>}
               <span>{albumData?.duration}</span>
             </div>
+          </div>
+
+          <div className="extractor-holder">
+            <ColorExtractor getColors={getColors}>
+              <img
+                src={albumData?.cover_xl}
+                style={{ width: 0, height: 0 }}
+                alt="sample"
+              />
+            </ColorExtractor>
           </div>
         </div>
       </div>

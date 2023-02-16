@@ -15,6 +15,13 @@ export const StyledAlbumInfo = styled.div`
     z-index: 999;
     text-transform: capitalize;
 
+    .extractor-holder {
+      border: 2px red solid;
+      display: flex;
+      gap: 2rem;
+      display: none;
+    }
+
     &:before {
       content: "";
       position: absolute;
