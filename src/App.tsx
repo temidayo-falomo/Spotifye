@@ -43,6 +43,8 @@ function App() {
   const [unableToPlay, setUnableToPlay] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
 
+  const [playlistData, setPlaylistData] = useState([]);
+
   const playPause = () => {
     setIsPlaying(!isPlaying);
   };
@@ -99,6 +101,9 @@ function App() {
 
         unableToPlay,
         setUnableToPlay,
+
+        playlistData,
+        setPlaylistData,
       }}
     >
       <div className="App">

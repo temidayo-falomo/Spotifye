@@ -25,10 +25,7 @@ function Discography() {
 
   return (
     <StyledDiscography>
-      <div
-        className="row center btw"
-        style={{ marginBottom: "2rem"}}
-      >
+      <div className="row center btw" style={{ marginBottom: "2rem" }}>
         <div>
           <h2>Discography</h2>
         </div>
@@ -41,6 +38,12 @@ function Discography() {
 
       <div className="discography-row row gap-1">
         {artisteAlbums
+          ?.filter((obj: any, index: any) => {
+            return (
+              index ===
+              artisteAlbums.findIndex((o: any) => obj?.title === o?.title)
+            );
+          })
           ?.slice(numStart, numEnd)
           .map((album: any, index: number) => {
             return <AlbumCard key={index} album={album} />;

@@ -29,7 +29,12 @@ function PlaylistCard(props: any) {
         console.log(err);
       });
 
-    navigate(`/playlist/${props.playlist.id}/${props.playlist.title}`);
+    navigate(
+      `/playlist/${props.playlist.id}/${encodeURIComponent(
+        props.playlist.title
+      )}`
+    );
+    localStorage.setItem("currentPlaylistObj", JSON.stringify(props.playlist));
   };
 
   return (
@@ -41,6 +46,10 @@ function PlaylistCard(props: any) {
         }}
         onClick={() => {
           navigate(`/playlist/${props.playlist.id}/${props.playlist.title}`);
+          localStorage.setItem(
+            "currentPlaylistObj",
+            JSON.stringify(props.playlist)
+          );
         }}
       ></div>
       <h4>

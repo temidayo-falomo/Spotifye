@@ -36,4 +36,26 @@ export const StyledPlaylistInfo = styled.div`
       background-color: aliceblue;
     }
   }
+
+  .mid {
+    padding: 20px;
+    gap: 2rem;
+    margin: 1rem auto;
+    width: 98%;
+
+    .play {
+      padding: 20px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      background-color: #1cdf63;
+      color: #000;
+    }
+
+    .pointer {
+      font-size: 2rem;
+    }
+  }
 `;

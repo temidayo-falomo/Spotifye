@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledGreeting } from "./Greeting.styled";
 
 function Greeting() {
   const { homeData } = useContext(AppContext);
+  let navigate = useNavigate();
   var today = new Date();
   var curHr = today.getHours();
   let textTime;
@@ -26,7 +28,20 @@ function Greeting() {
           .map((itemData: any, i: number) => {
             return (
               <React.Fragment key={i}>
-                <div className="strip row gap-1 center">
+                <div
+                  className="strip row gap-1 center"
+                  onClick={() => {
+                    navigate(
+                      `/playlist/${itemData?.id}/${encodeURIComponent(
+                        itemData?.title
+                      )}`
+                    );
+                    localStorage.setItem(
+                      "currentPlaylistObj",
+                      JSON.stringify(itemData)
+                    );
+                  }}
+                >
                   <div
                     className="box"
                     style={{

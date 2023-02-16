@@ -27,6 +27,11 @@ export const StyledGreeting = styled.div`
       -webkit-backdrop-filter: blur(2.7px);
       overflow: hidden;
       cursor: pointer;
+      transition: 0.5s ease;
+
+      :hover {
+        background-color: #444444;
+      }
 
       .box {
         width: 80px;

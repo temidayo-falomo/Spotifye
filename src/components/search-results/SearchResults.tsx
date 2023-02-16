@@ -11,10 +11,6 @@ function SearchResults() {
 
   const { searchData, searchLoading } = useContext(AppContext);
 
-  // let repeats: any = [
-  //   Array.from(new Set(searchData.map((item: any) => item.album?.title))),
-  // ];
-
   return (
     <StyledSearchResults>
       {searchLoading ? (
@@ -98,6 +94,14 @@ function SearchResults() {
                   }}
                 >
                   {searchData
+                    ?.filter((obj: any, index: any) => {
+                      return (
+                        index ===
+                        searchData.findIndex(
+                          (o: any) => obj.album?.title === o.album?.title
+                        )
+                      );
+                    })
                     ?.slice(0, 15)
                     ?.map((album: any, index: number) => {
                       return <AlbumCard album={album.album} key={index} />;
