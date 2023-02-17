@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../global/Context";
 import { StyledAudioPlayer } from "./AudioPlayer.styled";
 import { FaHeart } from "react-icons/fa";
@@ -27,10 +27,16 @@ function AudioPlayer() {
     isPlaying,
     setCurrentSong,
     setIsPlaying,
+    songsList,
   } = useContext(AppContext);
 
   const [number, setNumber] = useState<number>(1);
   const [lyricsText, setLyricsText] = useState<string>("");
+
+  const [progress, setProgress] = useState<any>(0);
+  const [length, setLength] = useState<any>(0);
+
+  const clickRef = useRef<any>();
 
   const handleDisplayAudioPlayer = () => {
     setDisplayAudioPlayer(!displayAudioPlayer);
@@ -61,15 +67,68 @@ function AudioPlayer() {
     const duration = audioElem.current.duration;
     const ct = audioElem.current.currentTime;
 
-    setCurrentSong({
-      ...currentSong,
-      progress: (ct / duration) * 100,
-      length: duration,
-    });
+    setProgress((ct / duration) * 100);
+    setLength(duration);
 
     if (ct === duration) {
       setIsPlaying(false);
+      nextSong();
     }
+  };
+
+  const checkWidth = (e: any) => {
+    let width = clickRef.current.clientWidth;
+    const offset = e.nativeEvent.offsetX;
+
+    const divprogress = (offset / width) * 100;
+    audioElem.current.currentTime = (divprogress / 100) * length;
+  };
+
+  const nextSong = () => {
+    const index = songsList.findIndex(
+      (x: any) => x.title === currentSong?.title
+    );
+
+    if (index === songsList.length - 1) {
+      setCurrentSong(songsList[0]);
+    } else {
+      setCurrentSong(songsList[index + 1]);
+      setProgress(0);
+      setIsPlaying(true);
+
+      setTimeout(function () {
+        audioElem.current.play();
+      }, 150);
+    }
+
+    audioElem.current.currentTime = 0;
+  };
+
+  const prevSong = () => {
+    const index = songsList.findIndex(
+      (x: any) => x.title === currentSong?.title
+    );
+
+    if (index === 0) {
+      setCurrentSong(songsList[songsList.length - 1]);
+    } else {
+      setCurrentSong(songsList[index - 1]);
+      setProgress(0);
+      setIsPlaying(true);
+
+      setTimeout(function () {
+        audioElem.current.play();
+      }, 150);
+    }
+  };
+
+  const shuffleTrack = () => {
+    const random = Math.floor(Math.random() * songsList.length);
+    setCurrentSong(songsList[random]);
+    setIsPlaying(true);
+    setTimeout(function () {
+      audioElem.current.play();
+    }, 150);
   };
 
   useEffect(() => {
@@ -133,7 +192,7 @@ function AudioPlayer() {
               Lyrics
             </h4>
           </div>
-          {number === 1 && <UpNext />}
+          {number === 1 && <UpNext setProgress={setProgress} />}
           {number === 2 && (
             <div className="lyrics">
               <Lyrics lyricsText={lyricsText} />
@@ -145,15 +204,12 @@ function AudioPlayer() {
       <div className="audio-player-container">
         <div className="row gap-1 center">
           <div
-            className="thumbnail-img"
+            className="thumbnail-img img-def"
             style={{
               backgroundImage: `url(${
                 currentSong?.album?.cover_big ||
                 `https://e-cdns-images.dzcdn.net/images/cover/${currentSong?.md5_image}/250x250-000000-80-0-0.jpg`
               })`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
             }}
           ></div>
           <div className="col gap-5">
@@ -172,8 +228,8 @@ function AudioPlayer() {
         <div className="slide">
           <div className="col center gap-1">
             <div className="row gap-1 center">
-              <BiShuffle />
-              <RiSkipBackFill />
+              <BiShuffle className="pointer" onClick={shuffleTrack} />
+              <RiSkipBackFill onClick={prevSong} className="pointer" />
               <button
                 style={{
                   width: "55px",
@@ -188,14 +244,18 @@ function AudioPlayer() {
               >
                 {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
               </button>
-              <RiSkipForwardFill />
+              <RiSkipForwardFill onClick={nextSong} className="pointer" />
               <TbRepeat />
             </div>
-            <div className="slide-bar">
+            <div
+              className="slide-bar pointer"
+              onClick={checkWidth}
+              ref={clickRef}
+            >
               <div
                 className="snake"
                 style={{
-                  width: `${currentSong?.progress}%`,
+                  width: `${progress}%`,
                 }}
               ></div>
             </div>

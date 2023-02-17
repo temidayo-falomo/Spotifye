@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
+import { BsPauseFill } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import { AppContext } from "../../global/Context";
 import { StyledUpNext } from "./UpNext.styled";
 
-function UpNext() {
+function UpNext(props: any) {
   const {
     songsList,
     currentSong,
     setCurrentSong,
+    setIsPlaying,
     audioElem,
     playPause,
-    setIsPlaying,
   } = useContext(AppContext);
 
   return (
@@ -35,13 +36,27 @@ function UpNext() {
                   })`,
                 }}
               >
-                <FaPlay
-                  className="play-btn"
-                  onClick={() => {
-                    setCurrentSong(song);
-                    playPause();
-                  }}
-                />
+                {currentSong?.id !== song.id ? (
+                  <FaPlay
+                    className="play-btn"
+                    onClick={() => {
+                      setCurrentSong(song);
+                      setIsPlaying(true);
+                      setTimeout(function () {
+                        audioElem.current.play();
+                      }, 150);
+                      props.setProgress(0);
+                    }}
+                  />
+                ) : (
+                  <BsPauseFill
+                    className="play-btn"
+                    style={{
+                      fontSize: "1.5rem",
+                    }}
+                    onClick={playPause}
+                  />
+                )}
               </div>
               <div className="col">
                 <h4>

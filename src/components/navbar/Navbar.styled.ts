@@ -51,13 +51,23 @@ export const StyledNavbar = styled.nav`
   .right-nav {
     gap: 1rem;
 
-    button {
+    .offline-btn {
+      padding: 0 20px;
+      background-color: #4177ca;
+      border-radius: 20px;
+      color: #fff;
+      cursor: default;
+      font-weight: 600;
+    }
+
+    .premium-btn {
       padding: 0 20px;
       border: 1px #fff solid;
       background-color: transparent;
       border-radius: 20px;
       color: #fff;
       cursor: default;
+      font-weight: 600;
     }
     .avatar {
       width: 40px;

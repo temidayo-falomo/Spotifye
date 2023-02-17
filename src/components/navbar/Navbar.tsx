@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledNavbar } from "./Navbar.styled";
 import { FcGoogle } from "react-icons/fc";
+import { RiEyeOffLine } from "react-icons/ri";
 
 function Navbar() {
   let navigate = useNavigate();
@@ -64,7 +65,11 @@ function Navbar() {
       </div>
 
       <div className="row right-nav">
-        <button>Premium</button>
+        <button className="offline-btn row center gap-5">
+          <RiEyeOffLine />
+          You're offline
+        </button>
+        <button className="premium-btn">Premium</button>
         <div className="avatar">
           <FcGoogle />
         </div>

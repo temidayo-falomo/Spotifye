@@ -59,8 +59,6 @@ function Artiste() {
       .then((res) => res.json())
       .then((data) => {
         setArtisteTracks(data.data);
-        console.log(data);
-
         setLoading(false);
       })
       .catch((err) => {

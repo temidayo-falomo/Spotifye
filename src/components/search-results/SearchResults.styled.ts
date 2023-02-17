@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledSearchResults = styled.div`
   margin: 2rem 0;
   padding: 0 25px;
-  padding-bottom: 150px;
+  padding-bottom: 50px;
   overflow-x: hidden;
 
   .top {
