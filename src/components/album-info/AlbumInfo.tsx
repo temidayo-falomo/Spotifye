@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { MdExplicit } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
 import { StyledAlbumInfo } from "./AlbumInfo.styled";
@@ -11,6 +11,7 @@ import { ColorExtractor } from "react-color-extractor";
 function AlbumInfo() {
   const { albumData } = useContext(AppContext);
   const [colors, setColors] = useState<any>(null);
+  let navigate = useNavigate();
 
   const getColors = (detectedColorCodes: any) => {
     setColors(detectedColorCodes);
@@ -41,10 +42,15 @@ function AlbumInfo() {
             <div className="row center gap-5 desc">
               {albumData && (
                 <div
-                  className="tiny-circle img-def"
+                  className="tiny-circle img-def pointer"
                   style={{
                     backgroundImage: `url(${albumData?.artist?.picture_small})`,
                   }}
+                  onClick={() =>
+                    navigate(
+                      `/artiste/${albumData?.artist?.id}/${albumData?.artist?.name}`
+                    )
+                  }
                 ></div>
               )}
               <Link

@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const StyledSearchInfo = styled.div`
   width: 100%;
   height: 100vh;
-  padding: 20px;
   position: relative;
   overflow-y: auto;
+  padding-bottom: 150px;
 
   .browse-all {
-    margin: 3rem 0;
+    margin: 2rem 0;
+    padding: 0 25px;
 
     h1 {
       font-size: 1.5rem;
@@ -20,10 +21,10 @@ export const StyledSearchInfo = styled.div`
     margin-top: 1rem;
     gap: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 
     .category {
-      height: 250px;
+      height: 200px;
       background-color: #000;
       border-radius: 10px;
       padding: 16px;
@@ -31,7 +32,6 @@ export const StyledSearchInfo = styled.div`
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      
     }
   }
 `;

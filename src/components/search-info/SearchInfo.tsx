@@ -23,13 +23,9 @@ function SearchInfo() {
               return (
                 <div
                   key={index}
-                  className="category"
+                  className="category img-def"
                   style={{
-                    backgroundColor: "transparent",
                     backgroundImage: `url(${category.picture_medium})`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
                   }}
                   onClick={() => {
                     navigate(`/category/${category.id}/${category.title}`);

@@ -20,7 +20,6 @@ function Navbar() {
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setSearchData(data.data);
         setSearchLoading(false);
       })
@@ -30,7 +29,7 @@ function Navbar() {
   };
 
   return (
-    <StyledNavbar>
+    <StyledNavbar location={location}>
       <div className="row center left-nav">
         <span className="icon" onClick={() => navigate(-1)}>
           <MdArrowBackIosNew />

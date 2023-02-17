@@ -13,7 +13,7 @@ export const StyledPopularArtistes = styled.div`
 
   .artistes {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 2rem;
   }
 `;

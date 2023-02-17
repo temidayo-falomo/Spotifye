@@ -2,13 +2,15 @@ import styled from "styled-components";
 
 export const StyledNavbar = styled.nav`
   width: 100%;
-  padding: 5px;
+  padding: 15px 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 99999;
+  background-color: ${(props: any) =>
+    props.location?.pathname === "/search" ? "#000" : "transparent"};
 
   .left-nav {
     gap: 1rem;

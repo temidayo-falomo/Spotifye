@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { BsSoundwave } from "react-icons/bs";
-import { FaPlay } from "react-icons/fa";
+import { BsFillPauseFill, BsSoundwave } from "react-icons/bs";
+import { FaPause, FaPlay } from "react-icons/fa";
 import { MdExplicit } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { AppContext } from "../../global/Context";
@@ -71,12 +71,12 @@ function SongCardRow(props: any) {
           onClick={() => {
             handleAddSongsToLocalStorage(props.song);
           }}
+          style={{
+            color: props.song?.id === currentSong?.id ? "#1db954" : "inherit",
+          }}
         >
-          <FaPlay
-            style={{
-              color: props.song?.id === currentSong?.id ? "#1db954" : "inherit",
-            }}
-          />
+          {/* use "isPlaying instead" */}
+          {props.song?.id === currentSong?.id ? <FaPause /> : <FaPlay />}
         </span>
         <div className="col gap-5">
           <h4

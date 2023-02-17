@@ -34,8 +34,8 @@ export const StyledTopArtisteCard = styled.div`
   }
 
   .image {
-    height: 200px;
-    width: 200px;
+    height: 190px;
+    width: 190px;
     border-radius: 50%;
     margin: 0 auto;
   }
