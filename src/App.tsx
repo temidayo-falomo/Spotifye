@@ -18,7 +18,7 @@ function App() {
 
   const audioElem = useRef<any>();
   const [isPlaying, setIsPlaying] = useState(false);
-  
+
   //
 
   const [homeData, setHomeData] = React.useState([]);
@@ -55,9 +55,9 @@ function App() {
 
   useEffect(() => {
     if (isPlaying) {
-      audioElem.current.play();
+      audioElem?.current?.play();
     } else {
-      audioElem.current.pause();
+      audioElem?.current?.pause();
     }
   }, [isPlaying]);
 
@@ -124,7 +124,7 @@ function App() {
           <Route path="/playlist/:id/:name" element={<Playlist />} />
           <Route path="/library" element={<Library />} />
         </Routes>
-        <AudioPlayer />
+        {currentSong && <AudioPlayer />}
       </div>
     </AppContext.Provider>
   );

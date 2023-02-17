@@ -91,6 +91,12 @@ function AudioPlayer() {
 
     if (index === songsList.length - 1) {
       setCurrentSong(songsList[0]);
+      setProgress(0);
+      setIsPlaying(true);
+
+      setTimeout(function () {
+        audioElem.current.play();
+      }, 150);
     } else {
       setCurrentSong(songsList[index + 1]);
       setProgress(0);
@@ -110,7 +116,7 @@ function AudioPlayer() {
     );
 
     if (index === 0) {
-      setCurrentSong(songsList[songsList.length - 1]);
+      setCurrentSong(songsList[0]);
     } else {
       setCurrentSong(songsList[index - 1]);
       setProgress(0);

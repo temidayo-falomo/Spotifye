@@ -5,7 +5,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
 import { StyledHome } from "./Home.styled";
 
-
 function Home() {
   const { setHomeData } = useContext(AppContext);
 

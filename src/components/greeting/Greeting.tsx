@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { TbPlaylist } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledGreeting } from "./Greeting.styled";
@@ -17,8 +18,6 @@ function Greeting() {
   } else {
     textTime = "evening";
   }
-
-
 
   return (
     <StyledGreeting>
@@ -63,6 +62,14 @@ function Greeting() {
               </React.Fragment>
             );
           })}
+        {homeData?.playlists?.data?.length === 0 && (
+          <p
+            className="row center gap-5"
+            style={{ marginTop: "2rem", color: "#1db954", fontWeight: "600" }}
+          >
+            Couldn't fetch playlists <TbPlaylist />
+          </p>
+        )}
       </div>
     </StyledGreeting>
   );

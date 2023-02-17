@@ -31,6 +31,11 @@ function Landing() {
         background: `linear-gradient(to bottom, ${colors[0]} 5%, rgba(32, 22, 22, 0.363) 100%)`,
         duration: 1,
       });
+    } else {
+      gsap.to(".abs", {
+        background: `linear-gradient(to bottom, #1db954 5%, rgba(32, 22, 22, 0.363) 100%)`,
+        duration: 1,
+      });
     }
   }, [colors]);
 

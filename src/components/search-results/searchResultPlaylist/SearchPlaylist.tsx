@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { TbPlaylist } from "react-icons/tb";
 import { AppContext } from "../../../global/Context";
 import PlaylistCard from "../../playlist-card/PlaylistCard";
 import { StyledSearchPlaylist } from "./SearchPlaylist.styled";
@@ -16,7 +17,6 @@ function SearchPlaylist() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setPlaylistSearchData(data.data);
       })
       .catch((err) => {
@@ -37,6 +37,11 @@ function SearchPlaylist() {
           .map((playlist: any, index: number) => {
             return <PlaylistCard key={index} playlist={playlist} />;
           })}
+        {playlistSearchData.length === 0 && (
+          <p style={{ marginTop: "1rem", color: "#1db954", fontWeight: "600" }}>
+            Couldn't fetch playlists <TbPlaylist />
+          </p>
+        )}
       </div>
     </StyledSearchPlaylist>
   );
