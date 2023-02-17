@@ -113,7 +113,42 @@ export const StyledAudioPlayer = styled.div`
         width: 500px;
         background-color: #282828;
         border-radius: 5px;
-        height: 8px;
+        height: 5px;
+
+        :hover {
+          .snake {
+            background-color: #1cdf63;
+          }
+        }
+
+        .snake {
+          height: 100%;
+          background-color: #fff;
+          border-radius: 5px;
+          position: relative;
+
+          :hover {
+            ::before {
+              display: block;
+            }
+          }
+
+          ::before {
+            position: absolute;
+            content: "";
+            right: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: auto;
+            vertical-align: middle;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: grab;
+            display: none;
+          }
+        }
       }
     }
   }

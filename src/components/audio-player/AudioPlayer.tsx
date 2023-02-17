@@ -25,7 +25,10 @@ function AudioPlayer() {
     audioElem,
     playPause,
     isPlaying,
+    setCurrentSong,
+    setIsPlaying,
   } = useContext(AppContext);
+
   const [number, setNumber] = useState<number>(1);
   const [lyricsText, setLyricsText] = useState<string>("");
 
@@ -52,6 +55,21 @@ function AudioPlayer() {
         console.log(err);
         setLyricsText("No lyrics found");
       });
+  };
+
+  const onPlaying = () => {
+    const duration = audioElem.current.duration;
+    const ct = audioElem.current.currentTime;
+
+    setCurrentSong({
+      ...currentSong,
+      progress: (ct / duration) * 100,
+      length: duration,
+    });
+
+    if (ct === duration) {
+      setIsPlaying(false);
+    }
   };
 
   useEffect(() => {
@@ -91,15 +109,12 @@ function AudioPlayer() {
       </div>
       <div className="main-info row">
         <div
-          className="big-img"
+          className="big-img img-def"
           style={{
             backgroundImage: `url(${
               currentSong?.album?.cover_xl ||
               `https://e-cdns-images.dzcdn.net/images/cover/${currentSong?.md5_image}/1000x1000-000000-80-0-0.jpg`
             })`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
           }}
         ></div>
 
@@ -176,8 +191,19 @@ function AudioPlayer() {
               <RiSkipForwardFill />
               <TbRepeat />
             </div>
-            <div className="slide-bar"></div>
-            <audio src={currentSong?.preview} ref={audioElem} />
+            <div className="slide-bar">
+              <div
+                className="snake"
+                style={{
+                  width: `${currentSong?.progress}%`,
+                }}
+              ></div>
+            </div>
+            <audio
+              src={currentSong?.preview}
+              ref={audioElem}
+              onTimeUpdate={onPlaying}
+            />
           </div>
         </div>
 

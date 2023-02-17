@@ -69,7 +69,7 @@ function UpNext() {
                 color: "gainsboro",
               }}
             >
-              2:36
+              0:30
             </span>
           </div>
         );
