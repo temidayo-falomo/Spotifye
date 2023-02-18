@@ -25,7 +25,7 @@ function Greeting() {
 
       <div className="strips">
         {homeData?.playlists?.data
-          ?.slice(0, 6)
+          .slice(0, 6)
           .map((itemData: any, i: number) => {
             return (
               <React.Fragment key={i}>

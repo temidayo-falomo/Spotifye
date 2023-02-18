@@ -61,8 +61,8 @@ function UpNext(props: any) {
               <div className="col">
                 <h4>
                   {" "}
-                  {song?.title?.length > 10
-                    ? song?.title.slice(0, 10) + "..."
+                  {song?.title?.length > 20
+                    ? song?.title.slice(0, 20) + "..."
                     : song?.title}
                 </h4>
                 <span
@@ -71,8 +71,8 @@ function UpNext(props: any) {
                     color: "gainsboro",
                   }}
                 >
-                  {song?.artist?.name?.length > 10
-                    ? song?.artist?.name?.slice(0, 10) + "..."
+                  {song?.artist?.name?.length > 20
+                    ? song?.artist?.name?.slice(0, 20) + "..."
                     : song?.artist?.name}
                 </span>
               </div>

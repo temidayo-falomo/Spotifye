@@ -25,8 +25,25 @@ function Home() {
       });
   };
 
+  const fetchPlaylists = async () => {
+    fetch(
+      "https://api.allorigins.win/raw?url=" +
+        encodeURIComponent("https://api.deezer.com/search/playlist?q=deezer")
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setHomeData((prev: object) => {
+          return { ...prev, playlists: data };
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     fetchCharts();
+    fetchPlaylists();
   }, []);
 
   return (

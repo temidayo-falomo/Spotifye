@@ -18,6 +18,8 @@ function SearchPlaylist() {
       .then((res) => res.json())
       .then((data) => {
         setPlaylistSearchData(data.data);
+        console.log(data);
+        
       })
       .catch((err) => {
         console.log(err);
