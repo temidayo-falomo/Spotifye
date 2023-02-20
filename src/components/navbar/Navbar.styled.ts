@@ -10,7 +10,7 @@ export const StyledNavbar = styled.nav`
   top: 0;
   z-index: 99999;
   background-color: ${(props: any) =>
-    props.location?.pathname === "/search" ? "#000" : "transparent"};
+    props.location?.pathname === "/search" ? "transparent" : "transparent"};
 
   .left-nav {
     gap: 1rem;

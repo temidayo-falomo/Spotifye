@@ -6,7 +6,7 @@ import { AppContext } from "../../global/Context";
 import { StyledHome } from "./Home.styled";
 
 function Home() {
-  const { setHomeData } = useContext(AppContext);
+  const { setHomeData, homeData } = useContext(AppContext);
 
   const [loading, setLoading] = useState(true);
 
@@ -35,6 +35,7 @@ function Home() {
         setHomeData((prev: object) => {
           return { ...prev, playlists: data };
         });
+        console.log("Hello");
       })
       .catch((err) => {
         console.log(err);

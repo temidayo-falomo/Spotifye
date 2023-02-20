@@ -35,6 +35,7 @@ function AudioPlayer() {
 
   const [progress, setProgress] = useState<any>(0);
   const [length, setLength] = useState<any>(0);
+  const [shuffleClicked, setShuffleClicked] = useState<boolean>(false);
 
   const clickRef = useRef<any>();
 
@@ -85,6 +86,7 @@ function AudioPlayer() {
   };
 
   const nextSong = () => {
+    const random = Math.floor(Math.random() * songsList.length);
     const index = songsList.findIndex(
       (x: any) => x.title === currentSong?.title
     );
@@ -98,7 +100,7 @@ function AudioPlayer() {
         audioElem.current.play();
       }, 150);
     } else {
-      setCurrentSong(songsList[index + 1]);
+      setCurrentSong(songsList[shuffleClicked ? random : index + 1]);
       setProgress(0);
       setIsPlaying(true);
 
@@ -234,7 +236,15 @@ function AudioPlayer() {
         <div className="slide">
           <div className="col center gap-1">
             <div className="row gap-1 center">
-              <BiShuffle className="pointer" onClick={shuffleTrack} />
+              <BiShuffle
+                className="pointer"
+                onClick={() => {
+                  setShuffleClicked(!shuffleClicked);
+                }}
+                style={{
+                  color: `${shuffleClicked ? "#1DB954" : "#fff"}`,
+                }}
+              />
               <RiSkipBackFill onClick={prevSong} className="pointer" />
               <button
                 style={{

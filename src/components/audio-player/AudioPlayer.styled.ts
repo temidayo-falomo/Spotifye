@@ -111,7 +111,7 @@ export const StyledAudioPlayer = styled.div`
       font-size: 1.5rem;
       .slide-bar {
         width: 500px;
-        background-color: #282828;
+        background-color: #5E5D5D;
         border-radius: 5px;
         height: 5px;
 

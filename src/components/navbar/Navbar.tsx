@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +12,8 @@ function Navbar() {
   const location = useLocation();
   const { setSearchValue, searchValue, setSearchData, setSearchLoading } =
     useContext(AppContext);
+
+  const [activeNav, setActiveNav] = useState(false);
 
   const fetchSearchResults = async () => {
     setSearchLoading(true);
@@ -30,7 +32,12 @@ function Navbar() {
   };
 
   return (
-    <StyledNavbar location={location}>
+    <StyledNavbar
+      location={location}
+      // style={{
+      //   backgroundColor: activeNav ? "#121212" : "red",
+      // }}
+    >
       <div className="row center left-nav">
         <span className="icon" onClick={() => navigate(-1)}>
           <MdArrowBackIosNew />
@@ -65,10 +72,10 @@ function Navbar() {
       </div>
 
       <div className="row right-nav">
-        <button className="offline-btn row center gap-5">
+        {/* <button className="offline-btn row center gap-5">
           <RiEyeOffLine />
           You're offline
-        </button>
+        </button> */}
         <button className="premium-btn">Premium</button>
         <div className="avatar">
           <FcGoogle />
