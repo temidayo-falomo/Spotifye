@@ -38,6 +38,7 @@ function PlaylistInfo() {
             />
           </ColorExtractor>
         </div>
+
         <div className="row main center gap-1">
           <div
             className="cover-img img-def"

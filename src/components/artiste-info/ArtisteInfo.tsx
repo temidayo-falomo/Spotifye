@@ -14,12 +14,9 @@ function ArtisteInfo() {
   return (
     <StyledArtisteInfo id="scroller">
       <div
-        className="hero-bg"
+        className="hero-bg img-def"
         style={{
           backgroundImage: `url(${artisteData?.picture_xl})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
         }}
       >
         <Navbar />

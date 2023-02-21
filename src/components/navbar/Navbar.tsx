@@ -77,6 +77,13 @@ function Navbar() {
         </button> */}
         <button className="premium-btn">Premium</button>
         <div
+          onClick={() => {
+            if (user) {
+              navigate("/");
+            } else {
+              navigate("/login");
+            }
+          }}
           className="avatar img-def"
           style={{
             backgroundImage: `url(${user?.userAvatar})`,

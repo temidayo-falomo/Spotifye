@@ -16,6 +16,7 @@ import Playlist from "./pages/playlist/Playlist";
 import Search from "./pages/search/Search";
 
 import { useCookies } from "react-cookie";
+import CreatePlaylist from "./pages/create-playlist/CreatePlaylist";
 
 function App() {
   const [token, setToken] = React.useState<string | null>(null);
@@ -57,8 +58,6 @@ function App() {
   const [defaultGradientNum, setDefaultGradientNum] = useState(0);
 
   const [user, setUser] = useState<any>(null); //User Object
-
-  const [authState, setAuthState] = useState<any>(auth.currentUser?.uid);
 
   const playPause = () => {
     setIsPlaying(!isPlaying);
@@ -157,6 +156,7 @@ function App() {
           <Route path="/playlist/:id/:name" element={<Playlist />} />
           <Route path="/library" element={<Library />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create-playlist" element={<CreatePlaylist />} />
         </Routes>
         {currentSong && <AudioPlayer />}
       </div>
