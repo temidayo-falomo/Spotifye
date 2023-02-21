@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledNavbar } from "./Navbar.styled";
 import { FcGoogle } from "react-icons/fc";
-import { RiEyeOffLine } from "react-icons/ri";
 
 function Navbar() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { setSearchValue, searchValue, setSearchData, setSearchLoading } =
+  const { setSearchValue, searchValue, setSearchData, setSearchLoading, user } =
     useContext(AppContext);
 
   const [activeNav, setActiveNav] = useState(false);
@@ -77,8 +76,13 @@ function Navbar() {
           You're offline
         </button> */}
         <button className="premium-btn">Premium</button>
-        <div className="avatar">
-          <FcGoogle />
+        <div
+          className="avatar img-def"
+          style={{
+            backgroundImage: `url(${user?.userAvatar})`,
+          }}
+        >
+          {!user?.userAvatar && <FcGoogle />}
         </div>
       </div>
     </StyledNavbar>

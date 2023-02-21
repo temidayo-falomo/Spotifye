@@ -7,7 +7,7 @@ export const StyledLanding = styled.div`
   position: relative;
   overflow-y: auto;
   padding-bottom: 150px;
-  transition: 2s ease;
+  transition: 0.5s ease;
 
   .extractor-holder {
     display: flex;

@@ -42,4 +42,8 @@ export const StyledSidebar = styled.aside`
     color: #1db954;
     font-weight: 800;
   }
+
+  @media (max-width: 680px) {
+    display: none;
+  }
 `;

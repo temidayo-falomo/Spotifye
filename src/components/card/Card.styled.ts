@@ -44,7 +44,7 @@ export const StyledCard = styled.a`
       width: max-content;
 
       :hover {
-        border-bottom: 1px solid gainsboro;
+        text-decoration: underline;
         color: gainsboro;
       }
     }

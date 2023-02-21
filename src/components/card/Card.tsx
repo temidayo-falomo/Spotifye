@@ -40,15 +40,12 @@ function Card(props: any) {
   return (
     <StyledCard>
       <div
-        className="image"
+        className="image img-def"
         style={{
           backgroundImage: `url(${
             props.itemData?.album?.cover_medium ||
             props.itemData?.picture_medium
           })`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
         }}
       ></div>
       <h4>

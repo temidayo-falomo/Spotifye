@@ -16,4 +16,17 @@ export const StyledCharts = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem;
   }
+
+  @media (max-width: 480px) {
+    h3 {
+      text-align: center;
+    }
+
+    .charts {
+      display: flex !important;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 `;

@@ -9,13 +9,15 @@ import {
 } from "react-icons/ri";
 import { BiShuffle } from "react-icons/bi";
 import { TbDevices2, TbRepeat } from "react-icons/tb";
-import { BsPauseFill, BsPlayFill } from "react-icons/bs";
+import { BsHeart, BsHeartFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiOutlineViewList } from "react-icons/hi";
 import { RxSpeakerLoud } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
 import Lyrics from "../lyrics/Lyrics";
 import UpNext from "../upNext/UpNext";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 function AudioPlayer() {
   const {
@@ -28,15 +30,19 @@ function AudioPlayer() {
     setCurrentSong,
     setIsPlaying,
     songsList,
+    user,
+    setUser,
   } = useContext(AppContext);
+
+  const [cookies, setCookie] = useCookies(["user"]);
 
   const [number, setNumber] = useState<number>(1);
   const [lyricsText, setLyricsText] = useState<string>("");
 
   const [progress, setProgress] = useState<any>(0);
   const [length, setLength] = useState<any>(0);
-  const [shuffleClicked, setShuffleClicked] = useState<boolean>(false);
 
+  const [shuffleClicked, setShuffleClicked] = useState<boolean>(false);
   const clickRef = useRef<any>();
 
   const handleDisplayAudioPlayer = () => {
@@ -130,13 +136,18 @@ function AudioPlayer() {
     }
   };
 
-  const shuffleTrack = () => {
-    const random = Math.floor(Math.random() * songsList.length);
-    setCurrentSong(songsList[random]);
-    setIsPlaying(true);
-    setTimeout(function () {
-      audioElem.current.play();
-    }, 150);
+  const handleAddlike = async () => {
+    await axios
+      .put("http://localhost:8080/api/like-song", {
+        currentSong,
+        userId: cookies.user,
+      })
+      .catch((err) => console.error(err));
+
+    setUser({
+      ...user,
+      likedSongs: [...user.likedSongs, currentSong],
+    });
   };
 
   useEffect(() => {
@@ -225,7 +236,14 @@ function AudioPlayer() {
             <span>{currentSong?.artist?.name}</span>
           </div>
           <div className="row gap-1 center" style={{ marginLeft: "1rem" }}>
-            <FaHeart />
+            {user?.likedSongs.some((e: any) => e?.id === currentSong?.id) ? (
+              <BsHeartFill
+                // onClick={handleRemoveLike}
+                className="pointer liked"
+              />
+            ) : (
+              <BsHeart onClick={handleAddlike} className="pointer" />
+            )}
             <RiPictureInPictureFill
               onClick={handleDisplayAudioPlayer}
               className="pointer"

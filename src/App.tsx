@@ -1,6 +1,9 @@
+import { async } from "@firebase/util";
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AudioPlayer from "./components/audio-player/AudioPlayer";
+import { auth } from "./firebase/firebase-config";
 import { AppContext } from "./global/Context";
 import GlobalStyle from "./Globalstyles";
 import Album from "./pages/album/Album";
@@ -8,11 +11,15 @@ import Artiste from "./pages/artiste/Artiste";
 import Category from "./pages/category/Category";
 import Home from "./pages/home/Home";
 import Library from "./pages/library/Library";
+import Login from "./pages/login/Login";
 import Playlist from "./pages/playlist/Playlist";
 import Search from "./pages/search/Search";
 
+import { useCookies } from "react-cookie";
+
 function App() {
   const [token, setToken] = React.useState<string | null>(null);
+  const [cookies, setCookie] = useCookies(["user"]);
 
   //
 
@@ -49,8 +56,26 @@ function App() {
 
   const [defaultGradientNum, setDefaultGradientNum] = useState(0);
 
+  const [user, setUser] = useState<any>(null); //User Object
+
+  const [authState, setAuthState] = useState<any>(auth.currentUser?.uid);
+
   const playPause = () => {
     setIsPlaying(!isPlaying);
+  };
+
+  //* Function to get Current User From Backend.
+  const getCurrentUser = (id: string) => {
+    fetch(`http://localhost:8080/api/user/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        //set relevant states from api call
+        setUser(res.user);
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -60,6 +85,10 @@ function App() {
       audioElem?.current?.pause();
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    getCurrentUser(cookies.user);
+  }, []);
 
   return (
     <AppContext.Provider
@@ -111,6 +140,10 @@ function App() {
 
         defaultGradientNum,
         setDefaultGradientNum,
+
+        getCurrentUser,
+        user,
+        setUser,
       }}
     >
       <div className="App">
@@ -123,6 +156,7 @@ function App() {
           <Route path="/category/:id/:name" element={<Category />} />
           <Route path="/playlist/:id/:name" element={<Playlist />} />
           <Route path="/library" element={<Library />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         {currentSong && <AudioPlayer />}
       </div>

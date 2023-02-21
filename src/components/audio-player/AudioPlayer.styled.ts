@@ -95,6 +95,7 @@ export const StyledAudioPlayer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 
     span {
       width: max-content;
@@ -111,7 +112,9 @@ export const StyledAudioPlayer = styled.div`
       font-size: 1.5rem;
       .slide-bar {
         width: 500px;
-        background-color: #5E5D5D;
+        min-width: 300px;
+        max-width: 500px;
+        background-color: #5e5d5d;
         border-radius: 5px;
         height: 5px;
 
@@ -151,5 +154,9 @@ export const StyledAudioPlayer = styled.div`
         }
       }
     }
+  }
+
+  @media (max-width: 680px) {
+    /* grid-template-columns: auto; */
   }
 `;

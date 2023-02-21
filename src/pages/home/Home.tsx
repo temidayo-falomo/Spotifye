@@ -35,7 +35,6 @@ function Home() {
         setHomeData((prev: object) => {
           return { ...prev, playlists: data };
         });
-        console.log("Hello");
       })
       .catch((err) => {
         console.log(err);
@@ -43,8 +42,15 @@ function Home() {
   };
 
   useEffect(() => {
-    fetchCharts();
-    fetchPlaylists();
+    new Promise((resolve, reject) => {
+      resolve(fetchCharts());
+    })
+      .then(() => {
+        fetchPlaylists();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
