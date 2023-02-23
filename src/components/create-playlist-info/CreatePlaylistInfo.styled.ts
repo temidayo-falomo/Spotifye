@@ -86,4 +86,26 @@ export const StyledCreatePlaylistInfo = styled.div`
       }
     }
   }
+
+  .search-results {
+    .card-row {
+      padding: 5px;
+      align-items: center;
+
+      .thumbnail {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        background-color: #4d4d4d;
+      }
+
+      button {
+        padding: 5px 15px;
+        border-radius: 20px;
+        background-color: transparent;
+        color: #fff;
+        border: 2px #fff solid;
+      }
+    }
+  }
 `;

@@ -12,7 +12,7 @@ function Home() {
 
   const fetchCharts = async () => {
     fetch(
-      "https://api.allorigins.win/raw?url=" +
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
         encodeURIComponent("https://api.deezer.com/chart")
     )
       .then((res) => res.json())
@@ -27,7 +27,7 @@ function Home() {
 
   const fetchPlaylists = async () => {
     fetch(
-      "https://api.allorigins.win/raw?url=" +
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
         encodeURIComponent("https://api.deezer.com/search/playlist?q=deezer")
     )
       .then((res) => res.json())

@@ -8,6 +8,27 @@ import Navbar from "../navbar/Navbar";
 import { StyledCreatePlaylistInfo } from "./CreatePlaylistInfo.styled";
 
 function CreatePlaylistIfo() {
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [searchData, setSearchData] = React.useState<any>(null);
+  const [searchLoading, setSearchLoading] = React.useState<boolean>(false);
+
+  const fetchSearchResults = async () => {
+    setSearchLoading(true);
+    fetch(
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setSearchData(data.data);
+        setSearchLoading(false);
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <StyledCreatePlaylistInfo>
       <div className="hero-bg img-def">
@@ -37,7 +58,7 @@ function CreatePlaylistIfo() {
       </div>
 
       <div className="mid row">
-        <HiOutlineDotsHorizontal className="pointer"/>
+        <HiOutlineDotsHorizontal className="pointer" />
       </div>
 
       <div className="find col gap-1">
@@ -55,6 +76,7 @@ function CreatePlaylistIfo() {
             className="input-holder row"
             onSubmit={(e) => {
               e.preventDefault();
+              fetchSearchResults();
             }}
           >
             <button>
@@ -64,12 +86,48 @@ function CreatePlaylistIfo() {
               required
               type="search"
               placeholder="Search for songs, artists, or podcasts"
-           
+              value={searchValue}
               onChange={(e) => {
-                // setSearchValue(e.target.value);
+                setSearchValue(e.target.value);
               }}
             />
           </form>
+        </div>
+
+        <div className="search-results col gap-1">
+          {searchValue !== "" &&
+            searchData?.map((song: any, index: number) => {
+              return (
+                <div className="row btw card-row" key={index}>
+                  <div className="init-row row gap-1">
+                    <div
+                      className="thumbnail img-def"
+                      style={{
+                        backgroundImage: `url(${song.album.cover_medium})`,
+                      }}
+                    ></div>
+                    <div className="col gap-5">
+                      <h4>{song.title}</h4>
+                      <span>{song.artist.name}</span>
+                    </div>
+                  </div>
+
+                  <Link
+                    to="/playlist/1"
+                    style={{
+                      textDecoration: "none",
+                      textAlign: "left",
+                    }}
+                  >
+                    {song.album.title}
+                  </Link>
+
+                  <button>Add</button>
+                </div>
+              );
+            })}
+          {searchLoading && <p>Loading...</p>}
+          {searchData?.length === 0 && <p>No results found</p>}
         </div>
       </div>
     </StyledCreatePlaylistInfo>

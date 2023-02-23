@@ -55,7 +55,7 @@ function AudioPlayer() {
 
   const handleFetchLyrics = () => {
     fetch(
-      "https://api.allorigins.win/raw?url=" +
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
         encodeURIComponent(
           `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
         )

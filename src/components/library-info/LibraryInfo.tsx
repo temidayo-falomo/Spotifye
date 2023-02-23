@@ -27,9 +27,9 @@ function LibraryInfo() {
               flexWrap: "wrap",
             }}
           >
-            {user?.likedSongs?.map((song: any) => {
+            {user?.likedSongs?.map((song: any, index: number) => {
               return (
-                <div className="row gap-5 center">
+                <div className="row gap-5 center" key={index}>
                   <span className="max">{song?.artist.name}</span>
                   <span>•</span>
                   <span className="max darkened">

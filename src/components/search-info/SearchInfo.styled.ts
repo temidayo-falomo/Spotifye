@@ -5,6 +5,7 @@ export const StyledSearchInfo = styled.div`
   height: 100vh;
   position: relative;
   overflow-y: auto;
+  padding: 25px 0;
   padding-bottom: 150px;
 
   .browse-all {

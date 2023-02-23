@@ -10,7 +10,7 @@ function PlaylistCard(props: any) {
 
   const playFirstSong = () => {
     fetch(
-      "https://api.allorigins.win/raw?url=" +
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
         encodeURIComponent(
           `https://api.deezer.com/playlist/${props.playlist.id}/tracks`
         )
