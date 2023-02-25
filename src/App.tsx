@@ -17,6 +17,7 @@ import Search from "./pages/search/Search";
 
 import { useCookies } from "react-cookie";
 import CreatePlaylist from "./pages/create-playlist/CreatePlaylist";
+import LikedSongs from "./pages/liked-songs/LikedSongs";
 
 function App() {
   const [token, setToken] = React.useState<string | null>(null);
@@ -43,6 +44,9 @@ function App() {
   const [categoryData, setCategoryData] = useState([]);
 
   const [displayAudioPlayer, setDisplayAudioPlayer] = useState(false);
+  const [displayAudioPlayerMobile, setDisplayAudioPlayerMobile] =
+    useState(false);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
 
   const [songsList, setSongsList] = useState(
     JSON.parse(localStorage.getItem("songsList") || "[]")
@@ -119,6 +123,8 @@ function App() {
 
         displayAudioPlayer,
         setDisplayAudioPlayer,
+        displaySidebar,
+        setDisplaySidebar,
 
         songsList,
         setSongsList,
@@ -157,6 +163,7 @@ function App() {
           <Route path="/library" element={<Library />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create-playlist" element={<CreatePlaylist />} />
+          <Route path="/liked-songs" element={<LikedSongs />} />
         </Routes>
         {currentSong && <AudioPlayer />}
       </div>

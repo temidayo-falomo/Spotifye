@@ -36,4 +36,10 @@ export const StyledGreeting = styled.div`
       }
     }
   }
+
+  @media (max-width: 420px) {
+    .strips {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
 `;

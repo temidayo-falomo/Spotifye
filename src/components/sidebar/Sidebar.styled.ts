@@ -44,6 +44,20 @@ export const StyledSidebar = styled.aside`
   }
 
   @media (max-width: 680px) {
-    display: none;
+    /* color: ${(props: any) => (props.displaySidebar ? "#000" : "#fff")}; */
+    position: absolute;
+    z-index: 9999;
+    width: ${(props: any) => (props.displaySidebar ? "0" : "50%")};
+    min-width: ${(props: any) => (props.displaySidebar ? "0" : "250px")};
+    overflow: hidden;
+    padding: ${(props: any) => (props.displaySidebar ? "0" : "30px")};
+    opacity: ${(props: any) => (props.displaySidebar ? "0" : "1")};
+    color: ${(props: any) =>
+      props.displaySidebar ? "transparent" : "inherit"};
+    transition: 0.5s ease;
+
+    .logo {
+      visibility: hidden;
+    }
   }
 `;

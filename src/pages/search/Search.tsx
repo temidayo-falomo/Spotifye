@@ -10,8 +10,10 @@ function Search() {
 
   const [loading, setLoading] = useState(true);
 
+  // https://n3rdy-cors-proxy.glitch.me/useproxy?link=
+
   const fetchRadioCategories = async () => {
-    fetch(`https://n3rdy-cors-proxy.glitch.me/useproxy?link=https://api.deezer.com/radio`)
+    fetch(`https://api.deezer.com/radio`)
       .then((res) => res.json())
       .then((data) => {
         setRadioCategories(data.data);

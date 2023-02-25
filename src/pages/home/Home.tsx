@@ -12,8 +12,10 @@ function Home() {
 
   const fetchCharts = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent("https://api.deezer.com/chart")
+      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      //   encodeURIComponent(
+          "https://api.deezer.com/chart"
+          // )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -27,8 +29,10 @@ function Home() {
 
   const fetchPlaylists = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent("https://api.deezer.com/search/playlist?q=deezer")
+      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      //   encodeURIComponent(
+          "https://api.deezer.com/search/playlist?q=deezer"
+          // )
     )
       .then((res) => res.json())
       .then((data) => {

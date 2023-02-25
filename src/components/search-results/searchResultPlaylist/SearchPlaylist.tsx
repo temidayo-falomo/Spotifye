@@ -10,15 +10,14 @@ function SearchPlaylist() {
 
   const fetchPlaylistSearchData = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(
-          `https://api.deezer.com/search/playlist?q=${searchValue}}`
-        )
+      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      //   encodeURIComponent(
+      `https://api.deezer.com/search/playlist?q=${searchValue}}`
+      // )
     )
       .then((res) => res.json())
       .then((data) => {
         setPlaylistSearchData(data.data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);

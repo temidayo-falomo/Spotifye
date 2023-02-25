@@ -8,6 +8,18 @@ export const StyledUpNext = styled.div`
   max-height: 550px;
   overflow-y: scroll;
 
+  ::-webkit-scrollbar {
+    width: 0.8em;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #208243;
+  }
+
   .up-next-card {
     display: flex;
     align-items: center;

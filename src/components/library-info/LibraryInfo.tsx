@@ -27,7 +27,7 @@ function LibraryInfo() {
               flexWrap: "wrap",
             }}
           >
-            {user?.likedSongs?.map((song: any, index: number) => {
+            {user?.likedSongs?.slice(0, 6).map((song: any, index: number) => {
               return (
                 <div className="row gap-5 center" key={index}>
                   <span className="max">{song?.artist.name}</span>

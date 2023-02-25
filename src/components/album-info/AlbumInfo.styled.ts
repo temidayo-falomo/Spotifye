@@ -45,7 +45,7 @@ export const StyledAlbumInfo = styled.div`
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
       margin-top: 0.5rem;
     }
 
@@ -81,5 +81,17 @@ export const StyledAlbumInfo = styled.div`
   .album-songs {
     width: 95%;
     margin: 0 auto;
+  }
+
+  @media (max-width: 920px) {
+    .top-holder {
+      .type {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      flex-direction: column;
+      text-align: center;
+    }
   }
 `;

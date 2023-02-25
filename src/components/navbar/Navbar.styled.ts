@@ -17,9 +17,11 @@ export const StyledNavbar = styled.nav`
     .input-holder {
       background-color: #fff;
       border-radius: 30px;
-      min-width: 300px;
+      min-width: 100px;
+      max-width: 300px;
       height: 40px;
       overflow: hidden;
+      margin-right: 0.5rem;
 
       input {
         width: 100%;
@@ -50,6 +52,7 @@ export const StyledNavbar = styled.nav`
 
   .right-nav {
     gap: 1rem;
+    justify-content: space-between;
 
     .offline-btn {
       padding: 0 20px;
@@ -77,6 +80,24 @@ export const StyledNavbar = styled.nav`
       display: grid;
       place-content: center;
       cursor: pointer;
+    }
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 680px) {
+    .arrow {
+      display: none;
+    }
+    .hamburger {
+      display: block !important;
+    }
+
+    .premium-btn {
+      display: none;
     }
   }
 `;

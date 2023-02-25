@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../global/Context";
 import { StyledAudioPlayer } from "./AudioPlayer.styled";
-import { FaHeart } from "react-icons/fa";
 import {
   RiPictureInPictureFill,
   RiSkipBackFill,
   RiSkipForwardFill,
 } from "react-icons/ri";
-import { BiShuffle } from "react-icons/bi";
-import { TbDevices2, TbRepeat } from "react-icons/tb";
+import { BiLibrary, BiSearch, BiShuffle } from "react-icons/bi";
+import { TbDevices2, TbPlaylist, TbRepeat } from "react-icons/tb";
 import { BsHeart, BsHeartFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
-import { HiOutlineViewList } from "react-icons/hi";
+import { HiHome, HiOutlineViewList } from "react-icons/hi";
 import { RxSpeakerLoud } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
 import Lyrics from "../lyrics/Lyrics";
@@ -45,6 +44,12 @@ function AudioPlayer() {
   const [shuffleClicked, setShuffleClicked] = useState<boolean>(false);
   const clickRef = useRef<any>();
 
+  const [displayLyricsandRelated, setDisplayLyricsandRelated] =
+    useState<boolean>(false);
+
+  const [clickedDisplayLyricsandRelated, setClickedDisplayLyricsandRelated] =
+    useState(false);
+
   const handleDisplayAudioPlayer = () => {
     setDisplayAudioPlayer(!displayAudioPlayer);
   };
@@ -55,10 +60,10 @@ function AudioPlayer() {
 
   const handleFetchLyrics = () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(
-          `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
-        )
+      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      //   encodeURIComponent(
+      `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
+      // )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -155,7 +160,10 @@ function AudioPlayer() {
   }, [currentSong]);
 
   return (
-    <StyledAudioPlayer displayAudioPlayer={displayAudioPlayer}>
+    <StyledAudioPlayer
+      displayAudioPlayer={displayAudioPlayer}
+      displayLyricsandRelated={displayLyricsandRelated}
+    >
       <div className="nav">
         <div className="logo">Spotifye</div>
         <div className="row gap-1">
@@ -248,6 +256,15 @@ function AudioPlayer() {
               onClick={handleDisplayAudioPlayer}
               className="pointer"
             />
+            <TbPlaylist
+              style={{
+                color: `${displayLyricsandRelated ? "#1DB954" : "#fff"}`,
+              }}
+              className="pointer"
+              onClick={() => {
+                setDisplayLyricsandRelated(!displayLyricsandRelated);
+              }}
+            />
           </div>
         </div>
 
@@ -302,7 +319,7 @@ function AudioPlayer() {
         </div>
 
         <div
-          className="row center gap-1"
+          className="row center gap-1 end"
           style={{
             fontSize: "1.5rem",
           }}
@@ -314,6 +331,38 @@ function AudioPlayer() {
             <input type="range" min="1" max="100" id="myRange"></input>
           </div>
         </div>
+      </div>
+
+      <div className="row center btw foot">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "active-link col center" : "col center"
+          }
+        >
+          <HiHome />
+          <span>Home</span>
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "active-link col center" : "col center"
+          }
+          to="/search"
+        >
+          <BiSearch />
+          <span>Search</span>
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "active-link col center" : "col center"
+          }
+          to="/library"
+        >
+          <BiLibrary />
+          <span>Library</span>
+        </NavLink>
       </div>
     </StyledAudioPlayer>
   );

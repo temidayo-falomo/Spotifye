@@ -8,7 +8,7 @@ export const StyledArtisteInfo = styled.div`
   padding-bottom: 150px;
 
   .hero-bg {
-    height: 40vh;
+    min-height: 40vh;
     background-color: #000;
     padding: 20px;
     display: flex;
@@ -39,7 +39,7 @@ export const StyledArtisteInfo = styled.div`
       margin-left: 1rem;
 
       h1 {
-        font-size: 6rem;
+        font-size: clamp(5rem, 10vw, 7rem);
         margin-left: -0.5rem;
       }
     }

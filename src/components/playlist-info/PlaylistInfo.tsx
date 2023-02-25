@@ -39,7 +39,7 @@ function PlaylistInfo() {
           </ColorExtractor>
         </div>
 
-        <div className="row main center gap-1">
+        <div className="row main center gap-1 top-holder">
           <div
             className="cover-img img-def"
             style={{
@@ -49,7 +49,6 @@ function PlaylistInfo() {
           <div className="col gap-1">
             <span>PLAYLIST</span>
             <h1>{currentPlaylistObj?.title}</h1>
-            {/* <p>Burna, Omah Lay, Arya Star</p> */}
             <p>
               {playlistData?.slice(0, 3).map((song: any, index: number) => {
                 return <span key={index}>{song?.artist.name}, </span>;

@@ -21,7 +21,7 @@ export const StyledAudioPlayer = styled.div`
   }
 
   .nav {
-    height: 80px;
+    padding-top: 1rem;
     width: 95%;
     margin: auto;
     margin-top: 1rem;
@@ -95,7 +95,6 @@ export const StyledAudioPlayer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 
     span {
       width: max-content;
@@ -156,7 +155,82 @@ export const StyledAudioPlayer = styled.div`
     }
   }
 
-  @media (max-width: 680px) {
-    /* grid-template-columns: auto; */
+  .foot {
+    width: 100%;
+    padding: 20px;
+    display: none;
+    background-color: #000;
+    z-index: 9999;
+  }
+
+  @media (max-width: 780px) {
+    height: ${(props: any) =>
+      props.displayAudioPlayer === true ? "100vh" : "270px"};
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .nav {
+      align-items: center;
+      justify-content: center;
+
+      .row {
+        justify-content: space-between;
+        width: 80%;
+      }
+
+      .logo,
+      .avatar {
+        display: none !important;
+      }
+    }
+
+    .main-info {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 0;
+      min-height: 45%;
+    }
+
+    .lyr-rel {
+      /* display: none !important; */
+      margin-top: auto;
+      height: 100%;
+      min-width: 100%;
+      display: ${(props: any) =>
+        props.displayLyricsandRelated ? "flex" : "none"} !important;
+    }
+
+    .end {
+      display: none;
+    }
+
+    .audio-player-container {
+      flex-direction: column;
+      gap: 1rem;
+      /* height: ${(props: any) =>
+        props.displayAudioPlayer === true ? "80vh" : "500px"}; */
+
+      .slide {
+        .slide-bar {
+          width: 100%;
+        }
+      }
+    }
+
+    .main-info {
+      margin-bottom: 0;
+
+      .big-img {
+        margin: auto;
+        margin-bottom: 1rem;
+        display: ${(props: any) =>
+          props.displayLyricsandRelated ? "none" : "flex"};
+      }
+    }
+
+    .foot {
+      display: flex;
+    }
   }
 `;

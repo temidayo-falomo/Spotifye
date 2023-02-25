@@ -13,8 +13,10 @@ function Playlist() {
 
   const fetchCategory = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(`https://api.deezer.com/playlist/${id}/tracks`)
+      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      //   encodeURIComponent(
+          `https://api.deezer.com/playlist/${id}/tracks`
+          // )
     )
       .then((res) => res.json())
       .then((data) => {

@@ -7,13 +7,13 @@ export const StyledCreatePlaylistInfo = styled.div`
   padding-bottom: 150px;
 
   .hero-bg {
-    height: 40vh;
     background-color: #464646;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    min-height: 40vh;
 
     &:before {
       content: "";
@@ -25,7 +25,7 @@ export const StyledCreatePlaylistInfo = styled.div`
     }
 
     .big-thumbnail {
-      width: 250px;
+      min-width: 250px;
       height: 250px;
       border-radius: 5px;
       box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
@@ -41,19 +41,35 @@ export const StyledCreatePlaylistInfo = styled.div`
       margin-left: 1rem;
 
       h1 {
-        font-size: 6rem;
-        margin-left: -0.5rem;
+        font-size: clamp(3.2rem, 5vw, 5rem);
+        font-weight: 800;
+      }
+
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
       }
     }
   }
 
   .mid {
-    height: 100px;
-    margin: 2rem 25px;
-    padding: 0 25px;
-    align-items: center;
-    border-bottom: 1px #2b2b2b solid;
-    font-size: 3rem;
+    margin: 2rem auto;
+    margin-bottom: 0;
+    /* padding: 0 25px; */
+    /* border-bottom: 1px #2b2b2b solid; */
+    padding-bottom: 2rem;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .table {
+      width: 100%;
+      font-size: 1rem;
+      border-bottom: 1px #2b2b2b solid;
+      padding-bottom: 0.5rem;
+    }
   }
 
   .find {
@@ -87,25 +103,79 @@ export const StyledCreatePlaylistInfo = styled.div`
     }
   }
 
-  .search-results {
-    .card-row {
-      padding: 5px;
+  //general
+
+  .card-row {
+    padding: 5px;
+    align-items: center;
+    gap: 1rem;
+
+    a {
+      max-width: 150px;
+      min-width: 80px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      :hover {
+        text-decoration: underline;
+      }
+    }
+
+    .thumbnail {
+      min-width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      background-color: #4d4d4d;
+    }
+
+    button {
+      padding: 5px 15px;
+      border-radius: 20px;
+      background-color: transparent;
+      color: #fff;
+      border: 2px #fff solid;
+    }
+
+    .time {
+      max-width: 100px;
+      min-width: 80px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .top-holder {
+      .type {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      flex-direction: column;
+      text-align: center;
       align-items: center;
+      justify-content: center;
+    }
 
-      .thumbnail {
-        width: 50px;
-        height: 50px;
-        border-radius: 5px;
-        background-color: #4d4d4d;
-      }
+    .time {
+      display: none !important;
+    }
 
-      button {
-        padding: 5px 15px;
-        border-radius: 20px;
-        background-color: transparent;
-        color: #fff;
-        border: 2px #fff solid;
-      }
+    span,
+    a,
+    .center {
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 550px) {
+    a {
+      display: none !important;
     }
   }
 `;

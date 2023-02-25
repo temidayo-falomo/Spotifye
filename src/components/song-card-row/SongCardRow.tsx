@@ -82,6 +82,7 @@ function SongCardRow(props: any) {
           <h4
             style={{
               color: props.song?.id === currentSong?.id ? "#1db954" : "inherit",
+              textAlign: "left",
             }}
           >
             {props.song?.title}
@@ -89,6 +90,9 @@ function SongCardRow(props: any) {
           <Link
             to={`/artiste/${props.song?.artist?.id}/${props.song?.artist?.name}`}
             className="row center gap-5"
+            style={{
+              textAlign: "left",
+            }}
           >
             {props.song?.explicit_lyrics && <MdExplicit />}
             {props.song?.artist?.name}

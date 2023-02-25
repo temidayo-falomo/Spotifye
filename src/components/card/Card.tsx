@@ -14,11 +14,15 @@ function Card(props: any) {
     artiste_id: string,
     artiste_name: string
   ) => {
-    navigate(`/artiste/${artiste_id}/${artiste_name}`);
+    if (artiste_name && artiste_id) {
+      navigate(`/artiste/${artiste_id}/${artiste_name}`);
+    }
   };
 
   const handleNavigateToAlbum = (album_id: string, album_name: string) => {
-    navigate(`/album/${album_id}/${album_name}`);
+    if (album_id && album_name) {
+      navigate(`/album/${album_id}/${album_name}`);
+    }
   };
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
@@ -40,6 +44,12 @@ function Card(props: any) {
   return (
     <StyledCard>
       <div
+        onClick={() => {
+          handleNavigateToAlbum(
+            props.itemData?.album?.id,
+            props.itemData?.album?.title
+          );
+        }}
         className="image img-def"
         style={{
           backgroundImage: `url(${

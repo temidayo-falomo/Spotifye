@@ -6,17 +6,19 @@ export const StyledPlaylistInfo = styled.div`
   overflow-y: auto;
   padding-bottom: 150px;
 
-  .her-bg {
-    height: 35vh;
-    padding: 20px;
+  h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+  }
 
+  .her-bg {
+    padding: 20px;
     min-height: 40vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    z-index: 999;
+    z-index: 99;
     text-transform: capitalize;
     margin-bottom: 1rem;
   }
@@ -29,7 +31,7 @@ export const StyledPlaylistInfo = styled.div`
 
   .main {
     .cover-img {
-      width: 250px;
+      min-width: 250px;
       height: 250px;
       border-radius: 10px;
       background-color: aliceblue;
@@ -55,6 +57,18 @@ export const StyledPlaylistInfo = styled.div`
 
     .pointer {
       font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .top-holder {
+      .type {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      flex-direction: column;
+      text-align: center;
     }
   }
 `;

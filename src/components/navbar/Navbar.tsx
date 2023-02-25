@@ -1,24 +1,38 @@
 import React, { useContext, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import {
+  MdArrowBackIosNew,
+  MdArrowForwardIos,
+  MdOutlineClose,
+} from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledNavbar } from "./Navbar.styled";
 import { FcGoogle } from "react-icons/fc";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 function Navbar() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { setSearchValue, searchValue, setSearchData, setSearchLoading, user } =
-    useContext(AppContext);
+  const {
+    setSearchValue,
+    searchValue,
+    setSearchData,
+    setSearchLoading,
+    user,
+    setDisplaySidebar,
+    displaySidebar,
+  } = useContext(AppContext);
 
   const [activeNav, setActiveNav] = useState(false);
 
   const fetchSearchResults = async () => {
     setSearchLoading(true);
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
+      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      //   encodeURIComponent(
+      `https://api.deezer.com/search?q=${searchValue}`
+      // )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -31,18 +45,21 @@ function Navbar() {
   };
 
   return (
-    <StyledNavbar
-      location={location}
-      // style={{
-      //   backgroundColor: activeNav ? "#121212" : "red",
-      // }}
-    >
+    <StyledNavbar location={location}>
       <div className="row center left-nav">
-        <span className="icon" onClick={() => navigate(-1)}>
+        <span
+          className="hamburger"
+          onClick={() => {
+            setDisplaySidebar(!displaySidebar);
+          }}
+        >
+          {displaySidebar ? <GiHamburgerMenu /> : <MdOutlineClose />}
+        </span>
+        <span className="icon arrow" onClick={() => navigate(-1)}>
           <MdArrowBackIosNew />
         </span>
 
-        <span className="icon" onClick={() => navigate(+1)}>
+        <span className="icon arrow" onClick={() => navigate(+1)}>
           <MdArrowForwardIos />
         </span>
 

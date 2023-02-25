@@ -26,7 +26,7 @@ function AlbumInfo() {
         }}
       >
         <Navbar />
-        <div className="row gap-1 center" style={{ zIndex: "999" }}>
+        <div className="row gap-1 center top-holder" style={{ zIndex: "999" }}>
           <div
             className="xl_image img-def"
             style={{
@@ -34,7 +34,7 @@ function AlbumInfo() {
             }}
           ></div>
           <div className="col">
-            <span className="row center gap-5">
+            <span className="row center gap-5 type">
               {albumData?.explicit_lyrics && <MdExplicit />}
               {albumData?.record_type}
             </span>

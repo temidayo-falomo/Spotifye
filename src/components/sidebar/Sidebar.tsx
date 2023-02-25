@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 import { MdHomeFilled, MdAddBox } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
 import { BiLibrary } from "react-icons/bi";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import { AppContext } from "../../global/Context";
 
 function Sidebar() {
+  const { displaySidebar, setDisplaySidebar } = useContext(AppContext);
   return (
-    <StyledSidebar>
+    <StyledSidebar displaySidebar={displaySidebar}>
       <div className="logo">
         <h2>Spotifye</h2>
       </div>
@@ -47,7 +49,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/liked"
+          to="/liked-songs"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           <BsFillBookmarkHeartFill className="icon" />

@@ -30,7 +30,7 @@ export const StyledLibraryInfo = styled.div`
 
   .rectangle {
     width: 500px;
-    min-height: 250px;
+    min-height: 200px;
     background-color: #623ef0;
     border-radius: 5px;
     padding: 30px;
