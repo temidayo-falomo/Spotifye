@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BsFillPauseFill, BsSoundwave } from "react-icons/bs";
+import { BsSoundwave } from "react-icons/bs";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdExplicit } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
@@ -15,10 +15,12 @@ function SongCardRow(props: any) {
     categoryData,
     albumData,
     playlistData,
+    setDisplayAudioPlayerMobile,
   } = useContext(AppContext);
   const location = useLocation();
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
+    setDisplayAudioPlayerMobile(true);
     if (location.pathname.includes("/category")) {
       localStorage.setItem(
         "songsList",

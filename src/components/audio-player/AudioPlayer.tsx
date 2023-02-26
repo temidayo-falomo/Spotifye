@@ -15,6 +15,7 @@ import { NavLink } from "react-router-dom";
 import Lyrics from "../lyrics/Lyrics";
 import UpNext from "../upNext/UpNext";
 import { FcGoogle } from "react-icons/fc";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
@@ -31,6 +32,8 @@ function AudioPlayer() {
     songsList,
     user,
     setUser,
+    displayAudioPlayerMobile,
+    setDisplayAudioPlayerMobile,
   } = useContext(AppContext);
 
   const [cookies, setCookie] = useCookies(["user"]);
@@ -46,9 +49,6 @@ function AudioPlayer() {
 
   const [displayLyricsandRelated, setDisplayLyricsandRelated] =
     useState<boolean>(false);
-
-  const [clickedDisplayLyricsandRelated, setClickedDisplayLyricsandRelated] =
-    useState(false);
 
   const handleDisplayAudioPlayer = () => {
     setDisplayAudioPlayer(!displayAudioPlayer);
@@ -70,7 +70,6 @@ function AudioPlayer() {
         setLyricsText(data.lyrics);
       })
       .catch((err) => {
-        console.log(err);
         setLyricsText("No lyrics found");
       });
   };
@@ -125,7 +124,9 @@ function AudioPlayer() {
 
   const prevSong = () => {
     const index = songsList.findIndex(
-      (x: any) => x.title === currentSong?.title
+      (x: {
+        title: string | undefined;
+      }) => x.title === currentSong?.title
     );
 
     if (index === 0) {
@@ -155,6 +156,25 @@ function AudioPlayer() {
     });
   };
 
+  const handleRemovelike = async () => {
+    await axios
+      .put("http://localhost:8080/api/unlike-song", {
+        currentSong,
+        userId: cookies.user,
+      })
+      .catch((err) => console.error(err));
+
+    setUser({
+      ...user,
+      likedSongs: user.likedSongs.filter(
+        (song: {
+          title: string | undefined;
+          artist: { name: string | undefined };
+        }) => song.title !== currentSong?.title
+      ),
+    });
+  };
+
   useEffect(() => {
     handleFetchLyrics();
   }, [currentSong]);
@@ -163,6 +183,7 @@ function AudioPlayer() {
     <StyledAudioPlayer
       displayAudioPlayer={displayAudioPlayer}
       displayLyricsandRelated={displayLyricsandRelated}
+      displayAudioPlayerMobile={displayAudioPlayerMobile}
     >
       <div className="nav">
         <div className="logo">Spotifye</div>
@@ -243,27 +264,17 @@ function AudioPlayer() {
             <h4>{currentSong?.title}</h4>
             <span>{currentSong?.artist?.name}</span>
           </div>
-          <div className="row gap-1 center" style={{ marginLeft: "1rem" }}>
-            {user?.likedSongs.some((e: any) => e?.id === currentSong?.id) ? (
-              <BsHeartFill
-                // onClick={handleRemoveLike}
-                className="pointer liked"
-              />
-            ) : (
-              <BsHeart onClick={handleAddlike} className="pointer" />
-            )}
+          <div
+            className="row gap-1 center"
+            style={{ marginLeft: "1rem", fontSize: "1.5rem", gap: "1.5rem" }}
+          >
             <RiPictureInPictureFill
               onClick={handleDisplayAudioPlayer}
               className="pointer"
             />
-            <TbPlaylist
-              style={{
-                color: `${displayLyricsandRelated ? "#1DB954" : "#fff"}`,
-              }}
-              className="pointer"
-              onClick={() => {
-                setDisplayLyricsandRelated(!displayLyricsandRelated);
-              }}
+            <AiOutlineCloseCircle
+              className="pointer close"
+              onClick={() => setDisplayAudioPlayerMobile(false)}
             />
           </div>
         </div>
@@ -271,6 +282,14 @@ function AudioPlayer() {
         <div className="slide">
           <div className="col center gap-1">
             <div className="row gap-1 center">
+              {user?.likedSongs.some((e: any) => e?.id === currentSong?.id) ? (
+                <BsHeartFill
+                  onClick={handleRemovelike}
+                  className="pointer liked"
+                />
+              ) : (
+                <BsHeart onClick={handleAddlike} className="pointer" />
+              )}
               <BiShuffle
                 className="pointer"
                 onClick={() => {
@@ -297,6 +316,15 @@ function AudioPlayer() {
               </button>
               <RiSkipForwardFill onClick={nextSong} className="pointer" />
               <TbRepeat />
+              <TbPlaylist
+                style={{
+                  color: `${displayLyricsandRelated ? "#1DB954" : "#fff"}`,
+                }}
+                className="pointer"
+                onClick={() => {
+                  setDisplayLyricsandRelated(!displayLyricsandRelated);
+                }}
+              />
             </div>
             <div
               className="slide-bar pointer"
@@ -336,6 +364,7 @@ function AudioPlayer() {
       <div className="row center btw foot">
         <NavLink
           to="/"
+          onClick={() => setDisplayAudioPlayer(false)}
           className={({ isActive }) =>
             isActive ? "active-link col center" : "col center"
           }
@@ -349,6 +378,7 @@ function AudioPlayer() {
             isActive ? "active-link col center" : "col center"
           }
           to="/search"
+          onClick={() => setDisplayAudioPlayer(false)}
         >
           <BiSearch />
           <span>Search</span>
@@ -358,6 +388,7 @@ function AudioPlayer() {
           className={({ isActive }) =>
             isActive ? "active-link col center" : "col center"
           }
+          onClick={() => setDisplayAudioPlayer(false)}
           to="/library"
         >
           <BiLibrary />

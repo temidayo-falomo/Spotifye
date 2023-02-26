@@ -45,7 +45,7 @@ function App() {
 
   const [displayAudioPlayer, setDisplayAudioPlayer] = useState(false);
   const [displayAudioPlayerMobile, setDisplayAudioPlayerMobile] =
-    useState(false);
+    useState(true);
   const [displaySidebar, setDisplaySidebar] = useState(true);
 
   const [songsList, setSongsList] = useState(
@@ -74,7 +74,6 @@ function App() {
       .then((res) => {
         //set relevant states from api call
         setUser(res.user);
-        console.log(res.user);
       })
       .catch((err) => {
         console.log(err);
@@ -91,6 +90,7 @@ function App() {
 
   useEffect(() => {
     getCurrentUser(cookies.user);
+    console.log(user);
   }, []);
 
   return (
@@ -125,6 +125,8 @@ function App() {
         setDisplayAudioPlayer,
         displaySidebar,
         setDisplaySidebar,
+        displayAudioPlayerMobile,
+        setDisplayAudioPlayerMobile,
 
         songsList,
         setSongsList,

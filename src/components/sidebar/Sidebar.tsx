@@ -6,6 +6,7 @@ import { BiSearch } from "react-icons/bi";
 import { BiLibrary } from "react-icons/bi";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import { AppContext } from "../../global/Context";
+import PlaylistsList from "../playlists-list/PlaylistsList";
 
 function Sidebar() {
   const { displaySidebar, setDisplaySidebar } = useContext(AppContext);
@@ -61,6 +62,8 @@ function Sidebar() {
           <span>Your Episodes</span>
         </Link> */}
       </div>
+
+      <PlaylistsList />
     </StyledSidebar>
   );
 }

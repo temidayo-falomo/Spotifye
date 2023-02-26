@@ -17,7 +17,7 @@ export const StyledUpNext = styled.div`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #208243;
+    background-color: #5E5D5D;
   }
 
   .up-next-card {

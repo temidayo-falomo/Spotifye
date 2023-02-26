@@ -46,7 +46,7 @@ export const StyledSidebar = styled.aside`
   @media (max-width: 680px) {
     /* color: ${(props: any) => (props.displaySidebar ? "#000" : "#fff")}; */
     position: absolute;
-    z-index: 9999;
+    z-index: 99999999;
     width: ${(props: any) => (props.displaySidebar ? "0" : "50%")};
     min-width: ${(props: any) => (props.displaySidebar ? "0" : "250px")};
     overflow: hidden;

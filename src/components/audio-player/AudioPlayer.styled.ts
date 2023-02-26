@@ -2,19 +2,24 @@ import styled from "styled-components";
 
 export const StyledAudioPlayer = styled.div`
   position: fixed;
-  z-index: 99999;
-  height: ${(props: any) =>
-    props.displayAudioPlayer === true ? "100vh" : "115px"};
+  z-index: 99999999;
+  height: ${(props: { displayAudioPlayer: boolean }) =>
+    props.displayAudioPlayer ? "100vh" : "115px"};
   width: 100%;
   background-color: #000;
   bottom: 0;
   right: 0;
-  display: flex;
+  display: ${(props: { displayAudioPlayerMobile: boolean }) =>
+    props.displayAudioPlayerMobile ? "flex" : "none"};
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
   overflow: hidden;
   transition: 0.5s ease;
+
+  .pointer.close {
+    display: none;
+  }
 
   .active-link {
     color: #1cdf63;
@@ -164,7 +169,7 @@ export const StyledAudioPlayer = styled.div`
   }
 
   @media (max-width: 780px) {
-    height: ${(props: any) =>
+    height: ${(props: { displayAudioPlayer: boolean }) =>
       props.displayAudioPlayer === true ? "100vh" : "270px"};
     justify-content: flex-end;
     align-items: flex-end;
@@ -184,6 +189,10 @@ export const StyledAudioPlayer = styled.div`
       }
     }
 
+    .pointer.close {
+      display: block;
+    }
+
     .main-info {
       display: flex;
       align-items: flex-end;
@@ -197,7 +206,7 @@ export const StyledAudioPlayer = styled.div`
       margin-top: auto;
       height: 100%;
       min-width: 100%;
-      display: ${(props: any) =>
+      display: ${(props: { displayLyricsandRelated: boolean }) =>
         props.displayLyricsandRelated ? "flex" : "none"} !important;
     }
 

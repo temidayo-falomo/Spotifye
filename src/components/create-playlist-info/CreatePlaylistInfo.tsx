@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import { BsSearch } from "react-icons/bs";
 import { FiMusic } from "react-icons/fi";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -33,20 +34,55 @@ function CreatePlaylistIfo() {
   };
 
   const handleAddPlaylist = (playlistToBeAdded: object) => {
+    let songs = user.user_playlists[0].songs;
+    songs.push(playlistToBeAdded);
     setUser({
       ...user,
-      user_playlists: [...user.user_playlists, playlistToBeAdded],
+      user_playlists: [
+        {
+          ...user.user_playlists[0],
+          songs: songs,
+        },
+      ],
     });
   };
 
   const handleRemoveFromPlaylist = (playlistToBeRemoved: any) => {
+    let songs = user.user_playlists[0].songs;
+    let newSongs = songs.filter(
+      (song: any) => song.id !== playlistToBeRemoved.id
+    );
     setUser({
       ...user,
-      user_playlists: user.user_playlists.filter(
-        (playlist: any) => playlist.id !== playlistToBeRemoved?.id
-      ),
+      user_playlists: [
+        {
+          ...user.user_playlists[0],
+          songs: newSongs,
+        },
+      ],
     });
+    //create a component that'll live in the sidebar
+    // that updates the playlist in the backend with a useEffect
   };
+
+  useEffect(() => {
+    setUser({
+      ...user,
+      user_playlists: [
+        ...user.user_playlists,
+        {
+          id: 1,
+          title: `My Playlist #${user?.user_playlists.length + 1}`,
+          user: {
+            id: user?.id,
+            name: user?.userName,
+            picture: user?.userAvatar,
+          },
+          songs: [],
+        },
+      ],
+    });
+  }, []);
 
   return (
     <StyledCreatePlaylistInfo>
@@ -67,7 +103,7 @@ function CreatePlaylistIfo() {
           </div>
           <div className="info-txt col gap-1">
             <span className="row gap-5 center">PLAYLIST</span>
-            <h1>My Playlist #1</h1>
+            <h1>{user?.user_playlists[0]?.title}</h1>
             <div className="row gap-5 center">
               <div
                 className="avatar img-def"
@@ -88,7 +124,7 @@ function CreatePlaylistIfo() {
             fontSize: "2rem",
           }}
         />
-        {user?.user_playlists.length > 0 && (
+        {user?.user_playlists[0]?.songs?.length > 0 && (
           <div className="table row btw center">
             <div className="row">
               <span>#</span>
@@ -103,7 +139,7 @@ function CreatePlaylistIfo() {
         )}
 
         <div className="col gap-1">
-          {user?.user_playlists?.map((song: any, index: number) => {
+          {user?.user_playlists[0]?.songs?.map((song: any, index: number) => {
             return (
               <div className="row btw card-row" key={index}>
                 <div
@@ -137,7 +173,7 @@ function CreatePlaylistIfo() {
                 </div>
 
                 <div
-                  className="row center btw gap-5"
+                  className="row center btw gap-1"
                   style={{
                     width: "50%",
                   }}
@@ -234,7 +270,9 @@ function CreatePlaylistIfo() {
                       {song.album.title}
                     </Link>
 
-                    {user?.user_playlists.some((e: any) => e.id === song.id) ? (
+                    {user?.user_playlists[0]?.songs?.some(
+                      (e: any) => e.id === song.id
+                    ) ? (
                       <button onClick={() => {}}>Added</button>
                     ) : (
                       <button
