@@ -16,11 +16,13 @@ function SongCardRow(props: any) {
     albumData,
     playlistData,
     setDisplayAudioPlayerMobile,
+    user,
   } = useContext(AppContext);
   const location = useLocation();
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
     setDisplayAudioPlayerMobile(true);
+
     if (location.pathname.includes("/category")) {
       localStorage.setItem(
         "songsList",
@@ -40,6 +42,11 @@ function SongCardRow(props: any) {
     if (location.pathname.includes("/playlist")) {
       localStorage.setItem("songsList", JSON.stringify(playlistData));
       setSongsList(playlistData);
+    }
+
+    if (location.pathname.includes("/liked-songs")) {
+      localStorage.setItem("songsList", JSON.stringify(user?.likedSongs));
+      setSongsList(user?.likedSongs);
     }
 
     localStorage.setItem("currentSong", JSON.stringify(currSong));

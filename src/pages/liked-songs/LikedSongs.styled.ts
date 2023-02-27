@@ -77,8 +77,7 @@ export const StyledLikedSongs = styled.div`
     }
 
     span,
-    a,
-    .center {
+    a {
       justify-content: center;
       text-align: center;
       align-items: center;

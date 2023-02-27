@@ -3,13 +3,13 @@ import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
 import { StyledArtisteInfo } from "./ArtisteInfo.styled";
 import { GoVerified } from "react-icons/go";
-import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import Popular from "./popular/Popular";
 import Discography from "./discography/Discography";
 import Related from "./fans-also-like/Related";
+import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 
 function ArtisteInfo() {
-  const { artisteData, isPlaying, playPause } = useContext(AppContext);
+  const { artisteData,  } = useContext(AppContext);
 
   return (
     <StyledArtisteInfo id="scroller">
@@ -31,17 +31,8 @@ function ArtisteInfo() {
       </div>
 
       <div className="dark-bg">
-        <div className="follow row center">
-          <button
-            className="play"
-            style={{ fontSize: "2.5rem" }}
-            onClick={playPause}
-          >
-            {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
-          </button>
-
-          <button className="follow-btn">Follow</button>
-        </div>
+        
+        <PlayTrackMid />
 
         <Popular />
         <Discography />

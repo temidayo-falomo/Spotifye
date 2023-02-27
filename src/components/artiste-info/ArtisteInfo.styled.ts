@@ -44,29 +44,4 @@ export const StyledArtisteInfo = styled.div`
       }
     }
   }
-
-  .follow {
-    width: 100%;
-    padding: 20px;
-    margin: 2rem auto;
-    gap: 2rem;
-
-    .play {
-      padding: 20px;
-      height: 60px;
-      width: 60px;
-      border-radius: 50%;
-      display: grid;
-      place-content: center;
-      background-color: #1cdf63;
-    }
-
-    .follow-btn {
-      padding: 5px 15px;
-      border: 1px #fff solid;
-      color: #fff;
-      border-radius: 5px;
-      background-color: transparent;
-    }
-  }
 `;

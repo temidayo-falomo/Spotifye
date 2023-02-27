@@ -90,7 +90,6 @@ function App() {
 
   useEffect(() => {
     getCurrentUser(cookies.user);
-    console.log(user);
   }, []);
 
   return (

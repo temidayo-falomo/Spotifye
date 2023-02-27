@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
+import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 import SongCardRow from "../song-card-row/SongCardRow";
 import { StyledCategoryInfo } from "./CategoryInfo.styled";
 
@@ -24,6 +25,8 @@ function CategoryInfo() {
         <div></div>
         <h1>{name}</h1>
       </div>
+
+      <PlayTrackMid allSongs={categoryData} />
 
       <div className="categories col gap-5">
         {categoryData?.map((song: any, index: number) => {

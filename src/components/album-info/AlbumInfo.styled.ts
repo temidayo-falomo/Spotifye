@@ -5,6 +5,31 @@ export const StyledAlbumInfo = styled.div`
   overflow-y: auto;
   padding-bottom: 150px;
 
+  /* .abs {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    bottom: -60%;
+    z-index: -99999;
+    left: 0;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(1, 18, 1, 0.3828125) 95%,
+        rgba(14, 64, 14, 0.5004595588235294) 100%
+      );
+      opacity: 0.9;
+      z-index: -99999;
+    }
+  } */
+
   .hero-bg {
     min-height: 40vh;
     padding: 20px;
@@ -14,6 +39,7 @@ export const StyledAlbumInfo = styled.div`
     position: relative;
     z-index: 999;
     text-transform: capitalize;
+    position: relative;
 
     .extractor-holder {
       border: 2px red solid;
@@ -61,21 +87,14 @@ export const StyledAlbumInfo = styled.div`
     }
   }
 
-  .mid {
-    padding: 20px;
-    display: flex;
-    /* border: 2px royalblue solid; */
-    margin: 0 auto;
-    width: 95%;
-  }
-
   .title-dur {
-    margin: 2rem auto;
+    margin: 1rem auto;
     position: sticky;
     width: 95%;
     border-bottom: 1px #282828 solid;
-    padding: 0 2rem;
-    padding-bottom: 1rem;
+    padding: 0 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.8rem;
   }
 
   .album-songs {

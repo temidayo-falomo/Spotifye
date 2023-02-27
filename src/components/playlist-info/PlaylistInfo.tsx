@@ -7,6 +7,7 @@ import { SlOptions } from "react-icons/sl";
 import { AppContext } from "../../global/Context";
 import SongCardRow from "../song-card-row/SongCardRow";
 import { FiHeart } from "react-icons/fi";
+import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 
 function PlaylistInfo() {
   const [colors, setColors] = useState<any>(null);
@@ -59,7 +60,7 @@ function PlaylistInfo() {
         </div>
       </div>
 
-      <div className="row mid center">
+      {/* <div className="row mid center">
         <div className="play">
           <FaPlay />
         </div>
@@ -67,7 +68,9 @@ function PlaylistInfo() {
         <FiHeart className="pointer" />
 
         <SlOptions className="pointer" />
-      </div>
+      </div> */}
+
+      <PlayTrackMid allSongs={playlistData} />
 
       <div className="col gap-5">
         {playlistData?.map((song: any, index: number) => {

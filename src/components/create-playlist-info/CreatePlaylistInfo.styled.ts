@@ -54,21 +54,21 @@ export const StyledCreatePlaylistInfo = styled.div`
   }
 
   .mid {
-    margin: 2rem auto;
+    margin: 0 auto;
     margin-bottom: 0;
-    /* padding: 0 25px; */
-    /* border-bottom: 1px #2b2b2b solid; */
     padding-bottom: 2rem;
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
     .table {
-      width: 100%;
-      font-size: 1rem;
+      width: 95%;
+      font-size: 0.8rem;
       border-bottom: 1px #2b2b2b solid;
+      padding: 0 20px;
       padding-bottom: 0.5rem;
+      margin: 0 auto;
     }
   }
 
@@ -165,8 +165,7 @@ export const StyledCreatePlaylistInfo = styled.div`
     }
 
     span,
-    a,
-    .center {
+    a {
       justify-content: center;
       text-align: center;
       align-items: center;

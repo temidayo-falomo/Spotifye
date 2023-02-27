@@ -35,4 +35,16 @@ export const StyledSearchInfo = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 400px) {
+    .categories {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+      .category {
+        display: grid;
+        place-content: center;
+        text-align: center;
+      }
+    }
+  }
 `;

@@ -7,6 +7,7 @@ import { StyledAlbumInfo } from "./AlbumInfo.styled";
 import { CgTimer } from "react-icons/cg";
 import SongCardRow from "../song-card-row/SongCardRow";
 import { ColorExtractor } from "react-color-extractor";
+import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 
 function AlbumInfo() {
   const { albumData } = useContext(AppContext);
@@ -76,9 +77,19 @@ function AlbumInfo() {
             </ColorExtractor>
           </div>
         </div>
+
+        {/* Gradient */}
+        {/* <div
+          className="abs"
+          style={{
+            background: `linear-gradient(180deg, ${
+              colors ? colors[0] : "#11090945"
+            } 0%, rgba(0, 0, 0, 0) 100%)`,
+          }}
+        ></div> */}
       </div>
 
-      <div className="mid"></div>
+      <PlayTrackMid allSongs={albumData?.tracks?.data} />
 
       <div className="row btw center title-dur">
         <div className="row gap-5 center ">
@@ -86,7 +97,11 @@ function AlbumInfo() {
           <span>TITLE</span>
         </div>
 
-        <CgTimer />
+        <CgTimer
+          style={{
+            fontSize: "1.5rem",
+          }}
+        />
       </div>
 
       <div className="col gap-1 album-songs">

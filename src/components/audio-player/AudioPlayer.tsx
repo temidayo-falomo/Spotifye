@@ -11,7 +11,7 @@ import { TbDevices2, TbPlaylist, TbRepeat } from "react-icons/tb";
 import { BsHeart, BsHeartFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiHome, HiOutlineViewList } from "react-icons/hi";
 import { RxSpeakerLoud } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Lyrics from "../lyrics/Lyrics";
 import UpNext from "../upNext/UpNext";
 import { FcGoogle } from "react-icons/fc";
@@ -20,6 +20,8 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 
 function AudioPlayer() {
+  let navigate = useNavigate();
+
   const {
     displayAudioPlayer,
     setDisplayAudioPlayer,
@@ -124,9 +126,7 @@ function AudioPlayer() {
 
   const prevSong = () => {
     const index = songsList.findIndex(
-      (x: {
-        title: string | undefined;
-      }) => x.title === currentSong?.title
+      (x: { title: string | undefined }) => x.title === currentSong?.title
     );
 
     if (index === 0) {
@@ -262,7 +262,16 @@ function AudioPlayer() {
           ></div>
           <div className="col gap-5">
             <h4>{currentSong?.title}</h4>
-            <span>{currentSong?.artist?.name}</span>
+            <span
+              className="pointer"
+              onClick={() => {
+                navigate(
+                  `/artiste/${currentSong?.artist?.id}/${currentSong?.artist?.name}`
+                );
+              }}
+            >
+              {currentSong?.artist?.name}
+            </span>
           </div>
           <div
             className="row gap-1 center"

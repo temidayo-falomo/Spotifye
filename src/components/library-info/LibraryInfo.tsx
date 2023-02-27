@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
-import { BiLibrary } from "react-icons/bi";
+import { FaPlay } from "react-icons/fa";
+import { FiMusic } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
+import PlaylistCard from "../playlist-card/PlaylistCard";
 import { StyledLibraryInfo } from "./LibraryInfo.styled";
 
 function LibraryInfo() {
   const { user } = useContext(AppContext);
+  let navigate = useNavigate();
 
   return (
     <StyledLibraryInfo>
@@ -18,7 +22,12 @@ function LibraryInfo() {
       </div> */}
       <h2>Playlists</h2>
       <div className="row center gap-1 playlist-info">
-        <div className="rectangle col">
+        <div
+          className="rectangle col"
+          onClick={() => {
+            navigate("/liked-songs");
+          }}
+        >
           <div
             className="row center"
             style={{
@@ -46,6 +55,40 @@ function LibraryInfo() {
             <span>{user?.likedSongs.length} Liked Songs</span>
           </div>
         </div>
+        {user?.user_playlists?.map((playlist: any, index: number) => {
+          return (
+            <div className="playlist-card" key={index}>
+              <div
+                className="image img-def"
+                style={{
+                  backgroundColor: "#282828",
+                }}
+              >
+                <FiMusic />
+              </div>
+              <h4>
+                {playlist.title?.length > 16
+                  ? playlist.title.slice(0, 16) + "..."
+                  : playlist?.title}
+              </h4>
+              <span>
+                By{" "}
+                {playlist.user?.name?.length > 20
+                  ? playlist.user?.name?.slice(0, 20) + "..."
+                  : playlist.user?.name}
+              </span>
+
+              <button
+                className="play-btn"
+                onClick={() => {
+                  // playFirstSong();
+                }}
+              >
+                <FaPlay />
+              </button>
+            </div>
+          );
+        })}
       </div>
     </StyledLibraryInfo>
   );

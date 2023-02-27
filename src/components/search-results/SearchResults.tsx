@@ -17,9 +17,11 @@ function SearchResults() {
     setCurrentSong,
     setSongsList,
     currentSong,
+    setDisplayAudioPlayerMobile,
   } = useContext(AppContext);
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
+    setDisplayAudioPlayerMobile(true);
     localStorage.setItem("songsList", JSON.stringify(searchData?.slice(0, 18)));
     setSongsList(searchData.slice(0, 18));
 

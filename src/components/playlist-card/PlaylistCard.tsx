@@ -59,8 +59,8 @@ function PlaylistCard(props: any) {
       </h4>
       <span>
         By{" "}
-        {props.playlist.user?.name.length > 20
-          ? props.playlist.user?.name.slice(0, 20) + "..."
+        {props.playlist.user?.name?.length > 20
+          ? props.playlist.user?.name?.slice(0, 20) + "..."
           : props.playlist.user?.name}
       </span>
 
