@@ -80,8 +80,8 @@ function Card(props: any) {
               )
             }
           >
-            {props.itemData?.artist?.name?.length > 11
-              ? props.itemData?.artist?.name.slice(0, 11)
+            {props.itemData?.artist?.name?.length > 10
+              ? props.itemData?.artist?.name.slice(0, 10)
               : props.itemData?.artist?.name}
           </span>
 

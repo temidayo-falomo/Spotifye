@@ -5,7 +5,7 @@ export const StyledPopular = styled.div`
 
   h3 {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin: 0.5rem 0;
   }
 
   .popular-col {
@@ -32,8 +32,6 @@ export const StyledPopular = styled.div`
         border-radius: 10px;
       }
 
-      /* height: 70px; */
-      /* border: 2px white solid; */
       border-radius: 10px;
       align-items: center;
     }

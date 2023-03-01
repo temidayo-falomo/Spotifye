@@ -131,7 +131,7 @@ function SearchResults() {
                 </div>
               </div>
 
-              <div className="col gap-1">
+              <div className="col gap-1 albums">
                 <h2>Albums</h2>
                 <div
                   className="albums-row row gap-1"

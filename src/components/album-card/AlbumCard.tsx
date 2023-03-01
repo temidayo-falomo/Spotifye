@@ -5,7 +5,12 @@ import { AppContext } from "../../global/Context";
 import { StyledAlbumCard } from "./AlbumCard.styled";
 
 function AlbumCard(props: any) {
-  const { setCurrentSong, playPause, setSongsList } = useContext(AppContext);
+  const {
+    setCurrentSong,
+    playPause,
+    setSongsList,
+    setDisplayAudioPlayerMobile,
+  } = useContext(AppContext);
   let navigate = useNavigate();
 
   const playFirstSong = () => {
@@ -65,6 +70,7 @@ function AlbumCard(props: any) {
       <button
         className="play-btn"
         onClick={() => {
+          setDisplayAudioPlayerMobile(true);
           playFirstSong();
         }}
       >

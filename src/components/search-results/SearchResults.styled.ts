@@ -22,12 +22,13 @@ export const StyledSearchResults = styled.div`
   .init-res {
     margin-top: 2rem;
     gap: 2rem;
+    flex-wrap: wrap;
 
     .top-res {
       gap: 1rem;
 
       .main-res-card {
-        width: 450px;
+        width: 400px;
         height: 280px;
         border-radius: 10px;
         background-color: #181818;
@@ -99,6 +100,8 @@ export const StyledSearchResults = styled.div`
 
     .songs-col {
       width: 100%;
+      min-width: 350px;
+      max-width: 600px;
       gap: 1rem;
 
       h2 {
@@ -110,6 +113,16 @@ export const StyledSearchResults = styled.div`
         width: 100%;
         border-radius: 5px;
         max-width: 700px;
+
+        h5 {
+          font-size: 1rem;
+          
+        }
+
+        a {
+          font-size: 0.9rem;
+          margin-top: 0.4rem;
+        }
 
         .play-btn-tiny {
           opacity: 0;
@@ -143,9 +156,23 @@ export const StyledSearchResults = styled.div`
     }
   }
 
+  .albums {
+    margin-top: 2rem;
+  }
+
   .albums-row {
     ::-webkit-scrollbar {
       width: 0em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-res-card {
+      width: 320px !important;
+    }
+
+    .res-song {
+      width: 90% !important;
     }
   }
 `;

@@ -2,12 +2,11 @@ import React, { useContext } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FiHeart } from "react-icons/fi";
 import { SlOptions } from "react-icons/sl";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledPlayTrackMid } from "./PlayTrackMid.styled";
 
 function PlayTrackMid(props: any) {
-  let navigate = useNavigate();
   const location = useLocation();
 
   const {
@@ -16,6 +15,7 @@ function PlayTrackMid(props: any) {
     setDisplayAudioPlayerMobile,
     setCurrentSong,
     setSongsList,
+    user,
   } = useContext(AppContext);
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
@@ -48,7 +48,22 @@ function PlayTrackMid(props: any) {
         {!location.pathname.includes("/artiste") ? (
           <FiHeart className="pointer" />
         ) : (
-          <button className="follow-btn">Follow</button>
+          <>
+            {!user?.followedArtists?.some(
+              (artiste: any) => artiste.artistId === props.artistId
+            ) ? (
+              <button className="follow-btn" onClick={props.handleFollowArtist}>
+                Follow
+              </button>
+            ) : (
+              <button
+                className="follow-btn"
+                onClick={props.handleUnfollowArtist}
+              >
+                Following
+              </button>
+            )}
+          </>
         )}
 
         <SlOptions className="pointer" />

@@ -5,7 +5,7 @@ import { AppContext } from "../../../global/Context";
 import { StyledPopular } from "./Popular.styled";
 
 function Popular() {
-  const { artisteAlbums, artisteTracks, currentSong } = useContext(AppContext);
+  const { artisteTracks, currentSong } = useContext(AppContext);
 
   return (
     <StyledPopular>
