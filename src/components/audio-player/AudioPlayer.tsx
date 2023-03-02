@@ -18,6 +18,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { MdVolumeMute } from "react-icons/md";
 
 function AudioPlayer() {
   let navigate = useNavigate();
@@ -51,6 +52,10 @@ function AudioPlayer() {
 
   const [displayLyricsandRelated, setDisplayLyricsandRelated] =
     useState<boolean>(false);
+
+  const [volume, setVolume] = useState<number>(60);
+
+  const [mute, setMute] = useState<boolean>(false);
 
   const handleDisplayAudioPlayer = () => {
     setDisplayAudioPlayer(!displayAudioPlayer);
@@ -178,6 +183,18 @@ function AudioPlayer() {
   useEffect(() => {
     handleFetchLyrics();
   }, [currentSong]);
+
+  useEffect(() => {
+    if (audioElem) {
+      audioElem.current.volume = volume / 100;
+
+      if (volume > 0) {
+        setMute(false);
+      } else if (volume <= 0) {
+        setMute(true);
+      }
+    }
+  }, [volume, audioElem]);
 
   return (
     <StyledAudioPlayer
@@ -364,8 +381,30 @@ function AudioPlayer() {
           <HiOutlineViewList />
           <TbDevices2 />
           <div className="row gap-5">
-            <RxSpeakerLoud />
-            <input type="range" min="1" max="100" id="myRange"></input>
+            {mute ? (
+              <MdVolumeMute
+                className="pointer"
+                onClick={() => {
+                  setVolume(50);
+                }}
+              />
+            ) : (
+              <RxSpeakerLoud
+                className="pointer"
+                onClick={() => {
+                  setVolume(0);
+                  setMute(true);
+                }}
+              />
+            )}
+            <input
+              type="range"
+              min="1"
+              max="100"
+              id="myRange"
+              value={volume}
+              onChange={(e: any) => setVolume(e.target.value)}
+            ></input>
           </div>
         </div>
       </div>
