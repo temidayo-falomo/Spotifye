@@ -44,8 +44,6 @@ function Navbar() {
       });
   };
 
-  console.log(user?.userAvatar);
-
   return (
     <StyledNavbar location={location}>
       <div className="row center left-nav">

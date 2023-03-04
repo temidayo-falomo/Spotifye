@@ -4,11 +4,10 @@ import { FiMusic } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
-import PlaylistCard from "../playlist-card/PlaylistCard";
 import { StyledLibraryInfo } from "./LibraryInfo.styled";
 
 function LibraryInfo() {
-  const { user } = useContext(AppContext);
+  const { user, userPlaylists } = useContext(AppContext);
   let navigate = useNavigate();
 
   return (
@@ -55,7 +54,7 @@ function LibraryInfo() {
             <span>{user?.likedSongs.length} Liked Songs</span>
           </div>
         </div>
-        {user?.user_playlists?.map((playlist: any, index: number) => {
+        {userPlaylists?.map((playlist: any, index: number) => {
           return (
             <div className="playlist-card" key={index}>
               <div

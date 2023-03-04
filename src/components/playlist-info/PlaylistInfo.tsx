@@ -2,11 +2,8 @@ import React, { useContext, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import { StyledPlaylistInfo } from "./PlaylistInfo.styled";
 import { ColorExtractor } from "react-color-extractor";
-import { FaPlay } from "react-icons/fa";
-import { SlOptions } from "react-icons/sl";
 import { AppContext } from "../../global/Context";
 import SongCardRow from "../song-card-row/SongCardRow";
-import { FiHeart } from "react-icons/fi";
 import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 
 function PlaylistInfo() {

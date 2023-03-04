@@ -1,9 +1,7 @@
-import { async } from "@firebase/util";
-import axios from "axios";
+
 import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AudioPlayer from "./components/audio-player/AudioPlayer";
-import { auth } from "./firebase/firebase-config";
 import { AppContext } from "./global/Context";
 import GlobalStyle from "./Globalstyles";
 import Album from "./pages/album/Album";
@@ -18,13 +16,11 @@ import Search from "./pages/search/Search";
 import { useCookies } from "react-cookie";
 import CreatePlaylist from "./pages/create-playlist/CreatePlaylist";
 import LikedSongs from "./pages/liked-songs/LikedSongs";
+import Collection from "./pages/collections/Collection";
 
 function App() {
-  const [token, setToken] = React.useState<string | null>(null);
   const [cookies, setCookie] = useCookies(["user"]);
-
   //
-
   const audioElem = useRef<any>();
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -62,6 +58,8 @@ function App() {
   const [defaultGradientNum, setDefaultGradientNum] = useState(0);
 
   const [user, setUser] = useState<any>(null); //User Object
+  const [userPlaylists, setUserPlaylists] = useState<any>([]); //User Playlists
+  const [userCollection, setUserCollection] = useState<any>({}); //User Collection
 
   const playPause = () => {
     setIsPlaying(!isPlaying);
@@ -80,6 +78,18 @@ function App() {
       });
   };
 
+  const getUserPlaylists = () => {
+    fetch(`http://localhost:8080/api/playlists/user-playlists/${cookies.user}`)
+      .then((res) => res.json())
+      .then((res) => {
+        //set relevant states from api call
+        setUserPlaylists(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     if (isPlaying) {
       audioElem?.current?.play();
@@ -90,7 +100,9 @@ function App() {
 
   useEffect(() => {
     getCurrentUser(cookies.user);
+    getUserPlaylists();
   }, []);
+  
 
   return (
     <AppContext.Provider
@@ -150,6 +162,13 @@ function App() {
         getCurrentUser,
         user,
         setUser,
+        userPlaylists,
+        setUserPlaylists,
+
+        getUserPlaylists,
+
+        userCollection,
+        setUserCollection,
       }}
     >
       <div className="App">
@@ -165,6 +184,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/create-playlist" element={<CreatePlaylist />} />
           <Route path="/liked-songs" element={<LikedSongs />} />
+          <Route
+            path="/collection/playlist/:id/:name"
+            element={<Collection />}
+          />
         </Routes>
         {currentSong && <AudioPlayer />}
       </div>

@@ -11,7 +11,7 @@ import { StyledCreatePlaylistInfo } from "./CreatePlaylistInfo.styled";
 import { useCookies } from "react-cookie";
 
 function CreatePlaylistIfo() {
-  const { user, setUser } = useContext(AppContext);
+  const { user, userPlaylists, setUserPlaylists } = useContext(AppContext);
   const [searchValue, setSearchValue] = React.useState<string>("");
   const [searchData, setSearchData] = React.useState<any>([]);
   const [searchLoading, setSearchLoading] = React.useState<boolean>(false);
@@ -35,71 +35,59 @@ function CreatePlaylistIfo() {
       });
   };
 
-  const addSongToPlaylist = (song: object) => {
-    const updatedArray = user.user_playlists.map((obj: any) => {
-      if (obj.id === user?.user_playlists.length) {
-        return { ...obj, songs: [...obj.songs, song] };
-      }
-      return obj;
-    });
-    setUser({
-      ...user,
-      user_playlists: updatedArray,
-    });
+  const addSongToPlaylist = (song: object, playlistId: string) => {
+    axios
+      .put("http://localhost:8080/api/playlists/add-track", {
+        song,
+        playlistId,
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const removeSongFromPlaylist = (song: {
     id: React.SetStateAction<number>;
   }) => {
-    const updatedArray = user.user_playlists.map((obj: any) => {
-      if (obj.id === user?.user_playlists.length) {
-        return {
-          ...obj,
-          songs: obj.songs.filter(
-            (item: { id: React.SetStateAction<number> }) => item.id !== song.id
-          ),
-        };
-      }
-      return obj;
-    });
-    setUser({
-      ...user,
-      user_playlists: updatedArray,
-    });
+    axios
+      .post("http://localhost:5000/api/v1/playlist/remove", {
+        song,
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleNewPlaylist = () => {
+    let playlistObject = {
+      picture_xl: `https://ik.imagekit.io
+        /gdgtme/wp-content/uploads
+        /2022/02/How-To-Create-A-Music-Playlist-For-Offline-Listening-In-2022.jpg`,
+      title: `My Playlist #${userPlaylists.length + 1}`,
+      user: {
+        name: user?.fullName,
+        avatar: user?.avatar,
+        createdAt: new Date(),
+      },
+      tracklist: [],
+      type: "playlist",
+      creatorId: cookies.user,
+      createdAt: new Date(),
+    };
+
+    axios
+      .post("http://localhost:8080/api/playlists/add-playlist", playlistObject)
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setUserPlaylists([...userPlaylists, playlistObject]);
   };
 
   useEffect(() => {
-    setUser({
-      ...user,
-      user_playlists: [
-        ...user.user_playlists,
-        {
-          id: user?.user_playlists.length + 1,
-          title: `My Playlist #${user?.user_playlists.length + 1}`,
-          picture_big: "https://i.imgur.com/8Q9QY7r.jpg",
-          user: {
-            name: user?.fullName,
-            picture: user?.userAvatar,
-          },
-          songs: [],
-        },
-      ],
-    });
-
-    axios.put("http://localhost:8080/api/add-playlist", {
-      playlist: {
-        id: user?.user_playlists.length + 1,
-        title: `My Playlist #${user?.user_playlists.length + 1}`,
-        picture_big: "https://i.imgur.com/8Q9QY7r.jpg",
-        user: {
-          name: user?.fullName,
-          picture: user?.userAvatar,
-        },
-        songs: [],
-      },
-      userId: cookies.user,
-    });
-
+    // if (location.pathname.includes("/create-playlist")) {
+    handleNewPlaylist();
+    // }
   }, []);
 
   return (
@@ -121,9 +109,7 @@ function CreatePlaylistIfo() {
           </div>
           <div className="info-txt col gap-1">
             <span className="row gap-5 center">PLAYLIST</span>
-            <h1>
-              {user?.user_playlists[user?.user_playlists.length - 1]?.title}
-            </h1>
+            <h1>{userPlaylists[userPlaylists.length - 1]?.title}</h1>
             <div className="row gap-5 center">
               <div
                 className="avatar img-def"
@@ -139,7 +125,7 @@ function CreatePlaylistIfo() {
 
       <div className="mid">
         <PlayTrackMid />
-        {user?.user_playlists[0]?.songs?.length > 0 && (
+        {userPlaylists[0]?.songs?.length > 0 && (
           <div className="table row btw center">
             <div className="row gap-1 center">
               <span>#</span>
@@ -160,7 +146,7 @@ function CreatePlaylistIfo() {
             margin: "0 auto",
           }}
         >
-          {user?.user_playlists[user?.user_playlists.length - 1]?.songs?.map(
+          {userPlaylists[userPlaylists.length - 1]?.songs?.map(
             (song: any, index: number) => {
               return (
                 <div className="row btw card-row" key={index}>
@@ -294,15 +280,14 @@ function CreatePlaylistIfo() {
                       {song.album.title}
                     </Link>
 
-                    {user?.user_playlists[
-                      user?.user_playlists.length - 1
-                    ]?.songs?.some((e: any) => e.id === song.id) ? (
+                    {userPlaylists[userPlaylists.length - 1]?.songs?.some(
+                      (e: any) => e.id === song.id
+                    ) ? (
                       <button onClick={() => {}}>Added</button>
                     ) : (
                       <button
                         onClick={() => {
-                          // handleAddPlaylist(song);
-                          addSongToPlaylist(song);
+                          addSongToPlaylist(song, song._id);
                         }}
                       >
                         Add

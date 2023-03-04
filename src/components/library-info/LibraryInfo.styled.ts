@@ -76,6 +76,10 @@ export const StyledLibraryInfo = styled.div`
         opacity: 1;
         bottom: 90px;
       }
+
+      .image {
+        /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+      }
     }
 
     .image {

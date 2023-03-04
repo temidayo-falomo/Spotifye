@@ -25,7 +25,6 @@ function Login() {
           userAvatar: res.user.photoURL,
           email: res.user.email,
           password: "1234",
-          user_playlists: [],
           likedSongs: [],
           likedPlaylists: [],
           likedAlbums: [],
