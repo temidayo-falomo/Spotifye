@@ -10,7 +10,6 @@ A complex clone of Spotify, Youtube Music & Deezer.
 - Create Playlists
 
 
-
 ## Installation
 
 Install my-project with npm
@@ -29,7 +28,7 @@ https://spotify-e.netlify.app
 
 **Client:** ReactJs, Styled Components 
 
-**Server:** Firebase, Local Storage
+**Server:** Firebase, MongoDb, NodeJs, ExpressJs
 
 
 ## Documentation

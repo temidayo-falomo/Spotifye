@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 import { MdHomeFilled, MdAddBox } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
@@ -10,6 +10,7 @@ import PlaylistsList from "../playlists-list/PlaylistsList";
 
 function Sidebar() {
   const { displaySidebar, setDisplaySidebar } = useContext(AppContext);
+
   return (
     <StyledSidebar displaySidebar={displaySidebar}>
       <div className="logo">

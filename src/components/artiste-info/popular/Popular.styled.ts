@@ -18,6 +18,20 @@ export const StyledPopular = styled.div`
 
       :hover {
         background-color: #282828;
+
+        .number {
+          display: none;
+        }
+
+        .play {
+          display: inline-block;
+        }
+      }
+
+      .play {
+        display: none;
+        cursor: pointer;
+        font-size: 0.9rem;
       }
 
       .init-row {

@@ -6,7 +6,29 @@ import { Link, useLocation } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledSongCardRow } from "./SongCardRow.styled";
 
-function SongCardRow(props: any) {
+function SongCardRow(
+  props: //    {
+  //   itemData: {
+  //     id: number;
+  //     title: string;
+  //     album: { cover_small: string; md5_image: string };
+  //     artist: { name: string; id: string };
+  //     md5_image: string;
+  //   };
+  //   index: number;
+  //   setDisplayAudioPlayerMobile: React.Dispatch<React.SetStateAction<boolean>>;
+  //   song: {
+  //     id: number;
+  //     title: string;
+  //     album: { cover_small: string; md5_image: string };
+  //     artist: { name: string; id: string };
+  //     md5_image: string;
+  //     duration: number;
+  //     explicit_lyrics: boolean;
+  //   };
+  // }
+  any
+) {
   const {
     currentSong,
     setCurrentSong,

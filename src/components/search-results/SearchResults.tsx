@@ -42,13 +42,23 @@ function SearchResults() {
           ) : (
             <>
               <div className="top row gap-1">
-                <button style={{ backgroundColor: "#fff", color: "#000" }}>
-                  All
-                </button>
-                <button>Artists</button>
-                <button>Albums</button>
-                <button>Tracks</button>
-                <button>Playlists</button>
+                {["All", "Artists", "Album", "Track", "Playlist"].map(
+                  (item, index) => {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setNum(index);
+                        }}
+                        style={{
+                          background: num === index ? "#1db954" : "#282828",
+                        }}
+                      >
+                        {item}
+                      </button>
+                    );
+                  }
+                )}
               </div>
 
               <div className="row init-res">

@@ -1,11 +1,33 @@
 import React, { useContext } from "react";
 import { BsSoundwave } from "react-icons/bs";
+import { FaPause, FaPlay } from "react-icons/fa";
 import { MdExplicit } from "react-icons/md";
 import { AppContext } from "../../../global/Context";
 import { StyledPopular } from "./Popular.styled";
 
 function Popular() {
-  const { artisteTracks, currentSong } = useContext(AppContext);
+  const {
+    artisteTracks,
+    currentSong,
+    setSongsList,
+    setCurrentSong,
+    playPause,
+    setDisplayAudioPlayerMobile,
+  } = useContext(AppContext);
+
+  const handleAddSongsToLocalStorage = (currSong: object) => {
+    setDisplayAudioPlayerMobile(true);
+    localStorage.setItem(
+      "songsList",
+      JSON.stringify(artisteTracks?.slice(0, 18))
+    );
+    setSongsList(artisteTracks.slice(0, 18));
+
+    localStorage.setItem("currentSong", JSON.stringify(currSong));
+    setCurrentSong(currSong);
+
+    playPause();
+  };
 
   return (
     <StyledPopular>
@@ -24,9 +46,11 @@ function Popular() {
             >
               <div className="init-row row gap-1 center">
                 <span
+                  className="number"
                   style={{
                     color: currentSong?.id === track.id ? "#1db954" : "inherit",
-                    fontWeight: currentSong?.id === track.id ? "800" : "inherit",
+                    fontWeight:
+                      currentSong?.id === track.id ? "800" : "inherit",
                   }}
                 >
                   {currentSong?.id === track.id ? (
@@ -35,6 +59,21 @@ function Popular() {
                     <>{index + 1}</>
                   )}
                 </span>
+
+                <span
+                  className="play"
+                  onClick={() => {
+                    handleAddSongsToLocalStorage(track);
+                  }}
+                  style={{
+                    color:
+                      track?.id === currentSong?.id ? "#1db954" : "inherit",
+                  }}
+                >
+                  {/* use "isPlaying instead" */}
+                  {track?.id === currentSong?.id ? <FaPause /> : <FaPlay />}
+                </span>
+
                 <div
                   className="artist-img img-def"
                   style={{

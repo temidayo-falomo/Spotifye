@@ -13,8 +13,12 @@ export const StyledCollection = styled.div`
     position: relative;
   }
 
-  .her-bg {
-    background-color: #464646 !important;
+  .hero-bg {
+    /* background-color: #464646; */
+
+    .extractor-holder {
+      display: none !important;
+    }
   }
 
   .cover-img {

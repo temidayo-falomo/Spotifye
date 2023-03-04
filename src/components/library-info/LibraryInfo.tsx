@@ -59,11 +59,17 @@ function LibraryInfo() {
             <div className="playlist-card" key={index}>
               <div
                 className="image img-def"
+                onClick={() => {
+                  navigate(
+                    `/collection/playlist/${playlist._id}/${playlist.title}`
+                  );
+                }}
                 style={{
                   backgroundColor: "#282828",
+                  backgroundImage: `url(${playlist?.tracklist[0]?.album?.cover_xl})`,
                 }}
               >
-                <FiMusic />
+                {playlist?.tracklist.length === 0 && <FiMusic />}
               </div>
               <h4>
                 {playlist.title?.length > 16

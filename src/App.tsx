@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AudioPlayer from "./components/audio-player/AudioPlayer";
@@ -19,48 +18,59 @@ import LikedSongs from "./pages/liked-songs/LikedSongs";
 import Collection from "./pages/collections/Collection";
 
 function App() {
+  
+  //* Cookies
   const [cookies, setCookie] = useCookies(["user"]);
-  //
+
+  //* Audio States
   const audioElem = useRef<any>();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
-  //
-
-  const [homeData, setHomeData] = React.useState([]);
-  const [artisteData, setArtisteData] = React.useState([]);
+  //* Data States
+  const [homeData, setHomeData] = useState({});
+  const [artisteData, setArtisteData] = useState([]);
   const [artisteAlbums, setArtisteAlbums] = useState([]);
   const [artisteTracks, setArtisteTracks] = useState([]);
   const [artisteRelated, setArtisteRelated] = useState([]);
   const [radioCategories, setRadioCategories] = useState([]);
   const [albumData, setAlbumData] = useState([]);
-
   const [searchData, setSearchData] = useState([]);
   const [searchValue, setSearchValue] = useState<string>("");
-
   const [categoryData, setCategoryData] = useState([]);
 
-  const [displayAudioPlayer, setDisplayAudioPlayer] = useState(false);
+  //Display States
+  const [displayAudioPlayer, setDisplayAudioPlayer] = useState<boolean>(false);
   const [displayAudioPlayerMobile, setDisplayAudioPlayerMobile] =
-    useState(true);
-  const [displaySidebar, setDisplaySidebar] = useState(true);
+    useState<boolean>(true);
+  const [displaySidebar, setDisplaySidebar] = useState<boolean>(true);
 
+  //Songs List State
   const [songsList, setSongsList] = useState(
     JSON.parse(localStorage.getItem("songsList") || "[]")
   );
 
-  const [currentSong, setCurrentSong] = useState(songsList[0]);
+  //*Current Song State
+  const [currentSong, setCurrentSong] = useState<object>(songsList[0]);
 
-  const [unableToPlay, setUnableToPlay] = useState(false);
-  const [searchLoading, setSearchLoading] = useState(false);
+  //Unable to Play Error State
+  const [unableToPlay, setUnableToPlay] = useState<boolean>(false);
 
+  //Navbar Search State
+  const [searchLoading, setSearchLoading] = useState<boolean>(false);
+
+  //Playlist State
   const [playlistData, setPlaylistData] = useState([]);
 
-  const [defaultGradientNum, setDefaultGradientNum] = useState(0);
+  //Gradient State
+  const [defaultGradientNum, setDefaultGradientNum] = useState<number>(0);
 
   const [user, setUser] = useState<any>(null); //User Object
-  const [userPlaylists, setUserPlaylists] = useState<any>([]); //User Playlists
-  const [userCollection, setUserCollection] = useState<any>({}); //User Collection
 
+  const [userPlaylists, setUserPlaylists] = useState<any>([]); //User Playlists
+
+  const [userCollection, setUserCollection] = useState({}); //User Collection
+
+  //* Function to Play/Pause Audio
   const playPause = () => {
     setIsPlaying(!isPlaying);
   };
@@ -78,6 +88,7 @@ function App() {
       });
   };
 
+  //* Function to get User Playlists From Backend.
   const getUserPlaylists = () => {
     fetch(`http://localhost:8080/api/playlists/user-playlists/${cookies.user}`)
       .then((res) => res.json())
@@ -90,6 +101,7 @@ function App() {
       });
   };
 
+  //* Play/Pause Audio
   useEffect(() => {
     if (isPlaying) {
       audioElem?.current?.play();
@@ -98,11 +110,11 @@ function App() {
     }
   }, [isPlaying]);
 
+  //* Invoke getCurrentUser() && getUserPlaylists() on page load
   useEffect(() => {
     getCurrentUser(cookies.user);
     getUserPlaylists();
   }, []);
-  
 
   return (
     <AppContext.Provider

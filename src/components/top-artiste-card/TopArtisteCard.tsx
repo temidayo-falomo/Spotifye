@@ -1,13 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledTopArtisteCard } from "./TopArtisteCard.styled";
 
-function TopArtisteCard(props: any) {
+function TopArtisteCard(
+  props: //   {
+  //   itemData: {
+  //     id: string;
+  //     name: string;
+  //     picture_medium: string;
+  //     picture_big: string;
+  //     picture_xl: string;
+  //     nb_fan: number;
+  //     tracklist: string;
+  //     type: string;
+  //   };
+  // }
+
+  any
+
+  //plssss
+) {
   let navigate = useNavigate();
   const { setCurrentSong, playPause, setSongsList } = useContext(AppContext);
-  const [results, setResults] = React.useState<any>([]);
+  const [results, setResults] = useState<any>([]);
 
   const handleNavigateToArtiste = (
     artiste_id: string,
@@ -28,9 +45,9 @@ function TopArtisteCard(props: any) {
         setResults(data.data);
         localStorage.setItem(
           "songsList",
-          JSON.stringify(data.data.slice(0, 12))
+          JSON.stringify(data.data.slice(0, 15))
         );
-        setSongsList(data.data.slice(0, 12));
+        setSongsList(data.data.slice(0, 15));
         localStorage.setItem("currentSong", JSON.stringify(data.data[0]));
         setCurrentSong(data.data[0]);
         playPause();

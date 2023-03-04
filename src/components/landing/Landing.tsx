@@ -15,7 +15,7 @@ function Landing() {
 
   const heroBgRef = React.useRef(null);
 
-  const [defaultPic, setDefaultPic] = useState(
+  const [defaultPic, setDefaultPic] = useState<string | undefined | null | any>(
     homeData?.playlists?.data?.slice(0, 6)[defaultGradientNum]?.picture_medium
   );
 

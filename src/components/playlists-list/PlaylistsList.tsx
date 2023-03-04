@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import { StyledPlaylistsList } from "./PlaylistsList.styled";
 
 function PlaylistsList() {
   const { userPlaylists } = useContext(AppContext);
   let navigate = useNavigate();
+  let id = useParams().id;
 
   const handleNavigate = (song: { _id: string; title: string }) => {
     if (song._id) {
@@ -14,7 +15,7 @@ function PlaylistsList() {
         song._id
       }/${encodeURIComponent(song.title)}`;
     } else {
-      navigate("/")
+      navigate("/");
       window.location.reload();
     }
   };
@@ -22,18 +23,29 @@ function PlaylistsList() {
   return (
     <StyledPlaylistsList>
       <div className="col gap-1">
-        {userPlaylists?.map((song: any, index: number) => {
-          return (
-            <span
-              key={index}
-              onClick={() => {
-                handleNavigate(song);
-              }}
-            >
-              {song.title}
-            </span>
-          );
-        })}
+        {userPlaylists?.map(
+          (
+            song: {
+              _id: string;
+              title: string;
+            },
+            index: number
+          ) => {
+            return (
+              <span
+                style={{
+                  color: song._id === id ? "#fff" : "#b3b3b3",
+                }}
+                key={index}
+                onClick={() => {
+                  handleNavigate(song);
+                }}
+              >
+                {song.title}
+              </span>
+            );
+          }
+        )}
       </div>
     </StyledPlaylistsList>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FiHeart } from "react-icons/fi";
 import { SlOptions } from "react-icons/sl";
@@ -8,6 +8,7 @@ import { StyledPlayTrackMid } from "./PlayTrackMid.styled";
 
 function PlayTrackMid(props: any) {
   const location = useLocation();
+  const [clicked, setClicked] = useState(false);
 
   const {
     playPause,
@@ -17,6 +18,8 @@ function PlayTrackMid(props: any) {
     setSongsList,
     user,
   } = useContext(AppContext);
+
+  const [modal, setModal] = useState(false);
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
     setDisplayAudioPlayerMobile(true);
@@ -32,8 +35,40 @@ function PlayTrackMid(props: any) {
     playPause();
   };
 
+  useEffect(() => {
+    if (clicked) {
+      setTimeout(() => {
+        setClicked(false);
+      }, 2000);
+    }
+  }, [clicked]);
+
   return (
     <StyledPlayTrackMid location={location}>
+      {modal && (
+        <div className="mod">
+          <span onClick={() => setClicked(!clicked)}>
+            {clicked ? "Copied!" : "Copy link to playlist"}
+          </span>
+          <span onClick={props.handleDeletePlaylist}>Delete</span>
+          <span
+            style={{
+              opacity: 0.5,
+              cursor: "not-allowed",
+            }}
+          >
+            Radio
+          </span>
+          <span
+            style={{
+              opacity: 0.5,
+              cursor: "not-allowed",
+            }}
+          >
+            Edit details
+          </span>
+        </div>
+      )}
       <div className="row middle center">
         <div
           className="play"
@@ -66,7 +101,14 @@ function PlayTrackMid(props: any) {
           </>
         )}
 
-        <SlOptions className="pointer" />
+        {props.handleDeletePlaylist && (
+          <SlOptions
+            className="pointer"
+            onClick={() => {
+              setModal(!modal);
+            }}
+          />
+        )}
       </div>
     </StyledPlayTrackMid>
   );

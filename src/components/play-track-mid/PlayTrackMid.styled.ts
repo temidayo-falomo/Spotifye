@@ -6,6 +6,35 @@ export const StyledPlayTrackMid = styled.div`
   z-index: 999;
   position: relative;
 
+  .mod {
+    position: absolute;
+    left: 11rem;
+    top: 68%;
+    width: 230px;
+    background-color: #282828;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    padding: 15px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    span {
+      background-color: transparent;
+      padding: 10px 10px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 2px;
+      width: 100%;
+      text-align: left;
+
+      :hover {
+        background-color: #3e3d3d;
+      }
+    }
+  }
+
   .middle {
     gap: 2rem;
     margin: 1rem auto;

@@ -266,7 +266,10 @@ function AudioPlayer() {
         </div>
       </div>
 
-      <div className="audio-player-container">
+      <div
+        className="audio-player-container"
+        // onClick={handleDisplayAudioPlayer}
+      >
         <div className="row gap-1 center">
           <div
             className="thumbnail-img img-def"
