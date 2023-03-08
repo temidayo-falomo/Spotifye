@@ -6,8 +6,14 @@ A complex clone of Spotify, Youtube Music & Deezer.
 
 - Listen to any music track for 30 seconds
 - Queue Music
-- Search Music
+- Search over 30 million tracks
+- Shuffle Tracks
 - Create Playlists
+- Share Playlists
+- Keep track of liked songs
+- Follow Artistes
+- Create Account
+
 
 
 ## Installation
@@ -26,7 +32,7 @@ https://spotify-e.netlify.app
 
 ## Tech Stack
 
-**Client:** ReactJs, Styled Components 
+**Client:** ReactJs, Styled Components, Gsap 
 
 **Server:** Firebase, MongoDb, NodeJs, ExpressJs
 
