@@ -15,10 +15,10 @@ function AlbumCard(props: any) {
 
   const playFirstSong = () => {
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(
       `https://api.deezer.com/album/${props?.album?.id}/tracks`
-      // )
+      )
     )
       .then((res) => res.json())
       .then((data) => {

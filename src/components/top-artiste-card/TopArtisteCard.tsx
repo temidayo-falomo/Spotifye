@@ -35,10 +35,10 @@ function TopArtisteCard(
 
   const playFirstSong = () => {
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
-      `https://api.deezer.com/artist/${props.itemData?.id}/top?limit=30`
-      // )
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(
+          `https://api.deezer.com/artist/${props.itemData?.id}/top?limit=30`
+        )
     )
       .then((res) => res.json())
       .then((data) => {

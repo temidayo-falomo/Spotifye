@@ -67,10 +67,10 @@ function AudioPlayer() {
 
   const handleFetchLyrics = () => {
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(
       `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
-      // )
+      )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -149,7 +149,7 @@ function AudioPlayer() {
 
   const handleAddlike = async () => {
     await axios
-      .put("http://localhost:8080/api/like-song", {
+      .put("https://spotifye-backend.vercel.app/api/like-song", {
         currentSong,
         userId: cookies.user,
       })
@@ -163,7 +163,7 @@ function AudioPlayer() {
 
   const handleRemovelike = async () => {
     await axios
-      .put("http://localhost:8080/api/unlike-song", {
+      .put("https://spotifye-backend.vercel.app/api/unlike-song", {
         currentSong,
         userId: cookies.user,
       })

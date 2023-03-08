@@ -36,10 +36,10 @@ function Collection() {
   const fetchSearchResults = async () => {
     setSearchLoading(true);
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(
       `https://api.deezer.com/search?q=${searchValue}`
-      // )
+      )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -54,7 +54,7 @@ function Collection() {
   const getPlaylist = () => {
     setUserCollection(null);
     axios
-      .get(`http://localhost:8080/api/playlists/playlist/${id}`)
+      .get(`https://spotifye-backend.vercel.app/api/playlists/playlist/${id}`)
       .then((res) => {
         setUserCollection(res.data);
       })
@@ -65,7 +65,7 @@ function Collection() {
 
   const addSongToPlaylist = (song: object) => {
     axios
-      .put("http://localhost:8080/api/playlists/add-track", {
+      .put("https://spotifye-backend.vercel.app/api/playlists/add-track", {
         song,
         playlistId: id,
       })
@@ -83,7 +83,7 @@ function Collection() {
     id: React.SetStateAction<number>;
   }) => {
     axios
-      .put("http://localhost:8080/api/playlists/remove-track", {
+      .put("https://spotifye-backend.vercel.app/api/playlists/remove-track", {
         song,
         playlistId: id,
       })
@@ -109,7 +109,7 @@ function Collection() {
 
   const handleDeletePlaylist = () => {
     axios
-      .delete(`http://localhost:8080/api/playlists/remove-playlist/${id}`)
+      .delete(`https://spotifye-backend.vercel.app/api/playlists/remove-playlist/${id}`)
       .catch((err) => {
         console.log(err);
       });

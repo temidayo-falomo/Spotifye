@@ -32,7 +32,7 @@ function Login() {
         };
 
         axios
-          .post("http://localhost:8080/api/add-user", userInfo)
+          .post("https://spotifye-backend.vercel.app/api/add-user", userInfo)
           .catch((err) => {
             console.log(err);
           });

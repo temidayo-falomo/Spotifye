@@ -20,10 +20,10 @@ function CreatePlaylistIfo() {
   const fetchSearchResults = async () => {
     setSearchLoading(true);
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(
       `https://api.deezer.com/search?q=${searchValue}`
-      // )
+      )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -37,7 +37,7 @@ function CreatePlaylistIfo() {
 
   const addSongToPlaylist = (song: object, playlistId: string) => {
     axios
-      .put("http://localhost:8080/api/playlists/add-track", {
+      .put("https://spotifye-backend.vercel.app/api/playlists/add-track", {
         song,
         playlistId,
       })
@@ -50,7 +50,7 @@ function CreatePlaylistIfo() {
     id: React.SetStateAction<number>;
   }) => {
     axios
-      .post("http://localhost:5000/api/v1/playlist/remove", {
+      .post("https://spotifye-backend.vercel.app/api/v1/playlist/remove", {
         song,
       })
       .catch((err) => {
@@ -76,7 +76,7 @@ function CreatePlaylistIfo() {
     };
 
     axios
-      .post("http://localhost:8080/api/playlists/add-playlist", playlistObject)
+      .post("https://spotifye-backend.vercel.app/api/playlists/add-playlist", playlistObject)
       .catch((err) => {
         console.log(err);
       });

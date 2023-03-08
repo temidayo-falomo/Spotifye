@@ -29,10 +29,10 @@ function Navbar() {
   const fetchSearchResults = async () => {
     setSearchLoading(true);
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(
       `https://api.deezer.com/search?q=${searchValue}`
-      // )
+      )
     )
       .then((res) => res.json())
       .then((data) => {

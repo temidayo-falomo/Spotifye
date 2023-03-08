@@ -22,11 +22,9 @@ function Artiste() {
   const fetchArtiste = async () => {
     // setArtisteData(null);
     fetch(
-      //   "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      // encodeURIComponent(
-      `https://api.deezer.com/artist/${id}`
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}`)
     )
-      // )
       .then((res) => res.json())
       .then((data) => {
         setArtisteData(data);
@@ -40,10 +38,8 @@ function Artiste() {
   const fetchArtisteAlbums = async () => {
     setArtisteAlbums(null);
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      // encodeURIComponent(
-      `https://api.deezer.com/artist/${id}/albums`
-      // )
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/albums`)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -57,10 +53,8 @@ function Artiste() {
   const fetchArtisteTracks = async () => {
     setArtisteTracks(null);
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
-      `https://api.deezer.com/artist/${id}/top?limit=30`
-      // )
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/top?limit=30`)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -76,10 +70,8 @@ function Artiste() {
     setArtisteRelated(null);
     setLoading(true);
     fetch(
-      // "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-      //   encodeURIComponent(
-      `https://api.deezer.com/artist/${id}/related`
-      // )
+      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+        encodeURIComponent(`https://api.deezer.com/artist/${id}/related`)
     )
       .then((res) => res.json())
       .then((data) => {

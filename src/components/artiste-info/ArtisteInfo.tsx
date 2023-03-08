@@ -16,7 +16,7 @@ function ArtisteInfo() {
 
   const handleFollowArtist = () => {
     axios
-      .put("http://localhost:8080/api/follow-artist", {
+      .put("https://spotifye-backend.vercel.app/api/follow-artist", {
         artist: {
           artistId: artisteData.id,
           artistName: artisteData.name,
@@ -40,7 +40,7 @@ function ArtisteInfo() {
 
   const handleUnfollowArtist = () => {
     axios
-      .put("http://localhost:8080/api/unfollow-artist", {
+      .put("https://spotifye-backend.vercel.app/api/unfollow-artist", {
         artist: {
           artistId: artisteData.id,
           artistName: artisteData.name,

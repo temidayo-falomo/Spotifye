@@ -77,7 +77,7 @@ function App() {
 
   //* Function to get Current User From Backend.
   const getCurrentUser = (id: string) => {
-    fetch(`http://localhost:8080/api/user/${id}`)
+    fetch(`https://spotifye-backend.vercel.app/api/user/${id}`)
       .then((res) => res.json())
       .then((res) => {
         //set relevant states from api call
@@ -90,7 +90,7 @@ function App() {
 
   //* Function to get User Playlists From Backend.
   const getUserPlaylists = () => {
-    fetch(`http://localhost:8080/api/playlists/user-playlists/${cookies.user}`)
+    fetch(`https://spotifye-backend.vercel.app/api/playlists/user-playlists/${cookies.user}`)
       .then((res) => res.json())
       .then((res) => {
         //set relevant states from api call
