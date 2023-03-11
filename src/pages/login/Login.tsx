@@ -70,16 +70,22 @@ function Login() {
             <p>or</p>
             <div className="line"></div>
           </div>
-          <form action="" className="col gap-1">
+          <form
+            className="col gap-1"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <input
               type="text"
               placeholder="Email address or username"
               required
+              disabled
             />
-            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Password" required disabled />
 
             <div className="row btw center">
-              <Link to="/sign-up">Create Account</Link>
+              <Link to="/login">Create Account</Link>
               <button className="sign-in-btn">Sign in</button>
             </div>
           </form>

@@ -76,6 +76,11 @@ export const StyledLogin = styled.div`
         color: #000;
         width: 90%;
         background-color: transparent;
+
+        :hover {
+          border: 2px royalblue solid;
+          color: royalblue;
+        }
       }
 
       .spotify {
@@ -92,6 +97,7 @@ export const StyledLogin = styled.div`
       border: 1px gainsboro solid;
       padding: 10px;
       width: 100%;
+      cursor: not-allowed;
     }
 
     .sign-in-btn {

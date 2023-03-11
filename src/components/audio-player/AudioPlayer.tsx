@@ -69,8 +69,8 @@ function AudioPlayer() {
     fetch(
       "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
         encodeURIComponent(
-      `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
-      )
+          `https://lyrist.vercel.app/api/:${currentSong?.title}/:${currentSong?.artist?.name}`
+        )
     )
       .then((res) => res.json())
       .then((data) => {
@@ -227,8 +227,20 @@ function AudioPlayer() {
             Library
           </NavLink>
         </div>
-        <div className="avatar">
-          <FcGoogle />
+        <div
+          className="avatar"
+          style={{
+            backgroundImage: `url(${user?.userAvatar})`,
+          }}
+          onClick={() => {
+            if (user) {
+              navigate("/");
+            } else {
+              navigate("/login");
+            }
+          }}
+        >
+          {!user?.userAvatar && <FcGoogle />}
         </div>
       </div>
       <div className="main-info row">

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BsPauseFill, BsPlayFill } from "react-icons/bs";
+import { BsHeartFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FiHeart } from "react-icons/fi";
 import { SlOptions } from "react-icons/sl";
 import { useLocation } from "react-router-dom";
@@ -9,6 +9,7 @@ import { StyledPlayTrackMid } from "./PlayTrackMid.styled";
 function PlayTrackMid(props: any) {
   const location = useLocation();
   const [clicked, setClicked] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   const {
     playPause,
@@ -81,7 +82,16 @@ function PlayTrackMid(props: any) {
         </div>
 
         {!location.pathname.includes("/artiste") ? (
-          <FiHeart className="pointer" />
+          <>
+            {liked ? (
+              <BsHeartFill
+                className="pointer"
+                onClick={() => setLiked(!liked)}
+              />
+            ) : (
+              <FiHeart className="pointer" onClick={() => setLiked(!liked)} />
+            )}
+          </>
         ) : (
           <>
             {!user?.followedArtists?.some(

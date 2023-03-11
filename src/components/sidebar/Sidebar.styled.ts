@@ -7,6 +7,11 @@ export const StyledSidebar = styled.aside`
   height: 100vh;
   width: 100%;
   padding: 30px;
+  overflow-y: scroll !important;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 
   .icon {
     font-size: 2rem;

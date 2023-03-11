@@ -23,7 +23,12 @@ function TopArtisteCard(
   //plssss
 ) {
   let navigate = useNavigate();
-  const { setCurrentSong, playPause, setSongsList } = useContext(AppContext);
+  const {
+    setCurrentSong,
+    playPause,
+    setSongsList,
+    setDisplayAudioPlayerMobile,
+  } = useContext(AppContext);
   const [results, setResults] = useState<any>([]);
 
   const handleNavigateToArtiste = (
@@ -34,6 +39,7 @@ function TopArtisteCard(
   };
 
   const playFirstSong = () => {
+    setDisplayAudioPlayerMobile(true);
     fetch(
       "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
         encodeURIComponent(

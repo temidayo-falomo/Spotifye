@@ -16,9 +16,9 @@ import { useCookies } from "react-cookie";
 import CreatePlaylist from "./pages/create-playlist/CreatePlaylist";
 import LikedSongs from "./pages/liked-songs/LikedSongs";
 import Collection from "./pages/collections/Collection";
+import Error from "./pages/404/Error";
 
 function App() {
-  
   //* Cookies
   const [cookies, setCookie] = useCookies(["user"]);
 
@@ -90,7 +90,9 @@ function App() {
 
   //* Function to get User Playlists From Backend.
   const getUserPlaylists = () => {
-    fetch(`https://spotifye-backend.vercel.app/api/playlists/user-playlists/${cookies.user}`)
+    fetch(
+      `https://spotifye-backend.vercel.app/api/playlists/user-playlists/${cookies.user}`
+    )
       .then((res) => res.json())
       .then((res) => {
         //set relevant states from api call
@@ -200,6 +202,8 @@ function App() {
             path="/collection/playlist/:id/:name"
             element={<Collection />}
           />
+          <Route path="/404" element={<Error />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         {currentSong && <AudioPlayer />}
       </div>

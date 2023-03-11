@@ -10,6 +10,8 @@ import { AppContext } from "../../global/Context";
 import { StyledNavbar } from "./Navbar.styled";
 import { FcGoogle } from "react-icons/fc";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { RiEyeOffLine } from "react-icons/ri";
+import { useCookies } from "react-cookie";
 
 function Navbar() {
   let navigate = useNavigate();
@@ -24,15 +26,13 @@ function Navbar() {
     displaySidebar,
   } = useContext(AppContext);
 
-  const [activeNav, setActiveNav] = useState(false);
+  const [cookies, setCookie] = useCookies(["user"]);
 
   const fetchSearchResults = async () => {
     setSearchLoading(true);
     fetch(
       "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(
-      `https://api.deezer.com/search?q=${searchValue}`
-      )
+        encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -88,11 +88,14 @@ function Navbar() {
       </div>
 
       <div className="row right-nav">
-        {/* <button className="offline-btn row center gap-5">
-          <RiEyeOffLine />
-          You're offline
-        </button> */}
-        <button className="premium-btn">Premium</button>
+        {!cookies.user ? (
+          <button className="offline-btn row center gap-5">
+            <RiEyeOffLine />
+            Not Signed In
+          </button>
+        ) : (
+          <button className="premium-btn">Premium</button>
+        )}
         <div
           onClick={() => {
             if (user) {

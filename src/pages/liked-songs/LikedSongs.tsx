@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { FaPlay } from "react-icons/fa";
 import { FiMusic } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import Navbar from "../../components/navbar/Navbar";
 import PlayTrackMid from "../../components/play-track-mid/PlayTrackMid";
@@ -12,14 +13,22 @@ import { StyledLikedSongs } from "./LikedSongs.styled";
 
 function LikedSongs() {
   const { user } = useContext(AppContext);
-
   const [loading, setLoading] = useState<boolean>(true);
+
+  const [cookies, setCookie] = useCookies(["user"]);
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
       setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    if (!cookies.user) {
+      navigate("/404");
+    }
+  }, []);
 
   return (
     <StyledLikedSongs>
