@@ -9,7 +9,7 @@ export const StyledPlayTrackMid = styled.div`
   .mod {
     position: absolute;
     left: 11rem;
-    top: 68%;
+    top: 70%;
     width: 230px;
     background-color: #282828;
     border-radius: 5px;

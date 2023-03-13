@@ -89,10 +89,14 @@ function Navbar() {
 
       <div className="row right-nav">
         {!cookies.user ? (
-          <button className="offline-btn row center gap-5">
-            <RiEyeOffLine />
-            Not Signed In
-          </button>
+          <>
+            {location.pathname !== "/search" && (
+              <button className="offline-btn row center gap-5">
+                <RiEyeOffLine />
+                Not Signed In
+              </button>
+            )}
+          </>
         ) : (
           <button className="premium-btn">Premium</button>
         )}

@@ -17,7 +17,7 @@ export const StyledUpNext = styled.div`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #5E5D5D;
+    background-color: #5e5d5d;
   }
 
   .up-next-card {
@@ -36,11 +36,12 @@ export const StyledUpNext = styled.div`
       }
 
       .img {
-        background: linear-gradient(
-          90deg,
-          rgba(1, 18, 1, 0.3828125) 95%,
-          rgba(14, 64, 14, 0.5004595588235294) 100%
+        background-color: linear-gradient(
+          to bottom,
+          #12151343 5%,
+          rgba(38, 22, 22, 0.076) 100%
         ) !important;
+        background-blend-mode: darken;
       }
     }
 

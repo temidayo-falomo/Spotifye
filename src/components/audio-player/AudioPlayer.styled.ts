@@ -21,6 +21,8 @@ export const StyledAudioPlayer = styled.div`
     display: none;
   }
 
+  //big-img
+
   .active-link {
     color: #1cdf63;
   }
@@ -66,6 +68,30 @@ export const StyledAudioPlayer = styled.div`
       width: 600px;
       margin: auto 0;
       background-color: #181818;
+      position: relative;
+
+      .grd {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: 0.5s ease;
+      }
+
+      :hover {
+        .grd {
+          background: linear-gradient(
+            to bottom,
+            #12151343 5%,
+            rgba(38, 22, 22, 0.076) 100%
+          );
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          opacity: 1;
+          transition: 0.5s ease;
+        }
+      }
     }
 
     .lyr-rel {
@@ -114,6 +140,7 @@ export const StyledAudioPlayer = styled.div`
 
     .slide {
       font-size: 1.5rem;
+
       .slide-bar {
         width: 500px;
         min-width: 300px;

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { signInWithPopup } from "firebase/auth";
-import React, { useContext } from "react";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import { BsSpotify } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -11,6 +11,9 @@ import { StyledLogin } from "./Login.styled";
 
 function Login() {
   const { getCurrentUser } = useContext(AppContext);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   let navigate = useNavigate();
   const [cookies, setCookie] = useCookies(["user"]);
 
@@ -45,6 +48,21 @@ function Login() {
       .catch((err) => console.log(err));
   };
 
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((res) => {
+        setCookie("user", res.user.uid, { path: "/" });
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <StyledLogin>
       <div className="login-nav">
@@ -73,19 +91,31 @@ function Login() {
           <form
             className="col gap-1"
             onSubmit={(e) => {
-              e.preventDefault();
+              handleLogin(e);
             }}
           >
-            <input
-              type="text"
-              placeholder="Email address or username"
-              required
-              disabled
-            />
-            <input type="password" placeholder="Password" required disabled />
+            <div className="row center gap-5">
+              <input
+                type="text"
+                placeholder="Email address or username"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
 
-            <div className="row btw center">
-              <Link to="/login">Create Account</Link>
+            <div className="row center gap-5">
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="btw center">
+              <Link to="/signup">Create Account</Link>
               <button className="sign-in-btn">Sign in</button>
             </div>
           </form>
@@ -97,14 +127,23 @@ function Login() {
               fontSize: "0.8rem",
             }}
           >
-            <p>Use Guest mode to sign in privately? </p>
+            <p
+              style={{
+                marginBottom: "0.5rem",
+              }}
+            >
+              Use Guest mode to sign in privately?{" "}
+            </p>
             <Link
               to="/"
               style={{
                 color: "royalblue",
+                display: "flex",
+                alignItems: "center",
               }}
             >
               Learn More
+              <img src="./assets/yeti.png" alt="" className="ghost" />
             </Link>
           </div>
         </div>

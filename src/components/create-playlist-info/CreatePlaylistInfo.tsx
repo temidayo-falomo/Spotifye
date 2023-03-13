@@ -9,6 +9,7 @@ import Navbar from "../navbar/Navbar";
 import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 import { StyledCreatePlaylistInfo } from "./CreatePlaylistInfo.styled";
 import { useCookies } from "react-cookie";
+// import { ObjectId } from "bson";
 
 function CreatePlaylistIfo() {
   const { user, userPlaylists, setUserPlaylists } = useContext(AppContext);
@@ -21,9 +22,7 @@ function CreatePlaylistIfo() {
     setSearchLoading(true);
     fetch(
       "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(
-      `https://api.deezer.com/search?q=${searchValue}`
-      )
+        encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -59,14 +58,18 @@ function CreatePlaylistIfo() {
   };
 
   const handleNewPlaylist = () => {
+    // const id = new ObjectId();
+    // console.log(id.toString());
+
     let playlistObject = {
+      _id: "",
       picture_xl: `https://ik.imagekit.io
         /gdgtme/wp-content/uploads
         /2022/02/How-To-Create-A-Music-Playlist-For-Offline-Listening-In-2022.jpg`,
       title: `My Playlist #${userPlaylists.length + 1}`,
       user: {
         name: user?.fullName,
-        avatar: user?.avatar,
+        avatar: user?.userAvatar,
         createdAt: new Date(),
       },
       tracklist: [],
@@ -76,7 +79,10 @@ function CreatePlaylistIfo() {
     };
 
     axios
-      .post("https://spotifye-backend.vercel.app/api/playlists/add-playlist", playlistObject)
+      .post(
+        "https://spotifye-backend.vercel.app/api/playlists/add-playlist",
+        playlistObject
+      )
       .catch((err) => {
         console.log(err);
       });
@@ -117,7 +123,7 @@ function CreatePlaylistIfo() {
                   backgroundImage: `url(${user?.userAvatar})`,
                 }}
               ></div>
-              <Link to="/">Temidayo</Link>
+              <Link to="/">{user?.name}</Link>
             </div>
           </div>
         </div>

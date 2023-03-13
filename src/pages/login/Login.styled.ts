@@ -63,7 +63,7 @@ export const StyledLogin = styled.div`
         padding: 12px;
         border-radius: 20px;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 0.9rem;
         align-self: center;
         display: flex;
         align-items: center;
@@ -74,7 +74,7 @@ export const StyledLogin = styled.div`
       .google {
         border: 2px black solid;
         color: #000;
-        width: 90%;
+        width: 85%;
         background-color: transparent;
 
         :hover {
@@ -93,11 +93,43 @@ export const StyledLogin = styled.div`
 
   form {
     width: 100%;
-    input {
+
+    .row {
+      width: 100%;
       border: 1px gainsboro solid;
       padding: 10px;
+      position: relative;
+      border-radius: 5px;
+
+      .notif {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px 10px;
+        font-size: 0.7rem;
+        color: white;
+        background-color: black;
+        border-radius: 5px;
+        cursor: pointer;
+
+        :hover {
+          background-color: transparent;
+          border: 1px black solid;
+          color: black;
+        }
+      }
+    }
+
+    .btw {
+      display: flex;
+      flex-direction: row;
+    }
+
+    input {
       width: 100%;
-      cursor: not-allowed;
+      height: 100%;
+      border: none;
+      outline: none;
     }
 
     .sign-in-btn {
@@ -108,5 +140,13 @@ export const StyledLogin = styled.div`
       font-size: 0.8rem !important;
       color: #fff;
     }
+  }
+
+  a {
+    width: max-content;
+  }
+
+  .ghost {
+    width: 20px !important;
   }
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledCategoryInfo = styled.div`
   height: 100vh;
   overflow-y: auto;
-  z-index: 99999;
+  z-index: 9999999;
   padding-bottom: 150px;
 
   .hero-bg {

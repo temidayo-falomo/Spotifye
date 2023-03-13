@@ -17,6 +17,7 @@ import CreatePlaylist from "./pages/create-playlist/CreatePlaylist";
 import LikedSongs from "./pages/liked-songs/LikedSongs";
 import Collection from "./pages/collections/Collection";
 import Error from "./pages/404/Error";
+import SignUp from "./pages/sign-up/SignUp";
 
 function App() {
   //* Cookies
@@ -196,6 +197,7 @@ function App() {
           <Route path="/playlist/:id/:name" element={<Playlist />} />
           <Route path="/library" element={<Library />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/create-playlist" element={<CreatePlaylist />} />
           <Route path="/liked-songs" element={<LikedSongs />} />
           <Route

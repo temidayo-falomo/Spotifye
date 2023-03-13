@@ -37,9 +37,7 @@ function Collection() {
     setSearchLoading(true);
     fetch(
       "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(
-      `https://api.deezer.com/search?q=${searchValue}`
-      )
+        encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -109,7 +107,9 @@ function Collection() {
 
   const handleDeletePlaylist = () => {
     axios
-      .delete(`https://spotifye-backend.vercel.app/api/playlists/remove-playlist/${id}`)
+      .delete(
+        `https://spotifye-backend.vercel.app/api/playlists/remove-playlist/${id}`
+      )
       .catch((err) => {
         console.log(err);
       });
@@ -181,7 +181,7 @@ function Collection() {
                       backgroundImage: `url(${userCollection?.user?.avatar})`,
                     }}
                   ></div>
-                  <Link to="/">Temidayo</Link>
+                  <Link to="/">{userCollection?.user?.name}</Link>
                 </div>
               </div>
             </div>

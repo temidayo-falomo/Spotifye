@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { FaPlay } from "react-icons/fa";
 import { FiMusic } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
@@ -13,6 +12,7 @@ import { StyledLikedSongs } from "./LikedSongs.styled";
 
 function LikedSongs() {
   const { user } = useContext(AppContext);
+
   const [loading, setLoading] = useState<boolean>(true);
 
   const [cookies, setCookie] = useCookies(["user"]);
@@ -63,7 +63,7 @@ function LikedSongs() {
                         backgroundImage: `url(${user?.userAvatar})`,
                       }}
                     ></div>
-                    <Link to="/">Temidayo</Link>
+                    <Link to="/">{user?.fullName}</Link>
                     <div style={{ display: "inline", textAlign: "center" }}>
                       •
                     </div>
@@ -79,6 +79,13 @@ function LikedSongs() {
               {user?.likedSongs.map((song: any, index: number) => {
                 return <SongCardRow song={song} index={index} key={index} />;
               })}
+              {user?.likedSongs.length === 0 && (
+                <div>
+                  <h3 style={{ marginTop: "1rem" }}>
+                    No songs in your Liked Songs playlist.
+                  </h3>
+                </div>
+              )}
             </div>
           </>
         )}

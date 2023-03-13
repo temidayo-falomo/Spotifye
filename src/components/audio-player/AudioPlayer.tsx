@@ -228,7 +228,7 @@ function AudioPlayer() {
           </NavLink>
         </div>
         <div
-          className="avatar"
+          className="avatar img-def"
           style={{
             backgroundImage: `url(${user?.userAvatar})`,
           }}
@@ -246,13 +246,16 @@ function AudioPlayer() {
       <div className="main-info row">
         <div
           className="big-img img-def"
+          onClick={playPause}
           style={{
             backgroundImage: `url(${
               currentSong?.album?.cover_xl ||
               `https://e-cdns-images.dzcdn.net/images/cover/${currentSong?.md5_image}/1000x1000-000000-80-0-0.jpg`
             })`,
           }}
-        ></div>
+        >
+          <div className="grd"></div>
+        </div>
 
         <div className="col lyr-rel">
           <div className="row gap-1">

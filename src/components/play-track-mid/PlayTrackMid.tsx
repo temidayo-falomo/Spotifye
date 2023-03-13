@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FiHeart } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
 import { SlOptions } from "react-icons/sl";
 import { useLocation } from "react-router-dom";
 import { AppContext } from "../../global/Context";
@@ -48,7 +49,12 @@ function PlayTrackMid(props: any) {
     <StyledPlayTrackMid location={location}>
       {modal && (
         <div className="mod">
-          <span onClick={() => setClicked(!clicked)}>
+          <span
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              setClicked(!clicked);
+            }}
+          >
             {clicked ? "Copied!" : "Copy link to playlist"}
           </span>
           <span onClick={props.handleDeletePlaylist}>Delete</span>
@@ -112,12 +118,23 @@ function PlayTrackMid(props: any) {
         )}
 
         {props.handleDeletePlaylist && (
-          <SlOptions
-            className="pointer"
-            onClick={() => {
-              setModal(!modal);
-            }}
-          />
+          <>
+            {modal ? (
+              <MdClose
+                className="pointer"
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              />
+            ) : (
+              <SlOptions
+                className="pointer"
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              />
+            )}
+          </>
         )}
       </div>
     </StyledPlayTrackMid>
