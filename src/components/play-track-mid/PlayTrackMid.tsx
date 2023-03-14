@@ -59,12 +59,11 @@ function PlayTrackMid(props: any) {
           </span>
           <span onClick={props.handleDeletePlaylist}>Delete</span>
           <span
-            style={{
-              opacity: 0.5,
-              cursor: "not-allowed",
+            onClick={() => {
+              props.setShowEdit(true);
             }}
           >
-            Radio
+            Edit details
           </span>
           <span
             style={{
@@ -72,7 +71,7 @@ function PlayTrackMid(props: any) {
               cursor: "not-allowed",
             }}
           >
-            Edit details
+            Radio
           </span>
         </div>
       )}

@@ -4,6 +4,7 @@ export const StyledCollection = styled.div`
   display: grid;
   grid-template-columns: 300px auto;
   overflow: hidden;
+  position: relative;
 
   .collection-info {
     height: 100vh;

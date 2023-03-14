@@ -10,10 +10,10 @@ import { StyledCreatePlaylistInfo } from "../../components/create-playlist-info/
 import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
-import { useCookies } from "react-cookie";
 import { GiPadlock } from "react-icons/gi";
 import { ColorExtractor } from "react-color-extractor";
 import Loading from "../../components/loading/Loading";
+import EditPlaylist from "../../components/edit-playlist/EditPlaylist";
 
 function Collection() {
   const id = useParams().id;
@@ -30,8 +30,9 @@ function Collection() {
   const [searchValue, setSearchValue] = React.useState<string>("");
   const [searchData, setSearchData] = React.useState<any>([]);
   const [searchLoading, setSearchLoading] = React.useState<boolean>(false);
-  const [cookies, setCookie] = useCookies(["user"]);
   const [colors, setColors] = useState<any>(null);
+
+  const [showEdit, setShowEdit] = useState<boolean>(false);
 
   const fetchSearchResults = async () => {
     setSearchLoading(true);
@@ -97,10 +98,6 @@ function Collection() {
     });
   };
 
-  let currentPlaylistObj = JSON.parse(
-    localStorage.getItem("currentPlaylistObj") || "{}"
-  );
-
   const getColors = (detectedColorCodes: any) => {
     setColors(detectedColorCodes);
   };
@@ -127,6 +124,17 @@ function Collection() {
 
   return (
     <StyledCollection>
+      {showEdit && (
+        <EditPlaylist
+          setShowEdit={setShowEdit}
+          playlistName={userCollection?.title}
+          playlistImg={userCollection?.tracklist[0]?.album?.cover_xl}
+          userCollection={userCollection}
+          setUserCollection={setUserCollection}
+          playlistId={id}
+          
+        />
+      )}
       <Sidebar />
       {userCollection ? (
         <StyledCreatePlaylistInfo>
@@ -191,6 +199,7 @@ function Collection() {
             <PlayTrackMid
               allSongs={userCollection?.tracklist}
               handleDeletePlaylist={handleDeletePlaylist}
+              setShowEdit={setShowEdit}
             />
 
             {userCollection?.tracklist?.length > 0 && (
