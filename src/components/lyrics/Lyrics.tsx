@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyledLyrics } from "./Lyrics.styled";
 
 function Lyrics(props: any) {
+  // useEffect(() => {
+  //   props.handleFetchLyrics();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (props?.lyricsText) {
+  //     const lyrics = document.querySelector("article");
+  //     lyrics?.scrollTo({
+  //       top: lyrics?.scrollHeight,
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // }, []);
+
   return (
     <StyledLyrics>
       <article>

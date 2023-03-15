@@ -275,7 +275,10 @@ function AudioPlayer() {
           {number === 1 && <UpNext setProgress={setProgress} />}
           {number === 2 && (
             <div className="lyrics">
-              <Lyrics lyricsText={lyricsText} />
+              <Lyrics
+                lyricsText={lyricsText}
+                handleFetchLyrics={handleFetchLyrics}
+              />
             </div>
           )}
         </div>

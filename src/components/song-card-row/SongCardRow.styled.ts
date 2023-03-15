@@ -34,4 +34,14 @@ export const StyledSongCardRow = styled.div`
       }
     }
   }
+
+  @media (max-width: 400px) {
+    h4 {
+      max-width: 100px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 `;

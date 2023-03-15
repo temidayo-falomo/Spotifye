@@ -117,4 +117,11 @@ export const StyledLibraryInfo = styled.div`
       opacity: 0;
     }
   }
+
+  @media (max-width: 540px) {
+    .playlist-card {
+      margin: auto;
+      align-self: center;
+    }
+  }
 `;

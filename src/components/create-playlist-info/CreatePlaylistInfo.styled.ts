@@ -110,6 +110,25 @@ export const StyledCreatePlaylistInfo = styled.div`
     align-items: center;
     gap: 1rem;
 
+    .play-btn-tiny {
+      opacity: 0;
+    }
+
+    :hover {
+      .play-btn-tiny {
+        opacity: 1;
+        transition: 0.3s ease;
+      }
+
+      .thumbnail {
+        background: linear-gradient(
+          90deg,
+          rgba(1, 18, 1, 0.3828125) 95%,
+          rgba(14, 64, 14, 0.5004595588235294) 100%
+        ) !important;
+      }
+    }
+
     a {
       max-width: 150px;
       min-width: 80px;
@@ -127,6 +146,8 @@ export const StyledCreatePlaylistInfo = styled.div`
       height: 50px;
       border-radius: 5px;
       background-color: #4d4d4d;
+      display: grid;
+      place-content: center;
     }
 
     button {
@@ -174,6 +195,10 @@ export const StyledCreatePlaylistInfo = styled.div`
     .creator-det {
       display: flex;
       margin: auto;
+
+      a {
+        display: block !important;
+      }
     }
 
     .input-holder {
@@ -185,6 +210,41 @@ export const StyledCreatePlaylistInfo = styled.div`
     .creator-det {
       display: flex;
       margin: auto;
+    }
+
+    h4 {
+      max-width: 80px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    span {
+      max-width: 80px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .info-txt {
+      span {
+        max-width: 100% !important;
+      }
+    }
+
+    a {
+      display: none !important;
+    }
+
+    .card-row {
+      justify-content: space-between !important;
+      padding: 0;
+
+      .btw {
+        justify-content: flex-end;
+      }
     }
   }
 `;

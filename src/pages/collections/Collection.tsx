@@ -13,7 +13,7 @@ import { BsSearch } from "react-icons/bs";
 import { ColorExtractor } from "react-color-extractor";
 import Loading from "../../components/loading/Loading";
 import EditPlaylist from "../../components/edit-playlist/EditPlaylist";
-import { FaLock } from "react-icons/fa";
+import { FaLock, FaPlay } from "react-icons/fa";
 
 function Collection() {
   const id = useParams().id;
@@ -25,6 +25,10 @@ function Collection() {
     user,
     setUserPlaylists,
     userPlaylists,
+    setDisplayAudioPlayerMobile,
+    setCurrentSong,
+    setSongsList,
+    playPause,
   } = useContext(AppContext);
 
   const [searchValue, setSearchValue] = React.useState<string>("");
@@ -116,6 +120,20 @@ function Collection() {
     );
 
     navigate("/");
+  };
+
+  const handleAddSongsToLocalStorage = (currSong: object) => {
+    setDisplayAudioPlayerMobile(true);
+    localStorage.setItem(
+      "songsList",
+      JSON.stringify(userCollection?.tracklist)
+    );
+    setSongsList(userCollection?.tracklist);
+
+    localStorage.setItem("currentSong", JSON.stringify(currSong));
+    setCurrentSong(currSong);
+
+    playPause();
   };
 
   useEffect(() => {
@@ -238,7 +256,17 @@ function Collection() {
                         style={{
                           backgroundImage: `url(${song.album.cover_medium})`,
                         }}
-                      ></div>
+                      >
+                        <FaPlay
+                          style={{
+                            fontSize: "1.5rem",
+                          }}
+                          className="play-btn-tiny pointer"
+                          onClick={() => {
+                            handleAddSongsToLocalStorage(song);
+                          }}
+                        />
+                      </div>
                       <div className="col gap-5">
                         <h4>{song.title}</h4>
                         <span
