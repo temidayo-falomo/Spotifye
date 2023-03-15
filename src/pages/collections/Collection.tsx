@@ -10,10 +10,10 @@ import { StyledCreatePlaylistInfo } from "../../components/create-playlist-info/
 import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
-import { GiPadlock } from "react-icons/gi";
 import { ColorExtractor } from "react-color-extractor";
 import Loading from "../../components/loading/Loading";
 import EditPlaylist from "../../components/edit-playlist/EditPlaylist";
+import { FaLock } from "react-icons/fa";
 
 function Collection() {
   const id = useParams().id;
@@ -132,7 +132,6 @@ function Collection() {
           userCollection={userCollection}
           setUserCollection={setUserCollection}
           playlistId={id}
-          
         />
       )}
       <Sidebar />
@@ -275,9 +274,7 @@ function Collection() {
                           Remove
                         </button>
                       ) : (
-                        <button>
-                          <GiPadlock />
-                        </button>
+                        <FaLock />
                       )}
                     </div>
                   </div>

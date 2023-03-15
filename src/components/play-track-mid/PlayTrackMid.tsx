@@ -116,22 +116,26 @@ function PlayTrackMid(props: any) {
           </>
         )}
 
-        {props.handleDeletePlaylist && (
+        {user?.id === props.userId && (
           <>
-            {modal ? (
-              <MdClose
-                className="pointer"
-                onClick={() => {
-                  setModal(!modal);
-                }}
-              />
-            ) : (
-              <SlOptions
-                className="pointer"
-                onClick={() => {
-                  setModal(!modal);
-                }}
-              />
+            {props.handleDeletePlaylist && (
+              <>
+                {modal ? (
+                  <MdClose
+                    className="pointer"
+                    onClick={() => {
+                      setModal(!modal);
+                    }}
+                  />
+                ) : (
+                  <SlOptions
+                    className="pointer"
+                    onClick={() => {
+                      setModal(!modal);
+                    }}
+                  />
+                )}
+              </>
             )}
           </>
         )}

@@ -85,6 +85,13 @@ export const StyledEditPlaylist = styled.div`
       border-radius: 50px;
       font-size: 1rem;
       font-weight: 600;
+
+      :hover {
+        padding: 9px 29px;
+        border: 2px solid #fff;
+        background-color: transparent;
+        color: #fff;
+      }
     }
   }
 

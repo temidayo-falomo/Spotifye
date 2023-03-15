@@ -383,6 +383,7 @@ function AudioPlayer() {
               ></div>
             </div>
             <audio
+              title={currentSong?.title}
               src={currentSong?.preview}
               ref={audioElem}
               onTimeUpdate={onPlaying}

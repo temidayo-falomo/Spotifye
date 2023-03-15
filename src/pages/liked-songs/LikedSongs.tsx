@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { BsFillHeartFill } from "react-icons/bs";
 import { FiMusic } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
@@ -44,10 +45,11 @@ function LikedSongs() {
                 <div
                   className="big-thumbnail"
                   style={{
-                    backgroundColor: "#76848F",
+                    background:
+                      "linear-gradient(360deg, #7f8a83 0%, rgba(79,62,168,1) 79%)",
                   }}
                 >
-                  <FiMusic
+                  <BsFillHeartFill
                     style={{
                       fontSize: "5rem",
                     }}

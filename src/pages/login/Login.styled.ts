@@ -4,6 +4,7 @@ export const StyledLogin = styled.div`
   height: 100vh;
   background-color: #fff;
   color: #000;
+  overflow-y: scroll !important;
 
   a {
     font-size: 0.8rem;
@@ -32,15 +33,14 @@ export const StyledLogin = styled.div`
   }
 
   .login-container {
-    height: 70vh;
-    margin-top: 1rem;
-    display: grid;
-    place-content: center;
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 
     .box {
-      max-height: 600px;
       width: 450px;
-      min-width: 300px;
       border: 1px gainsboro solid;
       border-radius: 5px;
       padding: 30px;
@@ -49,6 +49,7 @@ export const StyledLogin = styled.div`
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
+      margin-bottom: 2rem;
 
       .line-row {
         width: 100%;
@@ -108,7 +109,7 @@ export const StyledLogin = styled.div`
         padding: 5px 10px;
         font-size: 0.7rem;
         color: white;
-        background-color: black;
+        background-color: #181818;
         border-radius: 5px;
         cursor: pointer;
 
@@ -148,5 +149,20 @@ export const StyledLogin = styled.div`
 
   .ghost {
     width: 20px !important;
+  }
+
+  @media (max-width: 500px) {
+    .login-container {
+      margin-top: 2rem;
+
+      .box {
+        width: 90%;
+
+        .notif {
+          position: relative;
+          font-size: 0.5rem;
+        }
+      }
+    }
   }
 `;

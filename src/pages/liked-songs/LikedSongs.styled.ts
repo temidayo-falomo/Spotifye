@@ -13,7 +13,7 @@ export const StyledLikedSongs = styled.div`
 
     .hero-bg {
       min-height: 40vh;
-      background-color: #433184;
+      background-color: #433582;
       padding: 20px;
       display: flex;
       flex-direction: column;

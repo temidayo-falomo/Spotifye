@@ -35,6 +35,7 @@ function PlaylistsList() {
               <span
                 style={{
                   color: song._id === id ? "#fff" : "#b3b3b3",
+                  textAlign: "left",
                 }}
                 key={index}
                 onClick={() => {

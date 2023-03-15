@@ -25,6 +25,7 @@ export const StyledSidebar = styled.aside`
       font-size: 0.9rem;
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       gap: 1rem;
       font-weight: 600;
     }
@@ -38,6 +39,7 @@ export const StyledSidebar = styled.aside`
       font-size: 0.9rem;
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       gap: 1rem;
       font-weight: 600;
     }

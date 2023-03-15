@@ -127,6 +127,14 @@ export const StyledAudioPlayer = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    h4 {
+      max-width: 150px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     span {
       width: max-content;
     }

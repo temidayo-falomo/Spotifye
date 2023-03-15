@@ -9,7 +9,7 @@ import { AppContext } from "../../global/Context";
 import PlaylistsList from "../playlists-list/PlaylistsList";
 
 function Sidebar() {
-  const { displaySidebar, setDisplaySidebar } = useContext(AppContext);
+  const { displaySidebar } = useContext(AppContext);
 
   return (
     <StyledSidebar displaySidebar={displaySidebar}>
