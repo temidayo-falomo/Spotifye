@@ -116,14 +116,14 @@ function CreatePlaylistIfo() {
           <div className="info-txt col gap-1">
             <span className="row gap-5 center">PLAYLIST</span>
             <h1>{userPlaylists[userPlaylists.length - 1]?.title}</h1>
-            <div className="row gap-5 center">
+            <div className="row gap-5 center creator-det">
               <div
                 className="avatar img-def"
                 style={{
                   backgroundImage: `url(${user?.userAvatar})`,
                 }}
               ></div>
-              <Link to="/">{user?.name}</Link>
+              <Link to="/">{user?.fullName}</Link>
             </div>
           </div>
         </div>
@@ -277,7 +277,7 @@ function CreatePlaylistIfo() {
                   </div>
 
                   <div
-                    className="row center btw gap-5"
+                    className="row center btw gap-5 "
                     style={{
                       width: "50%",
                     }}

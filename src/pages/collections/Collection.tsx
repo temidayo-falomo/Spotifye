@@ -181,7 +181,7 @@ function Collection() {
               <div className="info-txt col gap-1">
                 <span className="row gap-5 center">PLAYLIST</span>
                 <h1>{userCollection?.title}</h1>
-                <div className="row gap-5 center">
+                <div className="row gap-5 center creator-det">
                   <div
                     className="avatar img-def"
                     style={{

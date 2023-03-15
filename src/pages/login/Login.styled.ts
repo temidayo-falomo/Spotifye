@@ -49,7 +49,7 @@ export const StyledLogin = styled.div`
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 4rem;
 
       .line-row {
         width: 100%;
@@ -112,6 +112,7 @@ export const StyledLogin = styled.div`
         background-color: #181818;
         border-radius: 5px;
         cursor: pointer;
+        min-width: 100px;
 
         :hover {
           background-color: transparent;
@@ -157,6 +158,7 @@ export const StyledLogin = styled.div`
 
       .box {
         width: 90%;
+        padding: 20px;
 
         .notif {
           position: relative;

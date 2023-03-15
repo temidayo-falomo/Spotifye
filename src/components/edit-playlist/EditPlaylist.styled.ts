@@ -99,4 +99,17 @@ export const StyledEditPlaylist = styled.div`
     font-size: 0.8rem;
     font-weight: 600;
   }
+
+  @media (max-width: 490px) {
+    .edit-modal {
+      width: 90% !important;
+      min-width: 90% !important;
+      max-width: 90% !important;
+      margin: auto;
+    }
+
+    .holder {
+      flex-direction: column;
+    }
+  }
 `;

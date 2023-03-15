@@ -1,11 +1,11 @@
 import axios from "axios";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import React, { useContext } from "react";
 import { useCookies } from "react-cookie";
 import { BsEyeSlashFill, BsSpotify } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/firebase-config";
+import { auth, provider } from "../../firebase/firebase-config";
 import { AppContext } from "../../global/Context";
 import { StyledLogin } from "../login/Login.styled";
 
@@ -55,6 +55,37 @@ function SignUp() {
           });
 
         getCurrentUser(res.user.uid);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const signInWithGoogle = async () => {
+    signInWithPopup(auth, provider)
+      .then((res) => {
+        setCookie("user", res.user.uid, { path: "/" });
+
+        let userInfo = {
+          userId: res.user.uid,
+          fullName: res.user.displayName,
+          userAvatar: res.user.photoURL,
+          email: res.user.email,
+          password: "1234",
+          likedSongs: [],
+          likedPlaylists: [],
+          likedAlbums: [],
+          followedArtists: [],
+        };
+
+        axios
+          .post("https://spotifye-backend.vercel.app/api/add-user", userInfo)
+          .catch((err) => {
+            console.log(err);
+          });
+
+        getCurrentUser(res.user.uid);
+      })
+      .then(() => {
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -117,7 +148,7 @@ function SignUp() {
             <FaSpotify />
             Sign in with Spotify
           </button> */}
-          <button className="google">
+          <button className="google" onClick={signInWithGoogle}>
             <FcGoogle />
             Sign in with Google
           </button>
@@ -141,7 +172,7 @@ function SignUp() {
                 required
               />
               <div className="notif" onClick={getRandomEmail}>
-                Generate random email
+                Generate email?
               </div>
             </div>
 
@@ -154,7 +185,7 @@ function SignUp() {
                 onChange={(e) => setName(e.target.value)}
               />
               <div className="notif" onClick={getRandomName}>
-                Generate Username
+                Generate Username?
               </div>
             </div>
 
@@ -178,7 +209,7 @@ function SignUp() {
                   setPassword(generatePassword());
                 }}
               >
-                Generate Password
+                Generate Password?
               </div>
             </div>
 

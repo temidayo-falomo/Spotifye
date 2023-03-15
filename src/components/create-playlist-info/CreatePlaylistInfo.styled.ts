@@ -170,11 +170,21 @@ export const StyledCreatePlaylistInfo = styled.div`
       text-align: center;
       align-items: center;
     }
+
+    .creator-det {
+      display: flex;
+      margin: auto;
+    }
+
+    .input-holder {
+      min-width: 100% !important;
+    }
   }
 
   @media (max-width: 550px) {
-    a {
-      display: none !important;
+    .creator-det {
+      display: flex;
+      margin: auto;
     }
   }
 `;
