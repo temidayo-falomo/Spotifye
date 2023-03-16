@@ -10,9 +10,11 @@ import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
-function ArtisteInfo() {
-  const { artisteData, user, setUser, artisteTracks } = useContext(AppContext);
+function ArtisteInfo(props: any) {
+  const { user, setUser, artisteTracks } = useContext(AppContext);
   const [cookies, setCookie] = useCookies(["user"]);
+
+  const artisteData = props.artisteData;
 
   const handleFollowArtist = () => {
     axios
@@ -81,12 +83,13 @@ function ArtisteInfo() {
           handleFollowArtist={handleFollowArtist}
           handleUnfollowArtist={handleUnfollowArtist}
           artistId={artisteData?.id}
-
           allSongs={artisteTracks.slice(0, 10)}
         />
         <Popular />
         <Discography />
-        <Related />
+        <Related 
+        artisteRelated={props.artisteRelated}
+         />
       </div>
     </StyledArtisteInfo>
   );

@@ -6,7 +6,7 @@ import { AppContext } from "../../global/Context";
 import { StyledHome } from "./Home.styled";
 
 function Home() {
-  const { setHomeData, homeData } = useContext(AppContext);
+  const { setHomeData } = useContext(AppContext);
 
   const [loading, setLoading] = useState(true);
 

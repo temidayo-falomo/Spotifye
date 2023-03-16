@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../../components/loading/Loading";
 import SearchInfo from "../../components/search-info/SearchInfo";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { AppContext } from "../../global/Context";
 import { StyledSearch } from "./Search.styled";
 
 function Search() {
-  const { setRadioCategories } = useContext(AppContext);
+  const [radioCategories, setRadioCategories] = useState<any>([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +31,7 @@ function Search() {
   return (
     <StyledSearch>
       <Sidebar />
-      {loading ? <Loading /> : <SearchInfo />}
+      {loading ? <Loading /> : <SearchInfo radioCategories={radioCategories} />}
     </StyledSearch>
   );
 }

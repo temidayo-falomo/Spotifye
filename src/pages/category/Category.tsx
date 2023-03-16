@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategoryInfo from "../../components/category-info/CategoryInfo";
 import Loading from "../../components/loading/Loading";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { AppContext } from "../../global/Context";
 import { StyledCategory } from "./Category.styled";
 
 function Category() {
   const id = useParams().id;
-  const { setCategoryData } = useContext(AppContext);
+  const [categoryData, setCategoryData] = useState<any>([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -16,9 +15,7 @@ function Category() {
     setCategoryData(null);
     fetch(
       "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
-        encodeURIComponent(
-      `https://api.deezer.com/radio/${id}/tracks`
-      )
+        encodeURIComponent(`https://api.deezer.com/radio/${id}/tracks`)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -37,7 +34,9 @@ function Category() {
   return (
     <StyledCategory>
       <Sidebar />
-      {loading ? <Loading /> : <CategoryInfo />}
+      {loading ? <Loading /> : <CategoryInfo
+        categoryData={categoryData}
+       />}
     </StyledCategory>
   );
 }

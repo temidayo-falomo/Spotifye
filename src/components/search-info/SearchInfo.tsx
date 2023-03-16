@@ -5,9 +5,10 @@ import Navbar from "../navbar/Navbar";
 import SearchResults from "../search-results/SearchResults";
 import { StyledSearchInfo } from "./SearchInfo.styled";
 
-function SearchInfo() {
+function SearchInfo(props: any) {
   let navigate = useNavigate();
-  const { radioCategories, searchValue } = useContext(AppContext);
+  const { searchValue } = useContext(AppContext);
+  const { radioCategories } = props;
 
   return (
     <StyledSearchInfo>

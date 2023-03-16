@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
 import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 import SongCardRow from "../song-card-row/SongCardRow";
 import { StyledCategoryInfo } from "./CategoryInfo.styled";
 
-function CategoryInfo() {
+function CategoryInfo(props: any) {
   const name = useParams().name;
-  const { categoryData } = useContext(AppContext);
+  const { categoryData } = props;
 
   return (
     <StyledCategoryInfo>

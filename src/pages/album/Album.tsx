@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AlbumInfo from "../../components/album-info/AlbumInfo";
 import Loading from "../../components/loading/Loading";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { AppContext } from "../../global/Context";
 import { StyledAlbum } from "./Album.styled";
 
 function Album() {
   const id = useParams().id;
 
-  const { setAlbumData } = useContext(AppContext);
+  const [albumData, setAlbumData] = useState<any>([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +35,7 @@ function Album() {
   return (
     <StyledAlbum>
       <Sidebar />
-      {loading ? <Loading /> : <AlbumInfo />}
+      {loading ? <Loading /> : <AlbumInfo albumData={albumData} />}
     </StyledAlbum>
   );
 }

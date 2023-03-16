@@ -27,19 +27,16 @@ function App() {
   const audioElem = useRef<any>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
-  //* Data States
+  // Data States
   const [homeData, setHomeData] = useState({});
-  const [artisteData, setArtisteData] = useState([]);
   const [artisteAlbums, setArtisteAlbums] = useState([]);
   const [artisteTracks, setArtisteTracks] = useState([]);
-  const [artisteRelated, setArtisteRelated] = useState([]);
-  const [radioCategories, setRadioCategories] = useState([]);
-  const [albumData, setAlbumData] = useState([]);
   const [searchData, setSearchData] = useState([]);
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [categoryData, setCategoryData] = useState([]);
 
-  //Display States
+  //
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  //AudioPlayer && Sidebar Display
   const [displayAudioPlayer, setDisplayAudioPlayer] = useState<boolean>(false);
   const [displayAudioPlayerMobile, setDisplayAudioPlayerMobile] =
     useState<boolean>(true);
@@ -53,7 +50,7 @@ function App() {
   //*Current Song State
   const [currentSong, setCurrentSong] = useState<object>(songsList[0]);
 
-  //Unable to Play Error State
+  //TODO: Unable to Play Error State
   const [unableToPlay, setUnableToPlay] = useState<boolean>(false);
 
   //Navbar Search State
@@ -65,11 +62,14 @@ function App() {
   //Gradient State
   const [defaultGradientNum, setDefaultGradientNum] = useState<number>(0);
 
-  const [user, setUser] = useState<any>(null); //User Object
+  //User Object
+  const [user, setUser] = useState<any>(null);
 
-  const [userPlaylists, setUserPlaylists] = useState<any>([]); //User Playlists
+  //User Playlists
+  const [userPlaylists, setUserPlaylists] = useState<any>([]);
 
-  const [userCollection, setUserCollection] = useState({}); //User Collection
+  //User Collection
+  const [userCollection, setUserCollection] = useState({});
 
   //* Function to Play/Pause Audio
   const playPause = () => {
@@ -124,18 +124,10 @@ function App() {
       value={{
         homeData,
         setHomeData,
-        artisteData,
-        setArtisteData,
         artisteAlbums,
         setArtisteAlbums,
         artisteTracks,
         setArtisteTracks,
-        artisteRelated,
-        setArtisteRelated,
-        radioCategories,
-        setRadioCategories,
-        albumData,
-        setAlbumData,
 
         searchValue,
         setSearchValue,
@@ -143,9 +135,6 @@ function App() {
         setSearchData,
         searchLoading,
         setSearchLoading,
-
-        categoryData,
-        setCategoryData,
 
         displayAudioPlayer,
         setDisplayAudioPlayer,

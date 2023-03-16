@@ -10,14 +10,11 @@ function Artiste() {
   const id = useParams().id;
   let navigate = useNavigate();
 
-  const {
-    setArtisteData,
-    setArtisteAlbums,
-    setArtisteTracks,
-    setArtisteRelated,
-  } = useContext(AppContext);
+  const { setArtisteAlbums, setArtisteTracks } = useContext(AppContext);
 
   const [loading, setLoading] = useState(true);
+  const [artisteData, setArtisteData] = useState<any>(null);
+  const [artisteRelated, setArtisteRelated] = useState<any>([]);
 
   const fetchArtiste = async () => {
     // setArtisteData(null);
@@ -114,7 +111,14 @@ function Artiste() {
   return (
     <StyledArtiste>
       <Sidebar />
-      {loading ? <Loading /> : <ArtisteInfo />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <ArtisteInfo
+          artisteData={artisteData}
+          artisteRelated={artisteRelated}
+        />
+      )}
     </StyledArtiste>
   );
 }

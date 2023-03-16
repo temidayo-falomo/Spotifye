@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../../global/Context";
 import { StyledRelated } from "./Related.styled";
 
-function Related() {
+function Related(props: any) {
   let navigate = useNavigate();
-  const { artisteRelated } = useContext(AppContext);
+  const { artisteRelated } = props;
 
   const handleNavigateToArtiste = (
     artiste_id: string,

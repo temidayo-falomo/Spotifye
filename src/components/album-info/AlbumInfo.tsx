@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { MdExplicit } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
 import { StyledAlbumInfo } from "./AlbumInfo.styled";
 import { CgTimer } from "react-icons/cg";
@@ -9,10 +8,10 @@ import SongCardRow from "../song-card-row/SongCardRow";
 import { ColorExtractor } from "react-color-extractor";
 import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 
-function AlbumInfo() {
-  const { albumData } = useContext(AppContext);
+function AlbumInfo(props: any) {
   const [colors, setColors] = useState<any>(null);
   let navigate = useNavigate();
+  const albumData = props.albumData;
 
   const getColors = (detectedColorCodes: any) => {
     setColors(detectedColorCodes);
