@@ -13,6 +13,8 @@ A complex clone of Spotify, Youtube Music & Deezer.
 - Keep track of liked songs
 - Follow Artistes
 - Create Account
+- PWA
+- 
 
 
 
@@ -21,8 +23,8 @@ A complex clone of Spotify, Youtube Music & Deezer.
 Install my-project with npm
 
 ```bash
-  npm install my-project
-  cd my-project
+  npm install spotifye
+  cd spotifye
 ```
     
 ## Demo
@@ -59,6 +61,7 @@ To deploy this project run
 - Add more integrations
 
 - PWA
+
 ## API Reference
 
 #### Get all items
