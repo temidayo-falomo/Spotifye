@@ -44,6 +44,9 @@ function Error() {
       .then(() => {
         navigate("/");
       })
+      .then(() => {
+        window.location.reload();
+      })
       .catch((err) => console.log(err));
   };
 

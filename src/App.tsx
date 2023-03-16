@@ -136,41 +136,39 @@ function App() {
         searchLoading,
         setSearchLoading,
 
+        //Global States related to playing/displaying audio
         displayAudioPlayer,
         setDisplayAudioPlayer,
         displaySidebar,
         setDisplaySidebar,
         displayAudioPlayerMobile,
         setDisplayAudioPlayerMobile,
-
         songsList,
         setSongsList,
-
         currentSong,
         setCurrentSong,
-
         playPause,
         audioElem,
         isPlaying,
         setIsPlaying,
-
         unableToPlay,
         setUnableToPlay,
 
+        //Playlist States
         playlistData,
         setPlaylistData,
 
+        //Landing Page Gradient States
         defaultGradientNum,
         setDefaultGradientNum,
 
+        //User Info States & Functions
         getCurrentUser,
         user,
         setUser,
         userPlaylists,
         setUserPlaylists,
-
         getUserPlaylists,
-
         userCollection,
         setUserCollection,
       }}
