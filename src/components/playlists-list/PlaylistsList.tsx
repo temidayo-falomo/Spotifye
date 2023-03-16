@@ -16,7 +16,6 @@ function PlaylistsList() {
       }/${encodeURIComponent(song.title)}`;
     } else {
       navigate("/");
-      window.location.reload();
     }
   };
 

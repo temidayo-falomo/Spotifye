@@ -9,7 +9,6 @@ import Navbar from "../navbar/Navbar";
 import PlayTrackMid from "../play-track-mid/PlayTrackMid";
 import { StyledCreatePlaylistInfo } from "./CreatePlaylistInfo.styled";
 import { useCookies } from "react-cookie";
-// import { ObjectId } from "bson";
 
 function CreatePlaylistIfo() {
   const { user, userPlaylists, setUserPlaylists } = useContext(AppContext);
@@ -17,6 +16,21 @@ function CreatePlaylistIfo() {
   const [searchData, setSearchData] = React.useState<any>([]);
   const [searchLoading, setSearchLoading] = React.useState<boolean>(false);
   const [cookies, setCookie] = useCookies(["user"]);
+
+  const newObjectId = () => {
+    const timestamp = Math.floor(new Date().getTime() / 1000).toString(16);
+    const objectId =
+      timestamp +
+      "xxxxxxxxxxxxxxxx"
+        .replace(/[x]/g, () => {
+          return Math.floor(Math.random() * 16).toString(16);
+        })
+        .toLowerCase();
+
+    return objectId;
+  };
+
+  const [id, setId] = React.useState<string>(newObjectId());
 
   const fetchSearchResults = async () => {
     setSearchLoading(true);
@@ -34,35 +48,65 @@ function CreatePlaylistIfo() {
       });
   };
 
-  const addSongToPlaylist = (song: object, playlistId: string) => {
+  const addSongToPlaylist = (song: object) => {
     axios
       .put("https://spotifye-backend.vercel.app/api/playlists/add-track", {
         song,
-        playlistId,
+        playlistId: id,
       })
       .catch((err) => {
         console.log(err);
       });
+
+    const newPlaylists = userPlaylists?.map(
+      (playlist: { _id: React.SetStateAction<string>; tracklist: any[] }) => {
+        if (playlist._id === id) {
+          return {
+            ...playlist,
+            tracklist: [...playlist.tracklist, song],
+          };
+        }
+        return playlist;
+      }
+    );
+
+    setUserPlaylists(newPlaylists);
   };
 
   const removeSongFromPlaylist = (song: {
     id: React.SetStateAction<number>;
   }) => {
     axios
-      .post("https://spotifye-backend.vercel.app/api/v1/playlist/remove", {
+      .put("https://spotifye-backend.vercel.app/api/playlists/remove-track", {
         song,
+        playlistId: id,
       })
       .catch((err) => {
         console.log(err);
       });
+
+    const newPlaylists = userPlaylists?.map(
+      (playlist: { _id: React.SetStateAction<string>; tracklist: any[] }) => {
+        if (playlist._id === id) {
+          return {
+            ...playlist,
+            tracklist: playlist.tracklist.filter(
+              (track: { id: React.SetStateAction<number> }) => {
+                return track.id !== song.id;
+              }
+            ),
+          };
+        }
+        return playlist;
+      }
+    );
+
+    setUserPlaylists(newPlaylists);
   };
 
   const handleNewPlaylist = () => {
-    // const id = new ObjectId();
-    // console.log(id.toString());
-
     let playlistObject = {
-      _id: "",
+      _id: id,
       picture_xl: `https://ik.imagekit.io
         /gdgtme/wp-content/uploads
         /2022/02/How-To-Create-A-Music-Playlist-For-Offline-Listening-In-2022.jpg`,
@@ -91,9 +135,7 @@ function CreatePlaylistIfo() {
   };
 
   useEffect(() => {
-    // if (location.pathname.includes("/create-playlist")) {
     handleNewPlaylist();
-    // }
   }, []);
 
   return (
@@ -131,7 +173,7 @@ function CreatePlaylistIfo() {
 
       <div className="mid">
         <PlayTrackMid />
-        {userPlaylists[0]?.songs?.length > 0 && (
+        {userPlaylists[0]?.tracklist?.length > 0 && (
           <div className="table row btw center">
             <div className="row gap-1 center">
               <span>#</span>
@@ -152,7 +194,7 @@ function CreatePlaylistIfo() {
             margin: "0 auto",
           }}
         >
-          {userPlaylists[userPlaylists.length - 1]?.songs?.map(
+          {userPlaylists[userPlaylists.length - 1]?.tracklist?.map(
             (song: any, index: number) => {
               return (
                 <div className="row btw card-row" key={index}>
@@ -286,14 +328,14 @@ function CreatePlaylistIfo() {
                       {song.album.title}
                     </Link>
 
-                    {userPlaylists[userPlaylists.length - 1]?.songs?.some(
+                    {userPlaylists[userPlaylists.length - 1]?.tracklist?.some(
                       (e: any) => e.id === song.id
                     ) ? (
                       <button onClick={() => {}}>Added</button>
                     ) : (
                       <button
                         onClick={() => {
-                          addSongToPlaylist(song, song._id);
+                          addSongToPlaylist(song);
                         }}
                       >
                         Add

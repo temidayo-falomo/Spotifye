@@ -8,7 +8,6 @@ export const StyledEditPlaylist = styled.div`
   position: fixed;
   width: 100%;
   z-index: 99999999999999;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.1);
   background-color: rgba(9, 12, 15, 0.21);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
