@@ -42,13 +42,21 @@ function App() {
     useState<boolean>(true);
   const [displaySidebar, setDisplaySidebar] = useState<boolean>(true);
 
+  //to make sure songsList from localstorage is not undefined
+  if (localStorage.getItem("songsList") === "undefined" || null) {
+    localStorage.setItem("songsList", JSON.stringify([]));
+    console.log("songsList is undefined");
+  }
+
   //Songs List State
-  const [songsList, setSongsList] = useState(
+  const [songsList, setSongsList] = useState<any>(
     JSON.parse(localStorage.getItem("songsList") || "[]")
   );
 
   //*Current Song State
-  const [currentSong, setCurrentSong] = useState<object>(songsList[0]);
+  const [currentSong, setCurrentSong] = useState<object>(
+    songsList ? songsList[0] || {} : {}
+  );
 
   //TODO: Unable to Play Error State
   const [unableToPlay, setUnableToPlay] = useState<boolean>(false);
@@ -171,6 +179,7 @@ function App() {
         getUserPlaylists,
         userCollection,
         setUserCollection,
+        
       }}
     >
       <div className="App">

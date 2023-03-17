@@ -29,7 +29,14 @@ function CategoryInfo(props: any) {
 
       <div className="categories col gap-5">
         {categoryData?.map((song: any, index: number) => {
-          return <SongCardRow key={song.id} song={song} index={index} />;
+          return (
+            <SongCardRow
+              key={song.id}
+              song={song}
+              index={index}
+              categoryData={categoryData}
+            />
+          );
         })}
       </div>
     </StyledCategoryInfo>

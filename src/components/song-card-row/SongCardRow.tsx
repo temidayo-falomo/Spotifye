@@ -34,13 +34,13 @@ function SongCardRow(
     setCurrentSong,
     playPause,
     setSongsList,
-    categoryData,
-    albumData,
     playlistData,
     setDisplayAudioPlayerMobile,
     user,
   } = useContext(AppContext);
   const location = useLocation();
+
+  const { categoryData, albumData } = props;
 
   const handleAddSongsToLocalStorage = (currSong: object) => {
     setDisplayAudioPlayerMobile(true);

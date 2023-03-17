@@ -105,7 +105,14 @@ function AlbumInfo(props: any) {
 
       <div className="col gap-1 album-songs">
         {albumData?.tracks?.data.map((song: any, index: number) => {
-          return <SongCardRow key={index} song={song} index={index} />;
+          return (
+            <SongCardRow
+              key={index}
+              song={song}
+              index={index}
+              albumData={albumData}
+            />
+          );
         })}
       </div>
     </StyledAlbumInfo>

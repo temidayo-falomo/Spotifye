@@ -15,6 +15,7 @@ export const StyledPopular = styled.div`
     .popular-card {
       width: 98%;
       padding: 15px 20px;
+      text-align: left;
 
       :hover {
         background-color: #282828;
