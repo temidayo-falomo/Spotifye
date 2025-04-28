@@ -49,44 +49,70 @@ const SongCardRow: React.FC<SongCardRowProps> = memo(
       playlistData,
       setDisplayAudioPlayerMobile,
       user,
+      setIsPlaying,
+      audioElem,
     } = useContext(AppContext);
     const location = useLocation();
 
     const isCurrentSong = song?.id === currentSong?.id;
 
-    const handleAddSongsToLocalStorage = (currSong: Song) => {
-      setDisplayAudioPlayerMobile(true);
+    const handleAddSongsToLocalStorage = (currSong: Song, action: string) => {
+      if (action === "play") {
+        try {
+          setDisplayAudioPlayerMobile(true);
 
-      if (location.pathname.includes("/category")) {
-        localStorage.setItem(
-          "songsList",
-          JSON.stringify(categoryData?.slice(0, 20))
-        );
-        setSongsList(categoryData?.slice(0, 20));
+          // Validate current song
+          if (!currSong) {
+            console.error("No song provided");
+            return;
+          }
+
+          // Determine songs list based on route
+          let songsToStore = [];
+
+          if (location.pathname.includes("/category")) {
+            songsToStore = categoryData?.slice(0, 20) || [];
+          } else if (location.pathname.includes("/album")) {
+            songsToStore = albumData?.tracks?.data || [];
+          } else if (location.pathname.includes("/playlist")) {
+            songsToStore = playlistData || [];
+          } else if (location.pathname.includes("/liked-songs")) {
+            songsToStore = user?.likedSongs || [];
+          }
+
+          // Store songs list
+          try {
+            localStorage.setItem("songsList", JSON.stringify(songsToStore));
+            setSongsList(songsToStore);
+          } catch (storageError) {
+            console.error("Failed to store songs list:", storageError);
+          }
+
+          // Store current song and play it
+          try {
+            localStorage.setItem("currentSong", JSON.stringify(currSong));
+            setCurrentSong(currSong);
+            setIsPlaying(true);
+
+            // Ensure audio element is loaded and played
+            if (audioElem.current) {
+              audioElem.current.load();
+              audioElem.current.play().catch((error: Error) => {
+                console.error("Error playing audio:", error);
+              });
+            }
+          } catch (storageError) {
+            console.error("Failed to store current song:", storageError);
+          }
+        } catch (error) {
+          console.error("Error in handleAddSongsToLocalStorage:", error);
+        }
+      } else if (action === "pause") {
+        setIsPlaying(false);
+        if (audioElem.current) {
+          audioElem.current.pause();
+        }
       }
-
-      if (location.pathname.includes("/album")) {
-        localStorage.setItem(
-          "songsList",
-          JSON.stringify(albumData?.tracks?.data)
-        );
-        setSongsList(albumData?.tracks?.data);
-      }
-
-      if (location.pathname.includes("/playlist")) {
-        localStorage.setItem("songsList", JSON.stringify(playlistData));
-        setSongsList(playlistData);
-      }
-
-      if (location.pathname.includes("/liked-songs")) {
-        localStorage.setItem("songsList", JSON.stringify(user?.likedSongs));
-        setSongsList(user?.likedSongs);
-      }
-
-      localStorage.setItem("currentSong", JSON.stringify(currSong));
-      setCurrentSong(currSong);
-
-      playPause();
     };
 
     return (
@@ -98,7 +124,7 @@ const SongCardRow: React.FC<SongCardRowProps> = memo(
         tabIndex={0}
         onKeyPress={(e: React.KeyboardEvent) => {
           if (e.key === "Enter" || e.key === " ") {
-            handleAddSongsToLocalStorage(song);
+            handleAddSongsToLocalStorage(song, "play");
           }
         }}
       >
@@ -115,16 +141,31 @@ const SongCardRow: React.FC<SongCardRowProps> = memo(
               <>{index + 1}</>
             )}
           </span>
-          <button
-            className="play"
-            onClick={() => handleAddSongsToLocalStorage(song)}
-            style={{
-              color: isCurrentSong ? "#1db954" : "inherit",
-            }}
-            aria-label={isCurrentSong ? "Pause song" : "Play song"}
-          >
-            {isCurrentSong ? <FaPause /> : <FaPlay />}
-          </button>
+          {isCurrentSong && (
+            <button
+              className="play"
+              onClick={() => handleAddSongsToLocalStorage(song, "pause")}
+              style={{
+                color: isCurrentSong ? "#1db954" : "inherit",
+              }}
+              aria-label={isCurrentSong ? "Pause song" : "Play song"}
+            >
+              <FaPause />
+            </button>
+          )}
+          {!isCurrentSong && (
+            <button
+              className="play"
+              onClick={() => handleAddSongsToLocalStorage(song, "play")}
+              style={{
+                color: "inherit",
+              }}
+              aria-label="Play song"
+            >
+              <FaPlay />
+            </button>
+          )}
+
           <div className="col gap-5">
             <h4
               style={{

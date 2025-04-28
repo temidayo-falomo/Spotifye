@@ -196,6 +196,17 @@ function AudioPlayer() {
     }
   }, [volume, audioElem]);
 
+  useEffect(() => {
+    if (audioElem.current && currentSong) {
+      audioElem.current.load();
+      if (isPlaying) {
+        audioElem.current.play().catch((error: Error) => {
+          console.error("Error playing audio:", error);
+        });
+      }
+    }
+  }, [currentSong, audioElem]);
+
   return (
     <StyledAudioPlayer
       displayAudioPlayer={displayAudioPlayer}

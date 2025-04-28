@@ -82,7 +82,16 @@ function App() {
 
   //* Function to Play/Pause Audio
   const playPause = () => {
-    setIsPlaying(!isPlaying);
+    if (audioElem.current) {
+      if (isPlaying) {
+        audioElem.current.pause();
+      } else {
+        audioElem.current.play().catch((error: Error) => {
+          console.error("Error playing audio:", error);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    }
   };
 
   //* Function to get Current User From Backend.
@@ -113,12 +122,15 @@ function App() {
 
   //* Play/Pause Audio
   useEffect(() => {
-    if (isPlaying) {
-      audioElem?.current?.play();
-    } else {
-      audioElem?.current?.pause();
+    if (audioElem.current && currentSong) {
+      audioElem.current.load();
+      if (isPlaying) {
+        audioElem.current.play().catch((error: Error) => {
+          console.error("Error playing audio:", error);
+        });
+      }
     }
-  }, [isPlaying]);
+  }, [currentSong, isPlaying]);
 
   //* Invoke getCurrentUser() && getUserPlaylists() on page load
   useEffect(() => {
