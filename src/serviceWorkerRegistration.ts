@@ -83,6 +83,9 @@ function registerValidSW(swUrl: string, config?: Config) {
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
+
+              // Automatically activate the new service worker
+              installingWorker.postMessage({ type: "SKIP_WAITING" });
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a

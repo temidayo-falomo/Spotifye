@@ -75,6 +75,8 @@ registerRoute(
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
+    // Immediately activate the new service worker
+    self.clients.claim();
   }
 });
 
