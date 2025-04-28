@@ -9,11 +9,11 @@ function Library() {
   const [cookies, setCookie] = useCookies(["user"]);
   let navigate = useNavigate();
 
-  useEffect(() => {
-    if (!cookies.user) {
-      navigate("/404");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!cookies.user) {
+  //     navigate("/404");
+  //   }
+  // }, []);
 
   return (
     <StyledLibrary>

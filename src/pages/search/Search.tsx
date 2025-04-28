@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../../components/loading/Loading";
 import SearchInfo from "../../components/search-info/SearchInfo";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { StyledSearch } from "./Search.styled";
@@ -11,7 +10,7 @@ function Search() {
 
   const fetchRadioCategories = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent(`https://api.deezer.com/radio`)
     )
       .then((res) => res.json())
@@ -31,7 +30,7 @@ function Search() {
   return (
     <StyledSearch>
       <Sidebar />
-      {loading ? <Loading /> : <SearchInfo radioCategories={radioCategories} />}
+      {<SearchInfo loading={loading} radioCategories={radioCategories} />}
     </StyledSearch>
   );
 }

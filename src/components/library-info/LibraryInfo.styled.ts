@@ -7,6 +7,44 @@ export const StyledLibraryInfo = styled.div`
   padding: 20px;
   position: relative;
 
+  .middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+    text-align: center;
+    font-size: 1.2rem;
+    height: 90%;
+
+    img {
+      max-width: 350px;
+      margin-bottom: -4rem;
+    }
+
+    a {
+      text-decoration: underline;
+      color: #1db954;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background-color: transparent;
+      border: 2px white solid;
+      color: #fff;
+      font-weight: 600;
+
+      :hover {
+        border: 2px royalblue solid;
+        color: royalblue;
+      }
+    }
+  }
+
   .max {
     width: max-content;
   }

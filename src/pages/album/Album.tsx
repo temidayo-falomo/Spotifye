@@ -15,7 +15,7 @@ function Album() {
   const fetchAlbum = async () => {
     setAlbumData(null);
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent(`https://api.deezer.com/album/${id}`)
     )
       .then((res) => res.json())

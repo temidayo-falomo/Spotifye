@@ -41,7 +41,7 @@ function TopArtisteCard(
   const playFirstSong = () => {
     setDisplayAudioPlayerMobile(true);
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent(
           `https://api.deezer.com/artist/${props.itemData?.id}/top?limit=30`
         )

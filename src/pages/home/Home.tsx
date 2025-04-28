@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Landing from "../../components/landing/Landing";
-import Loading from "../../components/loading/Loading";
+import SkeletonLoading from "../../components/skeleton-loading/SkeletonLoading";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AppContext } from "../../global/Context";
 import { StyledHome } from "./Home.styled";
@@ -12,7 +12,7 @@ function Home() {
 
   const fetchCharts = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent("https://api.deezer.com/chart")
     )
       .then((res) => res.json())
@@ -27,7 +27,7 @@ function Home() {
 
   const fetchPlaylists = async () => {
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent("https://api.deezer.com/search/playlist?q=deezer")
     )
       .then((res) => res.json())
@@ -56,7 +56,7 @@ function Home() {
   return (
     <StyledHome>
       <Sidebar />
-      {loading ? <Loading /> : <Landing />}
+      {loading ? <SkeletonLoading /> : <Landing />}
     </StyledHome>
   );
 }

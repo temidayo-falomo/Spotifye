@@ -14,7 +14,7 @@ function Category() {
   const fetchCategory = async () => {
     setCategoryData(null);
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent(`https://api.deezer.com/radio/${id}/tracks`)
     )
       .then((res) => res.json())

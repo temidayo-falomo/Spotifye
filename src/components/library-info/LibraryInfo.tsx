@@ -1,14 +1,55 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { FiMusic } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
 import { StyledLibraryInfo } from "./LibraryInfo.styled";
+import Loading from "../loading/Loading";
 
 function LibraryInfo() {
   const { user, userPlaylists } = useContext(AppContext);
   let navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["user"]);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    if (!cookies.user) {
+      setShowSignIn(true);
+      setIsLoading(false);
+    }
+  }, [cookies.user]);
+
+  const signInWithGoogle = async () => {
+    navigate("/login");
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    );
+  }
+
+  if (showSignIn) {
+    return (
+      <StyledLibraryInfo>
+        <Navbar />
+        <div className="middle">
+          <img src="./assets/yeti.png" alt="" />
+          <p>You are not signed in, silly.</p>
+          <button className="center gap-5 row" onClick={signInWithGoogle}>
+            <FcGoogle /> Sign In
+          </button>
+        </div>
+      </StyledLibraryInfo>
+    );
+  }
 
   return (
     <StyledLibraryInfo>

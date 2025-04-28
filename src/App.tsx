@@ -20,6 +20,7 @@ import Error from "./pages/404/Error";
 import SignUp from "./pages/sign-up/SignUp";
 
 function App() {
+  const apiUrl = process.env.REACT_APP_API_URL;
   //* Cookies
   const [cookies, setCookie] = useCookies(["user"]);
 
@@ -86,7 +87,7 @@ function App() {
 
   //* Function to get Current User From Backend.
   const getCurrentUser = (id: string) => {
-    fetch(`https://spotifye-backend.vercel.app/api/user/${id}`)
+    fetch(`${apiUrl}/api/user/${id}`)
       .then((res) => res.json())
       .then((res) => {
         //set relevant states from api call
@@ -99,9 +100,7 @@ function App() {
 
   //* Function to get User Playlists From Backend.
   const getUserPlaylists = () => {
-    fetch(
-      `https://spotifye-backend.vercel.app/api/playlists/user-playlists/${cookies.user}`
-    )
+    fetch(`${apiUrl}/api/playlists/user-playlists/${cookies.user}`)
       .then((res) => res.json())
       .then((res) => {
         //set relevant states from api call
@@ -179,7 +178,6 @@ function App() {
         getUserPlaylists,
         userCollection,
         setUserCollection,
-        
       }}
     >
       <div className="App">
@@ -203,7 +201,7 @@ function App() {
           <Route path="/404" element={<Error />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        {currentSong && <AudioPlayer />}
+        {Object.keys(currentSong).length > 0 && <AudioPlayer />}
       </div>
     </AppContext.Provider>
   );

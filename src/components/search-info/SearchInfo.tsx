@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../global/Context";
 import Navbar from "../navbar/Navbar";
 import SearchResults from "../search-results/SearchResults";
+import SearchSkeletonLoading from "../skeleton-loading/SearchSkeletonLoading";
 import { StyledSearchInfo } from "./SearchInfo.styled";
 
 function SearchInfo(props: any) {
   let navigate = useNavigate();
   const { searchValue } = useContext(AppContext);
-  const { radioCategories } = props;
+  const { radioCategories, loading } = props;
+
+  if (loading) {
+    return <SearchSkeletonLoading />;
+  }
 
   return (
     <StyledSearchInfo>

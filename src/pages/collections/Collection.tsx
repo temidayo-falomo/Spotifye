@@ -41,7 +41,7 @@ function Collection() {
   const fetchSearchResults = async () => {
     setSearchLoading(true);
     fetch(
-      "https://n3rdy-cors-proxy.glitch.me/useproxy?link=" +
+      `${process.env.REACT_APP_PROXY_URL}` +
         encodeURIComponent(`https://api.deezer.com/search?q=${searchValue}`)
     )
       .then((res) => res.json())
