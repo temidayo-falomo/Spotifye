@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { BsEyeSlashFill, BsSpotify } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -134,6 +134,12 @@ function SignUp() {
 
     return result;
   };
+
+  useEffect(() => {
+    if (cookies.user) {
+      navigate("/");
+    }
+  }, [cookies.user, navigate]);
 
   return (
     <StyledLogin>

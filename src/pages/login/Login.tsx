@@ -1,6 +1,6 @@
 import axios from "axios";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { BsSpotify } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -65,6 +65,12 @@ function Login() {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    if (cookies.user) {
+      navigate("/");
+    }
+  }, [cookies.user, navigate]);
 
   return (
     <StyledLogin>

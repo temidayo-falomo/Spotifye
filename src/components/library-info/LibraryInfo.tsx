@@ -20,15 +20,15 @@ function LibraryInfo() {
     setIsLoading(true);
     if (!cookies.user) {
       setShowSignIn(true);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, [cookies.user]);
 
   const signInWithGoogle = async () => {
     navigate("/login");
   };
 
-  if (isLoading) {
+  if (isLoading && !cookies.user) {
     return (
       <div className="loading-container">
         <Loading />
