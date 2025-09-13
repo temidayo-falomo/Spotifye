@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999999998;
+  cursor: pointer;
+
+  @media (min-width: 681px) {
+    display: none;
+  }
+`;
+
 export const StyledSidebar = styled.aside`
   display: flex;
   flex-direction: column;
@@ -51,20 +66,20 @@ export const StyledSidebar = styled.aside`
   }
 
   @media (max-width: 680px) {
-    /* color: ${(props: any) => (props.displaySidebar ? "#000" : "#fff")}; */
-    position: absolute;
-    z-index: 99999999;
-    width: ${(props: any) => (props.displaySidebar ? "0" : "50%")};
-    min-width: ${(props: any) => (props.displaySidebar ? "0" : "250px")};
-    overflow: hidden;
-    padding: ${(props: any) => (props.displaySidebar ? "0" : "30px")};
-    opacity: ${(props: any) => (props.displaySidebar ? "0" : "1")};
-    color: ${(props: any) =>
-      props.displaySidebar ? "transparent" : "inherit"};
-    transition: 0.5s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999;
+    width: 280px;
+    min-width: 280px;
+    transform: ${(props: any) => 
+      props.displaySidebar ? "translateX(-100%)" : "translateX(0)"};
+    transition: transform 0.3s ease-in-out;
+    padding: 30px;
+    overflow-y: auto;
 
     .logo {
-      visibility: hidden;
+      visibility: visible;
     }
   }
 `;
