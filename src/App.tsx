@@ -96,6 +96,7 @@ function App() {
 
   //* Function to get Current User From Backend.
   const getCurrentUser = (id: string) => {
+    if (!id) return;
     fetch(`${apiUrl}/api/user/${id}`)
       .then((res) => res.json())
       .then((res) => {
@@ -109,6 +110,7 @@ function App() {
 
   //* Function to get User Playlists From Backend.
   const getUserPlaylists = () => {
+    if (!cookies.user) return;
     fetch(`${apiUrl}/api/playlists/user-playlists/${cookies.user}`)
       .then((res) => res.json())
       .then((res) => {
@@ -136,7 +138,7 @@ function App() {
   useEffect(() => {
     getCurrentUser(cookies.user);
     getUserPlaylists();
-  }, []);
+  }, [cookies.user]);
 
   return (
     <AppContext.Provider
