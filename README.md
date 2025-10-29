@@ -1,7 +1,9 @@
 
 # Spotifye
 
-A complex clone of Spotify, Youtube Music & Deezer.
+Code is old & scary and makes me cower in shame, but it works.
+
+A clone of Spotify, Youtube Music & Deezer.
 ## Features
 
 - Listen to any music track for 30 seconds
